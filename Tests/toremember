@@ -1,0 +1,21 @@
+/*int socket = newTCPSocket_client(5577, "127.0.0.1");
+    write(socket, "CIAO", 4);
+    closeSocket(socket);*/
+
+    connection_t sock = newUDPSocket_client(5577, "127.0.0.1");
+    sendto(sock.socket, "CIAO CRISTO DIO", 15, 0, (struct sockaddr *) &sock.clientData, sock.clientDataLenght);
+    closeSocket(sock.socket);
+
+
+    /*int socket = newSocket_server(5577);
+    connection_t q = wait4connection(socket);
+
+    read(q.socket, n, 50);
+    printf("%s", n);
+    closeSocket(q.socket);
+    closeSocket(socket);*/
+
+    int sock = newUDPSocket_server(5577);
+    recvfrom( sock, n, sizeof(n) - 1, 0, NULL, 0 );
+    printf("%s", n);
+    closeSocket(sock);
