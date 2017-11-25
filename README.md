@@ -1,5 +1,5 @@
-#NETBACK
-####Software di trasferimento e salvataggio file attraverso la rete.
+# NETBACK
+#### Software di trasferimento e salvataggio file attraverso la rete.
 
 
 ##Presentazione del software
@@ -7,40 +7,40 @@ Il software si presenta diviso in cinque eseguibili compilati, scritti in lingua
 Lo scopo del software è il salvataggio di copie di backup di file e drive fisici attraverso la rete e la loro memorizzazione all’interno di un server preposto, senza utilizzare spazio sul disco fisico della macchina client.
 La dotazione di un pannello di controllo con interfaccia web sicura permette l’utilizzo in reti di discrete dimensioni puntando sulla facilità di controllo dei client agli amministratori di rete.
 
-##Funzionalità
-###Controllo dell’identità del server mediante RSA
+## Funzionalità
+### Controllo dell’identità del server mediante RSA
 Il primo controllo del client nei confronti del server consiste nella verifica dell’identità della macchina mediante la firma digitale possibile grazie all’algoritmo RSA.
 Al momento della configurazione del server verrà creata una coppia di chiavi (Pubblica e Privata) contenente le informazioni relative ai valori per compiere i passaggi di firmatura: questi dati sono contenuti nel file “keys.rsacfg” (Configurazione di default).
 Come Visibile dall’immagine a lato, se il client possiede già una copia della chiave pubblica del server, procederà all’invio di una stringa di 16 caratteri che verrà firmata digitalmente dal server, per poi essere rispedita al mittente e verificata.
 Se la verifica dovesse avere esito negativo, il server sarebbe giudicato non attendibile e di conseguenza la connessione non assicura la riservatezza dei dati.
 Questo previene attacchi del tipo “Man In The Middle”.
 
-###Crittografia AES ECB a 256 bit
+### Crittografia AES ECB a 256 bit
 Se definito nel file di configurazione del client, il file trasmesso sarà cifrato mediante AES 256.
 La crittografie prende parte all’invio del file a blocchi di lunghezza configurabile ma multiplo di 16, dimensione del blocco AES.
 Il server si limiterà a salvare il file così come viene inviato, e, mediante un eseguibile di utilità, i file potranno essere decifrati e salvati correttamente.
-###Integrità della trasmissione
+### Integrità della trasmissione
 La connessione TCP implementa nativamente la ricezione del pacchetto con risposta (ACK) e verifica di integrità dei dati tramite CRC32
-###Gestione dello spazio su disco
+### Gestione dello spazio su disco
 All’atto della ricezione del pacchetto, il server, salverà sul disco fisso i dati, e se specificato nel file di configurazione, il contenuto del pacchetto verrà compresso con l’algoritmo BZip2, mantenendo l’occupazione in memoria Ram limitata fissando un limite massimo di dimensione del file prima di essere zippato e scaricato sul disco.
-###Terminale di gestione interno
+### Terminale di gestione interno
 Un processo adibito alle funzioni di terminale filtra lo stream STDIN ed esegue i comandi caricandoli al momento come librerie dinamiche.
 Prima di caricare il codice, per prevenire l’esecuzione di codice malevolo, il file viene verificato mediante il processo di firma digitale utilizzato per la verifica dell’identità del server.
 In questo caso una CA (Certificate Authority) viene generata (set di chiavi) al momento della compilazione, per ragioni di sicurezza, la chiave privata e pubblica non dovranno mai esistere sullo stesso hard disk.
-###Shell SSH
+### Shell SSH
 Se impostato al momento della creazione, il server creerà un processo per la gestione delle connessioni SSHv1 e SSHv2 sulle quali verranno reindirizzati gli stream di I/O del terminale.
 Questo soltanto se al momento della creazione riesce la creazioni di chiavi RSA e DSA atte alla gestione della shell sicura.
-###Pannello di controllo web
+### Pannello di controllo web
 Lo script python distribuito consente l’apertura di una porta con web server per il controllo dello stato dei backup in corso sul server e la possibilità di gestire il traffico dati.
 Implementato nel server vi è un controllo sugli host in grado di usufruire delle operazioni di gestione.
 Se l’host su cui viene eseguito il web server è incluso nella suddetta lista, allora potrà accedere ai dati relativi allo stato dei backup.
 Il web server è configurabile per richiedere l’autenticazione dell’utente, ed è possibile utilizzarlo sotto connessione protetta HTTPS.
 L’utilizzo dell’API websocket richiede che la connessione venga effettuata da un client Google Chrome o derivati implementanti l’API.
-##Utilità
+## Utilità
 All’atto della compilazione verranno generati tre eseguibili e un file di configurazione rsa che, bensì situati in altre directory, per motivi di sicurezza è fortemente consigliata la separazione fisica degli eseguibili su diverse macchine.
 È di conseguenza consigliata la cancellazione degli eseguibili di utilità dal server e mantenerli su una seconda macchina possibilmente non raggiungibile dalla rete del server, in quanto il file di configurazione rsa (CA.rsacfg) contiene la chiave privata per la segnatura dei comandi.
 
-###./genPasswd - Codificatore di password
+### ./genPasswd - Codificatore di password
 
 __SINTASSI: ./genPasswd <password>
 OUTPUT: l’hash generato relativo al parametro <password> inserito e la chiave codificata.__
@@ -48,7 +48,7 @@ OUTPUT: l’hash generato relativo al parametro <password> inserito e la chiave 
 La sessione ssh verificherà l’autenticazione di un solo utente dati il suo nome utente e l’hash della password.
 Al momento della convalida delle credenziali, il server verificherà le coincidenze del nome utente, l’hash salvato e fornito al momento della configurazione e l’hash della password inserita dall’utente generato runtime.
 Al momento della configurazione, dopo aver generato il corrispondente hash sarà necessario trascrivere l’output del programma nel file di configurazione.
-###./signElf - Firma digitale dei comandi
+### ./signElf - Firma digitale dei comandi
 __SINTASSI: ./signElf <percorso/al/comando>
 OUTPUT: none__
 
@@ -58,7 +58,7 @@ Una volta svincolato il dato dalla firma digitale mediante la chiave pubblica sa
 Se gli hash variassero il comando non verrebbe eseguito perché modificato.
 
 
-###./extract - Estrazione dei file crittografati
+### ./extract - Estrazione dei file crittografati
 __SINTASSI: ./extract <input_file> <packet_lenght> <key> [output_file]
 OUTPUT: none__
 
@@ -67,7 +67,7 @@ Quest’ultimo deve equivalere al valore (transfer_block_size x 16)
 Una volta letto l’header del file, con definizione dei parametri quali la lunghezza del file e se quest’ultimo sia cifrato, verrà creato un file chiamato [output_file] oppure, se non definito, verrà creato un file con il nome definito nell’header di trasmissione nella directory di esecuzione dell’applicazione.
 Nel caso il file sarà cifrato, il salvataggio avverà in chiaro.
 
-##Gestione delle connessioni
+## Gestione delle connessioni
 Dopo le procedure di avvio, il server effettuerà le operazioni di binding sulla porta specificata nei parametri di configurazione.
 La connessione con il server viene avviata come connessione UDP e i client comunicheranno con la macchina mediante pacchetti di 19 byte così definiti:
 
@@ -81,19 +81,19 @@ char data[17];
 dove i caratteri magic_word costituiscono l’identificatore del pacchetto e il valore semantico da attribuire ai dati presenti in data.
 Una volta stabilita una connessione client/server e una volta gestita una richiesta di backup, il server creerà un processo con memoria condivisa, per la gestione del backup, tramite la chiamata mmap che aprirà una porta TCP nell’intervallo configurato e la comunicherà al client.
 Le connessioni relative al terminale remoto utilizzato dall’interfaccia web vengono filtrate e gestite come pacchetti normali con identificatore ad hoc, mentre la gestione relativa all’interfaccia SSH viaggia su una connessione TCP over TSL con certificato ssh.
-##Processo di backup
-###Salvataggio
+## Processo di backup
+### Salvataggio
 Una volta effettuata la richiesta di backup, in risposta verrà emanato un pacchetto contenente il numero di porta sulla quale iniziare una comunicazione TCP.
 Una volta stabilita una connessione sulla porta indicata, il client invierà un header di backup contenente il client, il numero di file che verranno trasmessi e altre informazioni di utilità informativa per il flusso del programma.
 Il backup sarà salvato in una directory all’interno della cartella predefinita, seguendo la nomenclatura <client ip>_<unix timestamp>/.
 Dopo la trasmissione delle informazioni preliminari ha inizio la trasmissione dei file, con la trasmissione di un file_header con la lunghezza di trasmissione e informazioni riguardo se quest’ultimo sia cifrato, il nome originale e la data di invio.
 I file vengono quindi salvati man mano che arrivano dalla rete per evitare sovraffollamento di dati nella ram.
-###Ripristino
+### Ripristino
 Una volta estratto il file (Se quest’ultimo presenta l’estensione .bz2) viene lanciato il software di estrazione.
 Una volta letta l’intestazione del file, l’eseguibile scriverà il contenuto su un file specificato in modo binario.
 
 
-##Headers e strutture
+## Headers e strutture
 Definiti in Headers.h
 
 ```c
@@ -227,7 +227,7 @@ AES ECB 256bit per la cifratura dei file
 RSA per la verifica delle identità dei file, utilizzando chiavi generate
 Una variante di md5 per motivi di semplicità di codice.
 
-##Compilazione
+## Compilazione
 L’esecuzione del Makefile comprende le seguenti fasi:
 Creazione dello scheletro directory per i programmi
 Copia dei file generici e degli script
@@ -235,9 +235,9 @@ Generazione dei certificati e delle chiavi
 Compilazione dei comandi
 Compilazione
 
-##Comandi
+## Comandi
 Ogni comando compilato deve seguire le seguenti specifiche.
-###Modello
+### Modello
 
 ```c
 #include "Headers.h"
@@ -274,7 +274,7 @@ print_f: una funzione che permette la stampa sullo stream predefinito, sia il te
 La sintassi è la stessa che per printf e il ritorno è il numero di caratteri scritti.
 
 
-###Compilazione
+### Compilazione
 Con il comando
 ```
     gcc <file.c> --shared -fPIC -o <file>
@@ -285,7 +285,7 @@ Oppure
 ```
 Rispettando il modello per il linguaggio adeguato
 
-##Configurazione
+## Configurazione
 config.properties
 
 ```
@@ -447,7 +447,7 @@ send_interval = 500
 Intervallo, in millisecondi, nella trasmissione dei pacchetti.
 Utile per la riduzione del carico della cpu
 
-##Librerie esterne
+## Librerie esterne
 [libgmp](https://gmplib.org/) (GNU MULTIPLE PRECISION arithmetic library)
 [libbz2](http://www.bzip.org/) (Compressione dei file)
 [libssh](https://www.libssh.org/) (Secure shell)
