@@ -102,7 +102,7 @@ static char rndChar() {
 int askIdentity(connection_t socket) {
 #ifdef GMP
     char foo[25];
-    sprintf(foo, "archive/%s", server_ip);
+    sprintf(foo, "archive/%s.public", server_ip);
     loadpkey(foo, 0);
 
     if (errorHappened) return -10;
@@ -154,7 +154,7 @@ void savePkey(connection_t server) {
     recvfrom(server.socket, e_str, (size_t) id.explen, 0, NULL, 0);
 
     char foo[25];
-    sprintf(foo, "archive/%s", server_ip);
+    sprintf(foo, "archive/%s.public", server_ip);
     FILE *boh = fopen(foo, "w");
     if (boh == NULL) return;
     fprintf(boh, "%s\n%s", n_str, e_str);

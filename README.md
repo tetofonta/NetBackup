@@ -66,6 +66,7 @@ Durante l’esecuzione, l’applicazione legge dal file <input_file> a blocchi d
 Quest’ultimo deve equivalere al valore (transfer_block_size x 16)
 Una volta letto l’header del file, con definizione dei parametri quali la lunghezza del file e se quest’ultimo sia cifrato, verrà creato un file chiamato [output_file] oppure, se non definito, verrà creato un file con il nome definito nell’header di trasmissione nella directory di esecuzione dell’applicazione.
 Nel caso il file sarà cifrato, il salvataggio avverà in chiaro.
+Nel caso vi fossero due file salvati con lo stesso nome, essi verranno salvati con il suffisso "-_<variante>"
 
 ## Gestione delle connessioni
 Dopo le procedure di avvio, il server effettuerà le operazioni di binding sulla porta specificata nei parametri di configurazione.
@@ -88,6 +89,7 @@ Una volta stabilita una connessione sulla porta indicata, il client invierà un 
 Il backup sarà salvato in una directory all’interno della cartella predefinita, seguendo la nomenclatura <client ip>_<unix timestamp>/.
 Dopo la trasmissione delle informazioni preliminari ha inizio la trasmissione dei file, con la trasmissione di un file_header con la lunghezza di trasmissione e informazioni riguardo se quest’ultimo sia cifrato, il nome originale e la data di invio.
 I file vengono quindi salvati man mano che arrivano dalla rete per evitare sovraffollamento di dati nella ram.
+Se venissero inviati due file aventi lo stesso nome, essi verranno concatenati nello stesso file su disco.
 ### Ripristino
 Una volta estratto il file (Se quest’ultimo presenta l’estensione .bz2) viene lanciato il software di estrazione.
 Una volta letta l’intestazione del file, l’eseguibile scriverà il contenuto su un file specificato in modo binario.
@@ -190,10 +192,6 @@ typedef struct{
 }__attribute__((packed)) backupHead_t;
 ```
 
-
-
-
-
 La struttura descrive l’intestazioni dei file head.hd relativi alle informazioni di backup.
 le informazioni memorizzate sono:
 Se i file seguenti saranno cifrati,
@@ -226,6 +224,56 @@ Gli algoritmi implementati per la cifratura e la verifica della sicurezza sono:
 AES ECB 256bit per la cifratura dei file
 RSA per la verifica delle identità dei file, utilizzando chiavi generate
 Una variante di md5 per motivi di semplicità di codice.
+
+## Formati file
+### *.rsacfg
+Il formato rsacfg è un formato testuale utilizzato per la descrizione di una coppia di chiavi RSA.
+Siano nominati i parametri di una coppia di chiavi RSA 
+* “P” e “Q” la coppia di numeri primi generati
+* “N” il modulo
+* “E” l’esponente pubblico
+* “D” l’esponente privato
+* I dati contenuti saranno separati dal carattere ‘\n’ e memorizzati nel seguente ordine in rappresentazione esadecimale:
+```
+P (\n)
+Q (\n)
+N (\n)
+E (\n)
+D (\n)
+(EOF)
+```
+### *.public
+Il formato public è un formato testuale utilizzato per la descrizione di una chiave RSA pubblica ed è una variante del formato rsacfg.
+Siano nominati i parametri di una chiave RSA pubblica 
+* “N” il modulo
+* “E” l’esponente pubblico
+
+I dati contenuti saranno separati dal carattere ‘\n’ e memorizzati nel seguente ordine in rappresentazione esadecimale:
+```
+N (\n)
+E (\n)
+(EOF)
+```
+### *.bak
+Il formato bak è il formato con cui vengono memorizzati i file sul disco una volta trasferiti.
+Viene memorizzato in formato binario ed è costituito da uno o più moduli concatenati fra loro e definiti in questo modo:
+```
+File Header (vedi  file_h in Header e Strutture)
+Contenuto inviato
+```
+Di conseguenza il file in memoria sarà così strutturato:
+```
+File Header
+Contenuto inviato
+File Header
+Contenuto inviato
+...
+File Header
+Contenuto inviato
+(EOF)
+```
+### *.hd
+I file in formato hd contengono le informazioni generali di un backup e contengono una sola struttura backupHeader_t (vedi Header e Strutture)
 
 ## Compilazione
 L’esecuzione del Makefile comprende le seguenti fasi:
