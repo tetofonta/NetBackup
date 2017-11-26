@@ -2,7 +2,7 @@
 #### Software di trasferimento e salvataggio file attraverso la rete.
 
 
-##Presentazione del software
+## Presentazione del software
 Il software si presenta diviso in cinque eseguibili compilati, scritti in linguaggio C/C++ , ed uno script python, in quanto le sue funzionalità comprendono maggiormente lo scambio di dati in rete.
 Lo scopo del software è il salvataggio di copie di backup di file e drive fisici attraverso la rete e la loro memorizzazione all’interno di un server preposto, senza utilizzare spazio sul disco fisico della macchina client.
 La dotazione di un pannello di controllo con interfaccia web sicura permette l’utilizzo in reti di discrete dimensioni puntando sulla facilità di controllo dei client agli amministratori di rete.
@@ -496,8 +496,8 @@ Intervallo, in millisecondi, nella trasmissione dei pacchetti.
 Utile per la riduzione del carico della cpu
 
 ## Librerie esterne
-[libgmp](https://gmplib.org/) (GNU MULTIPLE PRECISION arithmetic library)
-[libbz2](http://www.bzip.org/) (Compressione dei file)
-[libssh](https://www.libssh.org/) (Secure shell)
+* [libgmp](https://gmplib.org/) (GNU MULTIPLE PRECISION arithmetic library)
+* [libbz2](http://www.bzip.org/) (Compressione dei file)
+* [libssh](https://www.libssh.org/) (Secure shell)
 
 
