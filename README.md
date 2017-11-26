@@ -261,7 +261,7 @@ int (*print_f)(const char *, ...)){
 return 0;
 }
 ```
-PERC ++
+PER C++
 
 
 È obbligatoria la presenza di un metodo execute ritornante int.

@@ -200,17 +200,17 @@ int newBak(int port) {
         int n = 0;
         while(files[i][n] != '\0'){
             if(files[i][n] == '\\' || files[i][n] == '/') lastSlash = n;
+			if(files[i][n] == ' ') files[i][n] = '_';
             n++;
         }
-        int m;
-        for(m = lastSlash+1; m < n; m++){
-            if(n - m - 1 > 45){
-                fileH.name[m++ - (lastSlash)] = '~';
-                break;
-            }
-            fileH.name[m-(lastSlash+1)] = files[i][m];
-        }
-        strcpy(fileH.name + (m-(lastSlash+1)), ".bak");
+		int copied = 0;
+		while(copied < 45 && files[i][copied + lastSlash + 1] != '\0'){
+			fileH.name[copied] = files[i][copied + lastSlash + 1];
+			copied++;
+		}
+        strcpy(fileH.name + copied, (copied == 45) ? "~.bak" : ".bak");
+
+		printf("==%s==\n", fileH.name);
 
         if(send(tcp, &fileH, sizeof(file_h), 0) < 0){
             perror("TRANSMISSION ");

@@ -269,7 +269,9 @@ void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
         sprintf(fooo, "%s/%s%s", name, fileHeader.name, zip ? ".bz2" : "");
         printf("Saving %s \n", fooo);
 
-        FILE *fp = fopen(fooo, "w");
+		
+
+        FILE *fp = fopen(fooo, "a");
         BZFILE *zip_p;
         int err;
         if (zip) {
