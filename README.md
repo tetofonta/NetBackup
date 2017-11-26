@@ -478,7 +478,8 @@ Contenuto dell lista
 ```
 Termina la lista
 ```
-encrypt = 1```
+encrypt = 1
+```
 
 Un valore diverso da 0 determina che i file verranno cifrati con algoritmo AES ECB 256bit prima dell’invio
 ```
