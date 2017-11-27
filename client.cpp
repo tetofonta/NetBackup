@@ -43,9 +43,9 @@ static char *sanitizeValue(char **file, int lines, const char *prop, int len) {
     return NULL;
 }
 char **file;
-int loadCfg() {
+int loadCfg(char * configFile) {
     int lines;
-    if ((file = openConfigFile(&lines, "client.properties", '#')) == NULL) return -1;
+    if ((file = openConfigFile(&lines, configFile, '#')) == NULL) return -1;
     int isList = 0, len = 0;
 
     int interval = atoi(sanitizeValue(file, lines, "send_interval", MAX_LINE_LEN));
@@ -210,8 +210,6 @@ int newBak(int port) {
 		}
         strcpy(fileH.name + copied, (copied == 45) ? "~.bak" : ".bak");
 
-		printf("==%s==\n", fileH.name);
-
         if(send(tcp, &fileH, sizeof(file_h), 0) < 0){
             perror("TRANSMISSION ");
             continue;
@@ -242,11 +240,14 @@ int newBak(int port) {
     closeSocket(tcp);
     return 0;
 }
-
-int main(void) {
+char configF[512];
+int main(int argc, char ** argv) {
     signal(SIGPIPE, SIG_IGN);
 
-    if (loadCfg() < 0) return 42;
+    if(argc == 1) strcpy(configF, "client.properties");
+    else strcpy(configF, argv[1]);
+
+    if (loadCfg(configF) < 0) return 42;
 
     data = (uint8_t *) malloc(transfer_block_size * sizeof(uint8_t));
 

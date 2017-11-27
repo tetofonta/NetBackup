@@ -68,10 +68,12 @@ void parseCommand(char * command, size_t len, backupThread * baks, conf * cfgs, 
     mpz_clear(check);
 
     fclose(fp);
-
-    if(strcmp(returned, fooo)){
+    int start = 0;
+    while((start + 1) && fooo[start++] == '0');
+    start--;
+    if(strcmp(returned, fooo+start)){
         printToStream("Eseguibile non verificabile - hash error\n");
-		printToStream("\n%s\n%s\n\n%d\n", returned, fooo, elflen);
+		printToStream("\n%s\n%s\n", returned, fooo);
         return;
     }
 
