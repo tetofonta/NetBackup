@@ -49,5 +49,6 @@ compile:
 	g++ client.cpp BASE_encoding/base32.c FileSystem/FS.c packets.c Networking/tcp.c RSA/Signature.cpp RSA/IO.cpp RSA/utilities.cpp AES/aes.c Networking/udp.c config/config.c -o Compiled/Client/network_backup_client -Ofast $(clibraries) $(CDEF)
 	g++ server.cpp Terminal/terminal.c Terminal/sshSession.cpp commands.cpp packets.c Networking/tcp.c AES/aes.c Networking/udp.c RSA/Signature.cpp RSA/IO.cpp RSA/utilities.cpp config/config.c MD5/md5.c -o Compiled/Server/server -Ofast -ldl $(slibraries) $(SDEF)
 	g++ extract.cpp AES/aes.c -o Compiled/Utils/extract -Ofast $(slibraries) $(SDEF)
+	g++ extract_all.cpp AES/aes.c FileSystem/FS.c -o Compiled/Utils/extract_all -Ofast $(slibraries) $(SDEF)
 	g++ genPassword.cpp MD5/md5.c BASE_encoding/base32.c -o Compiled/Utils/genPasswd -Ofast
 	g++ signElf.cpp RSA/Signature.cpp RSA/IO.cpp RSA/utilities.cpp MD5/md5.c -o Compiled/Utils/signElf $(slibraries) $(SDEF)

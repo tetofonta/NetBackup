@@ -199,6 +199,8 @@ void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
     printf("Backup started: PID %d, CLIENT %s on slot %d/%d\n", getpid(), inet_ntoa(foo->sin_addr), slot + 1,
            configs.port_interval);
 
+    processi[slot].pid = getpid();
+
     sockaddr a;
     socklen_t b = sizeof(a);
 
@@ -213,6 +215,8 @@ void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
         perror("Opening socket error: ");
         return;
     }
+
+    processi[slot].socket = tcps;
 
     int reciver;
     reciver = wait4conn(tcps, 1, &a, &b);
@@ -253,7 +257,10 @@ void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
     fclose(hd);
 
     for (int i = 0; i < header.numberOfFiles; i++) {
-        while(processi[slot].status) _SLEEP(1000);
+        while(processi[slot].status){
+			printf("Waiting\n");
+			_SLEEP(1000);
+		}
         file_h fileHeader;
         if (recv(reciver, &fileHeader, sizeof(file_h), 0) <= 0) break;
         processi[slot].dimension = fileHeader.transfer_dimension;
@@ -460,6 +467,13 @@ int main(void) {
     } while (keepRunning);
 
     kill(pid, SIGKILL);
+
+    for(int i = 0; i < configs.port_interval; i++) {
+        if(processi[i].socket != -10){
+            shutdown(processi[i].socket, SHUT_RDWR);
+            kill(processi[i].pid, SIGKILL);
+        }
+    }
 
 #ifdef SSH
     kill(pidssh, SIGKILL);

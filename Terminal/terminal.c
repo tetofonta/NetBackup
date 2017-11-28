@@ -79,8 +79,8 @@ void parseCommand(char * command, size_t len, backupThread * baks, conf * cfgs, 
 
     free(bufffer);
     free(elf);
-    int (*execute)(char *, backupThread *, conf *, int (*)(const char *, ...));
-    void * handle = dlopen(bf, RTLD_LAZY);
+    int (*execute)(char *, const backupThread *, const conf *, int (*)(const char *, ...));
+    void * handle = dlopen(bf, RTLD_NOW);
     if(!handle){
         printToStream(">>>Command %s unavailable<<<\n", command);
         return;

@@ -76,6 +76,7 @@ typedef struct{
 typedef struct {
     int socket;
     int port;
+    int pid;
     sockaddr client;
     uint64_t dimension;
     uint64_t transferred;
