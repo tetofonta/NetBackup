@@ -57,6 +57,17 @@ La firma verrà aggiunta in coda all’eseguibile e consisterà nella rappresent
 Una volta svincolato il dato dalla firma digitale mediante la chiave pubblica salvata, il risultato verrà confrontato con l’hash del file (Firma esclusa).
 Se gli hash variassero il comando non verrebbe eseguito perché modificato.
 
+### ./baknfo​ ​-​ ​Informazioni​ ​di​ ​backup 
+Il​ ​tool​ ​stamperà​ ​a​ ​schermo​ ​le​ ​informazioni​ ​relative​ ​al​ ​file​ ​head.hd​ ​nella 
+directory​ ​del​ ​backup.
+
+### ./extract_all - Estrazione​ ​di​ ​tutti​ ​i​ ​file​ ​crittografati
+
+__SINTASSI:​ ​./extract_all​ ​<directory​ ​del​ ​backup>​ ​<packet_lenght>​ ​<key> 
+  OUTPUT:​ ​none__
+  
+  Il​ ​funzionamento​ ​viene​ ​illustrato​ ​nel​ ​capitolo​ ​“./extract​ ​-​ ​Estrazione​ ​dei​ ​file 
+  crittografati”​ ​e​ ​viene​ ​eseguito​ ​su​ ​tutti​ ​i​ ​file​ ​con​ ​estensione​ ​“*.bak”. 
 
 ### ./extract - Estrazione dei file crittografati
 __SINTASSI: ./extract <input_file> <packet_lenght> <key> [output_file]

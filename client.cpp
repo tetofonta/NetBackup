@@ -89,6 +89,8 @@ int loadCfg(char * configFile) {
         fileNumbers = curlen;
     }
 
+    for(int i = 0; i < fileNumbers; i++) printf("%d - %s", i, files[i]);
+
     closeConfigFile();
 
     return 0;
@@ -101,7 +103,7 @@ static char rndChar() {
 
 int askIdentity(connection_t socket) {
 #ifdef GMP
-    char foo[25];
+    char foo[35];
     sprintf(foo, "archive/%s.public", server_ip);
     loadpkey(foo, 0);
 
@@ -153,7 +155,7 @@ void savePkey(connection_t server) {
     recvfrom(server.socket, n_str, (size_t) id.nlen, 0, NULL, 0);
     recvfrom(server.socket, e_str, (size_t) id.explen, 0, NULL, 0);
 
-    char foo[25];
+    char foo[35];
     sprintf(foo, "archive/%s.public", server_ip);
     FILE *boh = fopen(foo, "w");
     if (boh == NULL) return;
@@ -216,7 +218,7 @@ int newBak(int port) {
         };
 
         printf("Transferring %" PRId64 " bytes of file %s\n", fileH.transfer_dimension, files[i]);
-
+        int totalReaded = 0;
         while(!feof(fp)){
             _SLEEP(interval);
             if(isEncrypted) bzero(data, transfer_block_size*sizeof(uint8_t));
@@ -234,7 +236,18 @@ int newBak(int port) {
                 readed = (size_t) transfer_block_size;
             }
             send(tcp, data, readed, 0);
+
+            totalReaded += readed;
+			printf("\r"); fflush(stdout);
+		    for(long long q = 0; q < (totalReaded*30/fileH.transfer_dimension); q++){
+		        printf("#");
+		        fflush(stdout);
+		    }
+
+		    printf("[%d%%]", (totalReaded*100)/fileH.transfer_dimension);
+		    fflush(stdout);
         }
+        printf("\n");
     }
 
     closeSocket(tcp);

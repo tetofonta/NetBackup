@@ -52,3 +52,4 @@ compile:
 	g++ extract_all.cpp AES/aes.c FileSystem/FS.c -o Compiled/Utils/extract_all -Ofast $(slibraries) $(SDEF)
 	g++ genPassword.cpp MD5/md5.c BASE_encoding/base32.c -o Compiled/Utils/genPasswd -Ofast
 	g++ signElf.cpp RSA/Signature.cpp RSA/IO.cpp RSA/utilities.cpp MD5/md5.c -o Compiled/Utils/signElf $(slibraries) $(SDEF)
+	g++ bakInfo.cpp -o Compiled/Utils/baknfo -O2

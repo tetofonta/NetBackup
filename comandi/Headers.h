@@ -36,7 +36,7 @@ typedef struct{
     uint64_t transfer_dimension;
     int isEncoded;
     time_t time;
-    char name[50];
+    char name[55];
     char foo[32];
 }__attribute__((packed)) file_h;
 
