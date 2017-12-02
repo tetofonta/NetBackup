@@ -1,6 +1,10 @@
-//
-// Created by stefano on 23/11/17.
-//
+/**
+ * \file terminal.c
+ * \version 1.0
+ * \author Stefano
+ * \date 23-11-2017
+ * \brief Utilità di firma di un eseguibile
+ */
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>

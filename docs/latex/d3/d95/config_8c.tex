@@ -1,0 +1,110 @@
+\hypertarget{config_8c}{}\section{config/config.c File Reference}
+\label{config_8c}\index{config/config.\+c@{config/config.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$malloc.\+h$>$}\\*
+{\ttfamily \#include $<$memory.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+Include dependency graph for config.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{da/ddd/config_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$$\ast$ \hyperlink{config_8c_a91b6fb28d1ce5cd7d4b72e112510b30c}{open\+Config\+File} (int $\ast$outlines, const char $\ast$filename, const char comment)
+\begin{DoxyCompactList}\small\item\em Apre un file di configurazione per la lettura. Viene aperto e letto un file e salvato in memoria in un char $\ast$$\ast$, ignorando le linee di commento (carattere iniziale \textquotesingle{}\#\textquotesingle{}) e le linee vuote. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{config_8c_a8def4ff7352ba938cc05ae4b83550145}{get\+Property} (char $\ast$$\ast$file, int lines, const char $\ast$property, int lenght, int $\ast$is\+A\+List, int $\ast$list\+Len)
+\begin{DoxyCompactList}\small\item\em Ottenimento di una proprietà dal file di configurazione. La funzione cerca linearmente la proprietà richiesta all\textquotesingle{}interno del file letto, e, nel caso la proprietà venga trovata, restituisce un puntatore alla stringa definita dalla proprietà nel file. Nel caso la proprietà richiesta sia una lista, viene restituito un puntatore a char con valore uguale alla lunghezza della lista, e l\textquotesingle{}intero is\+A\+List verrà settato a 1. \end{DoxyCompactList}\item 
+void \hyperlink{config_8c_ab15e2eb276eee7f19da0fe8c84d50660}{close\+Config\+File} ()\hypertarget{config_8c_ab15e2eb276eee7f19da0fe8c84d50660}{}\label{config_8c_ab15e2eb276eee7f19da0fe8c84d50660}
+
+\begin{DoxyCompactList}\small\item\em Chiusura del file di configurazione. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$$\ast$ {\bfseries destination}\hypertarget{config_8c_a204855c67903c6d8340b9fa397588b0d}{}\label{config_8c_a204855c67903c6d8340b9fa397588b0d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Stefano 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+07-\/11-\/2017 Operazioni sui file di configurazione 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{config.\+c@{config.\+c}!get\+Property@{get\+Property}}
+\index{get\+Property@{get\+Property}!config.\+c@{config.\+c}}
+\subsubsection[{\texorpdfstring{get\+Property(char $\ast$$\ast$file, int lines, const char $\ast$property, int lenght, int $\ast$is\+A\+List, int $\ast$list\+Len)}{getProperty(char **file, int lines, const char *property, int lenght, int *isAList, int *listLen)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\+Property (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{file, }
+\item[{int}]{lines, }
+\item[{const char $\ast$}]{property, }
+\item[{int}]{lenght, }
+\item[{int $\ast$}]{is\+A\+List, }
+\item[{int $\ast$}]{list\+Len}
+\end{DoxyParamCaption}
+)}\hypertarget{config_8c_a8def4ff7352ba938cc05ae4b83550145}{}\label{config_8c_a8def4ff7352ba938cc05ae4b83550145}
+
+
+Ottenimento di una proprietà dal file di configurazione. La funzione cerca linearmente la proprietà richiesta all\textquotesingle{}interno del file letto, e, nel caso la proprietà venga trovata, restituisce un puntatore alla stringa definita dalla proprietà nel file. Nel caso la proprietà richiesta sia una lista, viene restituito un puntatore a char con valore uguale alla lunghezza della lista, e l\textquotesingle{}intero is\+A\+List verrà settato a 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\mbox{[}in\mbox{]}} & lista delle righe ritornata da open\+Config\+File \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{config_8c_a91b6fb28d1ce5cd7d4b72e112510b30c}{open\+Config\+File} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em lines\mbox{[}in\mbox{]}} & Lunghezza della lista \\
+\hline
+{\em property\mbox{[}in\mbox{]}} & Nome della proprietà da ricercare \\
+\hline
+{\em lenght\mbox{[}in\mbox{]}} & Lunghezza massima della lista di ritorno \\
+\hline
+{\em is\+A\+List\mbox{[}out\mbox{]}} & Se 1 il valore ritornato riguarda una lista, altrimenti 0 \\
+\hline
+{\em list\+Len\mbox{[}out\mbox{]}} & Se is\+A\+List == 1, indica la lunghezza della lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un puntatore al valore della lista in caso la proprietà venga trovata, N\+U\+LL altrimenti. 
+\end{DoxyReturn}
+\index{config.\+c@{config.\+c}!open\+Config\+File@{open\+Config\+File}}
+\index{open\+Config\+File@{open\+Config\+File}!config.\+c@{config.\+c}}
+\subsubsection[{\texorpdfstring{open\+Config\+File(int $\ast$outlines, const char $\ast$filename, const char comment)}{openConfigFile(int *outlines, const char *filename, const char comment)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$$\ast$ open\+Config\+File (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{outlines, }
+\item[{const char $\ast$}]{filename, }
+\item[{const char}]{comment}
+\end{DoxyParamCaption}
+)}\hypertarget{config_8c_a91b6fb28d1ce5cd7d4b72e112510b30c}{}\label{config_8c_a91b6fb28d1ce5cd7d4b72e112510b30c}
+
+
+Apre un file di configurazione per la lettura. Viene aperto e letto un file e salvato in memoria in un char $\ast$$\ast$, ignorando le linee di commento (carattere iniziale \textquotesingle{}\#\textquotesingle{}) e le linee vuote. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outlines\mbox{[}out\mbox{]}} & Numero di linee lette \\
+\hline
+{\em filename\mbox{[}in\mbox{]}} & file di configurazione \\
+\hline
+{\em comment\mbox{[}in\mbox{]}} & Carattere di commento \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+puntatore all\textquotesingle{}array di linee letto 
+\end{DoxyReturn}

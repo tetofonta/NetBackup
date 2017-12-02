@@ -1,6 +1,10 @@
-//
-// Created by stefano on 23/11/17.
-//
+/**
+ * \file genPassword.c
+ * \version 1.0
+ * \author Stefano
+ * \date 23-11-2017
+ * \brief Utilità di generazione hash e codifica password
+ */
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>

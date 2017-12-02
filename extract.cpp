@@ -1,6 +1,10 @@
-//
-// Created by stefano on 04/11/17.
-//
+/**
+ * \file extract.cpp
+ * \version 1.0
+ * \author Stefano
+ * \date 04-11-2017
+ * \brief Utilità di estrazione di un file
+ */
 #include "AES/aes.h"
 #include <stdio.h>
 #include <inttypes.h>

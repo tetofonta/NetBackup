@@ -1,9 +1,21 @@
-//
-// Created by stefano on 28/10/17.
-//
-#include "Networking.h"
+/**
+ * \file udp.c
+ * \version 1.0
+ * \author Stefano
+ * \date 28-11-2017
+ * \brief Funzioni di rete UDP
+ */
 #include <stdio.h>
 #include <sys/time.h>
+#include "Networking.h"
+
+/**
+ * \brief Connette la macchina ad un server UDP
+ * @param portno[in] numero della porta di connessione
+ * @param hostName[in] Nome dell'host o IPv4
+ * @param timeout[in] Secondi di timeout prima dell'aborto della connessione
+ * @return parametri di connessione
+ */
 connection_t newUDPSocket_client(const int portno, const char *hostName, const int timeout) {
     connection_t foo;
     foo.socket = -1;
@@ -34,6 +46,11 @@ connection_t newUDPSocket_client(const int portno, const char *hostName, const i
     return foo;
 }
 
+/**
+ * \brief Crea un server UDP
+ * @param portno[in] Porta dove stanziare il server
+ * @return Intero descrittore del socket
+ */
 int newUDPSocket_server(const int portno) {
     int sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
     struct sockaddr_in serv_addr;

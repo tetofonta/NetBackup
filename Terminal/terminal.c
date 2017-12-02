@@ -1,3 +1,10 @@
+/**
+ * \file terminal.c
+ * \version 1.0
+ * \author Stefano
+ * \date 18-11-2017
+ * \brief Gestione terminale
+ */
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -17,6 +24,16 @@ char * elf;
 char md[16];
 char fooo[33];
 
+/**
+ * \brief Identifica il comando
+ * Viene trovato il comando, se esiste viene controllata la firma digitale con i parametri pubblici in memoria
+ * e viene quindi eseguito il codice.
+ * @param command[in] Stringa del comando con gli argomenti
+ * @param len[in] Lunghezza della stringa del comando
+ * @param baks[in] Referenza al vettore di processi di backup \see server.cpp
+ * @param cfgs[in] Referenza alla cconfigurazione del server
+ * @param printToStream[in] Funzione di stampa
+ */
 void parseCommand(char * command, size_t len, backupThread * baks, conf * cfgs, int (*printToStream)(const char * format, ...)){
 
     sprintf(bf, "%s ", command);
@@ -104,6 +121,12 @@ void parseCommand(char * command, size_t len, backupThread * baks, conf * cfgs, 
     printToStream("\n(%d)\n", ret);
 }
 
+/**
+ * \brief Inizializzazione del termiale
+ * @param serverpid[in] PID del server
+ * @param baks[in] Referenza al vettore di processi di backup \see server.cpp
+ * @param cfgs[in] Referenza alla cconfigurazione del server
+ */
 void init_terminal(pid_t serverpid, backupThread * baks, conf * cfgs) {
     char * command = NULL;
     size_t len;
@@ -120,13 +143,3 @@ void init_terminal(pid_t serverpid, backupThread * baks, conf * cfgs) {
     kill(serverpid, SIGHUP);
     return;
 }
-
-
-
-
-//+ melo -
-//+ vengo -
-//x non venir + -
-//non melo - +
-//o x lo -
-//melo - di -

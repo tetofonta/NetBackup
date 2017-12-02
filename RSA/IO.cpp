@@ -1,9 +1,13 @@
-//
-// Created by stefano on 28/10/17.
-//
+/**
+ * \file IO.c
+ * \version 1.0
+ * \author Stefano
+ * \date 28-10-2017
+ * \brief IO RSA
+ */
+#include <malloc.h>
 #include "RSA.h"
 #include "internal.h"
-#include <malloc.h>
 
 char * line;
 mpz_t rsaPrams[7];
@@ -11,6 +15,13 @@ int errorHappened = 0;
 char errorMessage[100];
 const char rsap[7] = {'p', 'q', 'n', 'e', 'd', 'n', 'e'};
 
+/**
+ * \brief Carica le informazioni relative a una coppia di chiavi RSA da un file .rsacfg
+ * In caso di errore viene settata la variabile errorHappened e il relativo messaggio
+ * \see RSA_check_errors()
+ * \see RSA_error_get_last()
+ * @param file[in] File di input
+ */
 void loadValues(const char * file){
     FILE * fp = fopen(file, "r");
 
@@ -34,6 +45,11 @@ void loadValues(const char * file){
     free(line);
 }
 
+/**
+ * \brief Carica le informazioni relative a una chiave pubblica RSA da un file .public
+ * @param file[in] File di input
+ * @param supplementare[in] se 0 verranno caricati i parametri della coppia di chiavi, altrimenti verranno caricati nei valori paralleli.
+ */
 void loadpkey(const char * file, int supplementare){
 
     int offset = 0;

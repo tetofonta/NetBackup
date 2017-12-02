@@ -1,3 +1,10 @@
+/**
+ * \file bakInfo.c
+ * \version 1.0
+ * \author Stefano
+ * \date 28-11-2017
+ * \brief Utility di infrmazione
+ */
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -5,10 +12,15 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include "Headers.h"
-//
-// Created by stefano on 28/11/17.
-//
+
 char file[4096];
+
+/**
+ * \brief Stampa le informazioni relative ad un file hd
+ * @param argc
+ * @param argv
+ * @return
+ */
 int main(int argc, char ** argv){
     if(argc < 2){
         printf("Usage ./bakinfo <directory di backup>");

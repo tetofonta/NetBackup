@@ -1,9 +1,16 @@
+/**
+ * \file sshSession.c
+ * \version 1.0
+ * \author Stefano
+ * \date 18-11-2017
+ * \brief gestione SSH
+ */
 #include <stdlib.h>
 #include "terminal.h"
 
 #ifdef SSH
-    #include <libssh/libssh.h>
-    #include <libssh/server.h>
+#include <libssh/libssh.h>
+#include <libssh/server.h>
 
 #include <stdlib.h>
 #include <string.h>
@@ -27,6 +34,11 @@ int r;
 
 ssh_pcap_file pcap;
 
+/**
+ * \brief Imposta il file pcap di debug
+ * @param session[in] descrittore della sessione
+ * @param pcap_file[in] Nome del file da salvare
+ */
 void set_pcap(ssh_session session, const char *pcap_file) {
     if (!pcap_file)
         return;
@@ -40,13 +52,20 @@ void set_pcap(ssh_session session, const char *pcap_file) {
     ssh_set_pcap_file(session, pcap);
 }
 
-void cleanup_pcap(void);
-
+/**
+ * \brief Chiude il file pcap
+ */
 void cleanup_pcap() {
     ssh_pcap_file_free(pcap);
     pcap = NULL;
 }
 
+/**
+ * \brief Funzione di stampa sulla sessione ssh
+ * @param pattern[in] Stringa di formattazione \see printf
+ * @param ... Parametri da formattare \see printf
+ * @return Numero di caratteri stampati
+ */
 int printToSSH(const char * pattern, ...){
     bzero(foo, 2048);
     va_list argptr;
@@ -57,6 +76,14 @@ int printToSSH(const char * pattern, ...){
     return printed;
 }
 
+/**
+ * \brief Controlla che le credenziali siano valide per l'utente
+ * Verranno confrontati i nomi utenti e gli hash delle password
+ * @param user
+ * @param password
+ * @param cfg
+ * @return
+ */
 static int auth_password(const char *user, const char *password, sshconf *cfg) {
     if (strcmp(user, cfg->user)) return 0;
 
@@ -71,6 +98,16 @@ static int auth_password(const char *user, const char *password, sshconf *cfg) {
     return 1;
 }
 
+/**
+ *\brief Gestisce una sessione SSH con un client
+ * @param sshbind[in] Parametro di connessione SSH
+ * @param session[in] Sessione SSH in corsp
+ * @param serverpid[in] PID del server
+ * @param baks[in] Referenza al vettore dei processi di backup \see server.cpp
+ * @param confs[in] Referenza alla configurazione del server \see server.cpp
+ * @param cfg[in]  Parametri di configurazione SSH
+ * @return 0 in caso di riuscita, 1 altrimenti
+ */
 int handle_session(ssh_bind sshbind, ssh_session session, pid_t serverpid, backupThread *baks, conf * confs, sshconf cfg) {
     ssh_channel chan = 0;
     ssh_message message;
@@ -177,6 +214,14 @@ int handle_session(ssh_bind sshbind, ssh_session session, pid_t serverpid, backu
     return 0;
 }
 
+/**
+ * \brief Handler delle connessioni SSh
+ * @param serverpid[in] PID del server
+ * @param baks[in] Referenza al vettore dei processi di backup \see server.cpp
+ * @param confs[in] Referenza alla configurazione del server \see server.cpp
+ * @param cfg[in]  Parametri di configurazione SSH
+ * @return 0 in caso di riuscita, 1 altrimenti
+ */
 int serve_ssh_terminal(pid_t serverpid, backupThread *baks, conf * confs, sshconf cfg){
     sshbind = ssh_bind_new();
 

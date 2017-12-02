@@ -1,0 +1,15 @@
+<map id="remi.gui._MixinTextualWidget" name="remi.gui._MixinTextualWidget">
+<area shape="rect" id="node3" href="$da/df8/classremi_1_1gui_1_1Button.html" title="remi.gui.Button" alt="" coords="387,5,497,32"/>
+<area shape="rect" id="node4" href="$dd/d93/classremi_1_1gui_1_1DropDownItem.html" title="remi.gui.DropDownItem" alt="" coords="362,56,522,83"/>
+<area shape="rect" id="node5" href="$dc/dd4/classremi_1_1gui_1_1FileDownloader.html" title="remi.gui.FileDownloader" alt="" coords="361,107,523,133"/>
+<area shape="rect" id="node6" href="$df/d8e/classremi_1_1gui_1_1Label.html" title="remi.gui.Label" alt="" coords="391,157,493,184"/>
+<area shape="rect" id="node7" href="$de/d82/classremi_1_1gui_1_1Link.html" title="remi.gui.Link" alt="" coords="394,208,490,235"/>
+<area shape="rect" id="node8" href="$db/dd2/classremi_1_1gui_1_1ListItem.html" title="remi.gui.ListItem" alt="" coords="383,259,501,285"/>
+<area shape="rect" id="node9" href="$d9/d59/classremi_1_1gui_1_1MenuItem.html" title="remi.gui.MenuItem" alt="" coords="377,309,507,336"/>
+<area shape="rect" id="node10" href="$d4/d06/classremi_1_1gui_1_1SvgText.html" title="remi.gui.SvgText" alt="" coords="381,360,503,387"/>
+<area shape="rect" id="node11" href="$d0/d59/classremi_1_1gui_1_1TableEditableItem.html" title="remi.gui.TableEditableItem" alt="" coords="353,411,531,437"/>
+<area shape="rect" id="node12" href="$dd/d85/classremi_1_1gui_1_1TableItem.html" title="remi.gui.TableItem" alt="" coords="377,461,507,488"/>
+<area shape="rect" id="node13" href="$dc/d7c/classremi_1_1gui_1_1TableTitle.html" title="remi.gui.TableTitle" alt="" coords="579,493,708,520"/>
+<area shape="rect" id="node14" href="$df/dcc/classremi_1_1gui_1_1TextInput.html" title="remi.gui.TextInput" alt="" coords="379,587,505,613"/>
+<area shape="rect" id="node15" href="$d1/d3d/classremi_1_1gui_1_1TreeItem.html" title="remi.gui.TreeItem" alt="" coords="380,637,504,664"/>
+</map>

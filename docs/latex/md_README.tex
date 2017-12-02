@@ -1,0 +1,464 @@
+\paragraph*{Software di trasferimento e salvataggio file attraverso la rete.}
+
+\subsection*{Presentazione del software}
+
+Il software si presenta diviso in cinque eseguibili compilati, scritti in linguaggio C/\+C++ , ed uno script python, in quanto le sue funzionalità comprendono maggiormente lo scambio di dati in rete. Lo scopo del software è il salvataggio di copie di backup di file e drive fisici attraverso la rete e la loro memorizzazione all’interno di un server preposto, senza utilizzare spazio sul disco fisico della macchina client. La dotazione di un pannello di controllo con interfaccia web sicura permette l’utilizzo in reti di discrete dimensioni puntando sulla facilità di controllo dei client agli amministratori di rete.
+
+\subsection*{Funzionalità}
+
+\subsubsection*{Controllo dell’identità del server mediante R\+SA}
+
+Il primo controllo del client nei confronti del server consiste nella verifica dell’identità della macchina mediante la firma digitale possibile grazie all’algoritmo R\+SA. Al momento della configurazione del server verrà creata una coppia di chiavi (Pubblica e Privata) contenente le informazioni relative ai valori per compiere i passaggi di firmatura\+: questi dati sono contenuti nel file “keys.\+rsacfg” (Configurazione di default). Come Visibile dall’immagine a lato, se il client possiede già una copia della chiave pubblica del server, procederà all’invio di una stringa di 16 caratteri che verrà firmata digitalmente dal server, per poi essere rispedita al mittente e verificata. Se la verifica dovesse avere esito negativo, il server sarebbe giudicato non attendibile e di conseguenza la connessione non assicura la riservatezza dei dati. Questo previene attacchi del tipo “\+Man In The Middle”.
+
+\subsubsection*{Crittografia A\+ES E\+CB a 256 bit}
+
+Se definito nel file di configurazione del client, il file trasmesso sarà cifrato mediante A\+ES 256. La crittografie prende parte all’invio del file a blocchi di lunghezza configurabile ma multiplo di 16, dimensione del blocco A\+ES. Il server si limiterà a salvare il file così come viene inviato, e, mediante un eseguibile di utilità, i file potranno essere decifrati e salvati correttamente. \subsubsection*{Integrità della trasmissione}
+
+La connessione T\+CP implementa nativamente la ricezione del pacchetto con risposta (A\+CK) e verifica di integrità dei dati tramite C\+R\+C32 \subsubsection*{Gestione dello spazio su disco}
+
+All’atto della ricezione del pacchetto, il server, salverà sul disco fisso i dati, e se specificato nel file di configurazione, il contenuto del pacchetto verrà compresso con l’algoritmo B\+Zip2, mantenendo l’occupazione in memoria Ram limitata fissando un limite massimo di dimensione del file prima di essere zippato e scaricato sul disco. \subsubsection*{Terminale di gestione interno}
+
+Un processo adibito alle funzioni di terminale filtra lo stream S\+T\+D\+IN ed esegue i comandi caricandoli al momento come librerie dinamiche. Prima di caricare il codice, per prevenire l’esecuzione di codice malevolo, il file viene verificato mediante il processo di firma digitale utilizzato per la verifica dell’identità del server. In questo caso una CA (Certificate Authority) viene generata (set di chiavi) al momento della compilazione, per ragioni di sicurezza, la chiave privata e pubblica non dovranno mai esistere sullo stesso hard disk. \subsubsection*{Shell S\+SH}
+
+Se impostato al momento della creazione, il server creerà un processo per la gestione delle connessioni S\+S\+Hv1 e S\+S\+Hv2 sulle quali verranno reindirizzati gli stream di I/O del terminale. Questo soltanto se al momento della creazione riesce la creazioni di chiavi R\+SA e D\+SA atte alla gestione della shell sicura. \subsubsection*{Pannello di controllo web}
+
+Lo script python distribuito consente l’apertura di una porta con web server per il controllo dello stato dei backup in corso sul server e la possibilità di gestire il traffico dati. Implementato nel server vi è un controllo sugli host in grado di usufruire delle operazioni di gestione. Se l’host su cui viene eseguito il web server è incluso nella suddetta lista, allora potrà accedere ai dati relativi allo stato dei backup. Il web server è configurabile per richiedere l’autenticazione dell’utente, ed è possibile utilizzarlo sotto connessione protetta H\+T\+T\+PS. L’utilizzo dell’\+A\+PI websocket richiede che la connessione venga effettuata da un client Google Chrome o derivati implementanti l’\+A\+PI. \subsection*{Utilità}
+
+All’atto della compilazione verranno generati tre eseguibili e un file di configurazione rsa che, bensì situati in altre directory, per motivi di sicurezza è fortemente consigliata la separazione fisica degli eseguibili su diverse macchine. È di conseguenza consigliata la cancellazione degli eseguibili di utilità dal server e mantenerli su una seconda macchina possibilmente non raggiungibile dalla rete del server, in quanto il file di configurazione rsa (C\+A.\+rsacfg) contiene la chiave privata per la segnatura dei comandi.
+
+\subsubsection*{./gen\+Passwd -\/ Codificatore di password}
+
+{\bfseries S\+I\+N\+T\+A\+S\+SI\+: ./gen\+Passwd $<$password$>$ O\+U\+T\+P\+UT\+: l’hash generato relativo al parametro $<$password$>$ inserito e la chiave codificata.}
+
+La sessione ssh verificherà l’autenticazione di un solo utente dati il suo nome utente e l’hash della password. Al momento della convalida delle credenziali, il server verificherà le coincidenze del nome utente, l’hash salvato e fornito al momento della configurazione e l’hash della password inserita dall’utente generato runtime. Al momento della configurazione, dopo aver generato il corrispondente hash sarà necessario trascrivere l’output del programma nel file di configurazione. \subsubsection*{./sign\+Elf -\/ Firma digitale dei comandi}
+
+{\bfseries S\+I\+N\+T\+A\+S\+SI\+: ./sign\+Elf $<$percorso/al/comando$>$ O\+U\+T\+P\+UT\+: none}
+
+Per verificare l’attendibilità prima dell’esecuzione di un programma il server verificherà la firma digitale del file generata da sign\+Elf. La firma verrà aggiunta in coda all’eseguibile e consisterà nella rappresentazione esadecimale dell’hash del file segnato digitalmente con la chiave privata dell’autorità di certificazione. Una volta svincolato il dato dalla firma digitale mediante la chiave pubblica salvata, il risultato verrà confrontato con l’hash del file (Firma esclusa). Se gli hash variassero il comando non verrebbe eseguito perché modificato.
+
+\subsubsection*{./baknfo​ ​-\/​ ​\+Informazioni​ ​di​ ​backup}
+
+Il​ ​tool​ ​stamperà​ ​a​ ​schermo​ ​le​ ​informazioni​ ​relative​ ​al​ ​file​ ​head.\+hd​ ​nella directory​ ​del​ ​backup.
+
+\subsubsection*{./extract\+\_\+all -\/ Estrazione​ ​di​ ​tutti​ ​i​ ​file​ ​crittografati}
+
+{\bfseries S\+I\+N\+T\+A\+S\+SI\+:​ ​./extract\+\_\+all​ ​$<$directory ​=\char`\"{}\char`\"{} ​del​=\char`\"{}\char`\"{} ​backup$>$=\char`\"{}\char`\"{}$>$​ ​$<$packet\+\_\+lenght$>$​ ​$<$key$>$ O\+U\+T\+P\+UT\+:​ ​none}
+
+Il​ ​funzionamento​ ​viene​ ​illustrato​ ​nel​ ​capitolo​ ​“./extract​ ​-\/​ ​\+Estrazione​ ​dei​ ​file crittografati”​ ​e​ ​viene​ ​eseguito​ ​su​ ​tutti​ ​i​ ​file​ ​con​ ​estensione​ ​“$\ast$.bak”.
+
+\subsubsection*{./extract -\/ Estrazione dei file crittografati}
+
+{\bfseries S\+I\+N\+T\+A\+S\+SI\+: ./extract $<$input\+\_\+file$>$ $<$packet\+\_\+lenght$>$ $<$key$>$ \mbox{[}output\+\_\+file\mbox{]} O\+U\+T\+P\+UT\+: none}
+
+Durante l’esecuzione, l’applicazione legge dal file $<$input\+\_\+file$>$ a blocchi di $<$packet\+\_\+lenght$>$. Quest’ultimo deve equivalere al valore (transfer\+\_\+block\+\_\+size x 16) Una volta letto l’header del file, con definizione dei parametri quali la lunghezza del file e se quest’ultimo sia cifrato, verrà creato un file chiamato \mbox{[}output\+\_\+file\mbox{]} oppure, se non definito, verrà creato un file con il nome definito nell’header di trasmissione nella directory di esecuzione dell’applicazione. Nel caso il file sarà cifrato, il salvataggio avverà in chiaro. Nel caso vi fossero due file salvati con lo stesso nome, essi verranno salvati con il suffisso \char`\"{}-\/\+\_\+$<$variante$>$\char`\"{}
+
+\subsection*{Gestione delle connessioni}
+
+Dopo le procedure di avvio, il server effettuerà le operazioni di binding sulla porta specificata nei parametri di configurazione. La connessione con il server viene avviata come connessione U\+DP e i client comunicheranno con la macchina mediante pacchetti di 19 byte così definiti\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{
+\textcolor{keywordtype}{char} magic\_word[2];
+\textcolor{keywordtype}{char} data[17];
+\}\hyperlink{struct____attribute____}{\_\_attribute\_\_}((packed));
+\end{DoxyCode}
+
+
+dove i caratteri magic\+\_\+word costituiscono l’identificatore del pacchetto e il valore semantico da attribuire ai dati presenti in data. Una volta stabilita una connessione client/server e una volta gestita una richiesta di backup, il server creerà un processo con memoria condivisa, per la gestione del backup, tramite la chiamata mmap che aprirà una porta T\+CP nell’intervallo configurato e la comunicherà al client. Le connessioni relative al terminale remoto utilizzato dall’interfaccia web vengono filtrate e gestite come pacchetti normali con identificatore ad hoc, mentre la gestione relativa all’interfaccia S\+SH viaggia su una connessione T\+CP over T\+SL con certificato ssh. \subsection*{Processo di backup}
+
+\subsubsection*{Salvataggio}
+
+Una volta effettuata la richiesta di backup, in risposta verrà emanato un pacchetto contenente il numero di porta sulla quale iniziare una comunicazione T\+CP. Una volta stabilita una connessione sulla porta indicata, il client invierà un header di backup contenente il client, il numero di file che verranno trasmessi e altre informazioni di utilità informativa per il flusso del programma. Il backup sarà salvato in una directory all’interno della cartella predefinita, seguendo la nomenclatura $<$client ip$>$=\char`\"{}\char`\"{}$>$\+\_\+$<$unix timestamp$>$/. Dopo la trasmissione delle informazioni preliminari ha inizio la trasmissione dei file, con la trasmissione di un file\+\_\+header con la lunghezza di trasmissione e informazioni riguardo se quest’ultimo sia cifrato, il nome originale e la data di invio. I file vengono quindi salvati man mano che arrivano dalla rete per evitare sovraffollamento di dati nella ram. Se venissero inviati due file aventi lo stesso nome, essi verranno concatenati nello stesso file su disco. \subsubsection*{Ripristino}
+
+Una volta estratto il file (Se quest’ultimo presenta l’estensione .bz2) viene lanciato il software di estrazione. Una volta letta l’intestazione del file, l’eseguibile scriverà il contenuto su un file specificato in modo binario.
+
+\subsection*{Headers e strutture}
+
+Definiti in Headers.\+h
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{
+   \textcolor{keywordtype}{char} mw[2];
+   \textcolor{keywordtype}{char} data[17];
+\}\hyperlink{struct____attribute____}{\_\_attribute\_\_}((packed)) packet;
+\end{DoxyCode}
+ La struttura rappresenta il pacchetto ricevuto dal server U\+DP e comprende due campi mw (L’identificatore del tipo) e data contenente i dati scambiati da interpretare in conseguenza del valore mw. 
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{
+   \textcolor{keywordtype}{int} explen;
+   \textcolor{keywordtype}{int} nlen;
+\}\hyperlink{struct____attribute____}{\_\_attribute\_\_}((packed)) pkey\_identifier\_t;
+\end{DoxyCode}
+ La struttura rappresenta la sequenza di dati nello scambio di una chiave pubblica. Essendo quest’ultima composta da due valori E ed N, la struttura mantiene le lunghezze dei dati, mentre al momento dell’invio verrà inviata la struttura seguita da explen+nlen byte contenenti i valori. 
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{union }\{
+   uint8\_t parts[4];
+   uint32\_t ip;
+\}\hyperlink{unionipAddr}{ipAddr};
+\end{DoxyCode}
+ \hyperlink{unionipAddr}{ip\+Addr} è l’unione utilizzata per la rappresentazione di un indirizzo ip e nel suo confronto\+: per la stampa viene utilizzato il vettore di interi a 8 bit rappresentanti i byte di un indirizzo ipv4, mentre per il confronto verrano utilizzati i numeri per incrementare le prestazioni su liste lunghe. 
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+   \hyperlink{unionipAddr}{ipAddr} address;
+   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} netMask;
+\}\hyperlink{structnetwork}{network} ;
+\end{DoxyCode}
+
+
+Una rete verrà salvata con la coppia di dati address e netmask, quest’ultima vista come intero data la sua unica utilità nell’operazione logica di verifica rete.
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{
+   \textcolor{keywordtype}{int} server\_port;
+   \textcolor{keywordtype}{int} starting\_port;
+   \textcolor{keywordtype}{int} port\_interval;
+   \textcolor{keywordtype}{int} ToZip;
+   uint64\_t maxRamAmount;
+   \textcolor{keywordtype}{int} allowEqualsDeny\_nets;
+   \textcolor{keywordtype}{int} allowEqualsDeny\_ips;
+   \textcolor{keywordtype}{int} netsNo;
+   \hyperlink{structnetwork}{network} * networks;
+   \textcolor{keywordtype}{int} ipsNo;
+   \hyperlink{unionipAddr}{ipAddr} * ips;
+   \textcolor{keywordtype}{int} manNo;
+   \hyperlink{unionipAddr}{ipAddr} * mans;
+\}\hyperlink{struct____attribute____}{\_\_attribute\_\_}((packed)) conf;
+\end{DoxyCode}
+
+
+La struttura detiene i dati relativi alla configurazione del server e, una volta compilata in memoria, verrà passato il suo puntatore ai sottoprocessi di backup e di terminale per accedere alle configurazioni. 
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+   \textcolor{keywordtype}{int} socket;
+   \textcolor{keywordtype}{int} port;
+   sockaddr client;
+   uint64\_t dimension;
+   uint64\_t transferred;
+   \textcolor{keywordtype}{int} numberOfFiles;
+   \textcolor{keywordtype}{int} filesTransferred;
+   time\_t startedInTime;
+   \textcolor{keywordtype}{int} status;
+\}\hyperlink{struct____attribute____}{\_\_attribute\_\_}((packed)) backupThread;
+\end{DoxyCode}
+
+
+La struttura rappresenta lo stato in un istante di lettura di un processo di backup. Essa contiene il numero identificativo socket in caso di operazioni da terminale come la chiusura immediata o la pausa. Contiene i dati utili alla rappresentazione degli stati come percentuali. 
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{
+   \textcolor{keywordtype}{int} port;
+   \textcolor{keywordtype}{char} * user;
+   \textcolor{keywordtype}{char} * password;
+   \textcolor{keywordtype}{char} * rsa;
+   \textcolor{keywordtype}{char} * dsa;
+   \textcolor{keywordtype}{int} usepcap;
+   \textcolor{keywordtype}{char} * pcap;
+\}\hyperlink{struct____attribute____}{\_\_attribute\_\_}((packed)) sshconf;
+\end{DoxyCode}
+
+
+La struttura mantiene le referenze per le configurazioni del terminale S\+SH 
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{
+   \textcolor{keywordtype}{int} isEncoded;
+   sockaddr\_in client;
+   \textcolor{keywordtype}{int} numberOfFiles;
+   time\_t time;
+   \textcolor{keywordtype}{int} packetSize;
+   \textcolor{keywordtype}{char} foo[32];
+\}\hyperlink{struct____attribute____}{\_\_attribute\_\_}((packed)) backupHead\_t;
+\end{DoxyCode}
+
+
+La struttura descrive l’intestazioni dei file head.\+hd relativi alle informazioni di backup. le informazioni memorizzate sono\+: Se i file seguenti saranno cifrati, L’indirizzo del client, Il numero di file nel backup, Il timestamp di avvio del processo, La dimensione del pacchetto di trasmissione, 32 byte di padding per contenere future addizioni. 
+\begin{DoxyCode}
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{
+   uint64\_t dimension;
+   uint64\_t transfer\_dimension;
+   \textcolor{keywordtype}{int} isEncoded;
+   time\_t time;
+   \textcolor{keywordtype}{char} name[50];
+   \textcolor{keywordtype}{char} foo[32];
+\}\hyperlink{struct____attribute____}{\_\_attribute\_\_}((packed)) file\_h;
+\end{DoxyCode}
+
+
+La struttura definisce le intestazioni dei file salvati. Essa contiene informazioni quali\+: Dimensioni del file in chiaro Dimensioni del file scritto sul disco (non compresso), questo perché se il file fosse cifrato le dimensioni dovranno essere multiplo di 16 e, nel caso non lo fossero verranno aggiunti n byte di padding Se il file è cifrato La data di trasmissione come timestamp Il nome originale 32 byte di padding per contenere future addizioni. Crittografia Gli algoritmi implementati per la cifratura e la verifica della sicurezza sono\+: A\+ES E\+CB 256bit per la cifratura dei file R\+SA per la verifica delle identità dei file, utilizzando chiavi generate Una variante di md5 per motivi di semplicità di codice.
+
+\subsection*{Formati file}
+
+\subsubsection*{$\ast$.rsacfg}
+
+Il formato rsacfg è un formato testuale utilizzato per la descrizione di una coppia di chiavi R\+SA. Siano nominati i parametri di una coppia di chiavi R\+SA
+\begin{DoxyItemize}
+\item “\+P” e “\+Q” la coppia di numeri primi generati
+\item “\+N” il modulo
+\item “\+E” l’esponente pubblico
+\item “\+D” l’esponente privato
+\item I dati contenuti saranno separati dal carattere ‘~\newline
+’ e memorizzati nel seguente ordine in rappresentazione esadecimale\+: 
+\begin{DoxyCode}
+1 P (\(\backslash\)n)
+2 Q (\(\backslash\)n)
+3 N (\(\backslash\)n)
+4 E (\(\backslash\)n)
+5 D (\(\backslash\)n)
+6 (EOF)
+\end{DoxyCode}
+ \subsubsection*{$\ast$.public}
+\end{DoxyItemize}
+
+Il formato public è un formato testuale utilizzato per la descrizione di una chiave R\+SA pubblica ed è una variante del formato rsacfg. Siano nominati i parametri di una chiave R\+SA pubblica
+\begin{DoxyItemize}
+\item “\+N” il modulo
+\item “\+E” l’esponente pubblico
+\end{DoxyItemize}
+
+I dati contenuti saranno separati dal carattere ‘~\newline
+’ e memorizzati nel seguente ordine in rappresentazione esadecimale\+: 
+\begin{DoxyCode}
+1 N (\(\backslash\)n)
+2 E (\(\backslash\)n)
+3 (EOF)
+\end{DoxyCode}
+ \subsubsection*{$\ast$.bak}
+
+Il formato bak è il formato con cui vengono memorizzati i file sul disco una volta trasferiti. Viene memorizzato in formato binario ed è costituito da uno o più moduli concatenati fra loro e definiti in questo modo\+: 
+\begin{DoxyCode}
+1 File Header (vedi  file\_h in Header e Strutture)
+2 Contenuto inviato
+\end{DoxyCode}
+ Di conseguenza il file in memoria sarà così strutturato\+: 
+\begin{DoxyCode}
+1 File Header
+2 Contenuto inviato
+3 File Header
+4 Contenuto inviato
+5 ...
+6 File Header
+7 Contenuto inviato
+8 (EOF)
+\end{DoxyCode}
+ \subsubsection*{$\ast$.hd}
+
+I file in formato hd contengono le informazioni generali di un backup e contengono una sola struttura backup\+Header\+\_\+t (vedi Header e Strutture)
+
+\subsection*{Compilazione}
+
+L’esecuzione del Makefile comprende le seguenti fasi\+: Creazione dello scheletro directory per i programmi Copia dei file generici e degli script Generazione dei certificati e delle chiavi Compilazione dei comandi Compilazione
+
+\subsection*{Comandi}
+
+Ogni comando compilato deve seguire le seguenti specifiche. \subsubsection*{Modello}
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include "Headers.h"}
+\textcolor{preprocessor}{#include <string.h>}
+
+
+\textcolor{keywordtype}{int} execute(\textcolor{keywordtype}{char} * args, backupThread * back, conf * cfgs,
+\textcolor{keywordtype}{int} (*print\_f)(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *, ...))\{
+
+\textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCode}
+ P\+ER A\+N\+S\+I-\/C
+
+
+\begin{DoxyCode}
+1 \{c++\}
+2 #include "Headers.h"
+3 #include <string.h>
+4 extern “C” int execute(char * args, backupThread * back, conf * cfgs,
+5 int (*print\_f)(const char *, ...))\{
+6 
+7 return 0;
+8 \}
+\end{DoxyCode}
+ P\+ER C++
+
+È obbligatoria la presenza di un metodo execute ritornante int. L’inclusione di Headers.\+h è obbligatoria in quanto definisce tutte le strutture passate come argomenti alla funzione execute. I parametri passati ad execute saranno\+: args\+: È una stringa contenente i parametri passati dalla linea di comando del terminale back\+: Un puntatore al vettore di lunghezza cfgs-\/$>$port\+\_\+interval contenente lo stato dei backup, chi è connesso è la quantità di dati trasferita. cfgs\+: Un puntatore alla struttura dove risiedono le configurazioni del server print\+\_\+f\+: una funzione che permette la stampa sullo stream predefinito, sia il terminale in finestra o tramite S\+SH. La sintassi è la stessa che per printf e il ritorno è il numero di caratteri scritti.
+
+\subsubsection*{Compilazione}
+
+Con il comando 
+\begin{DoxyCode}
+1 gcc <file.c> --shared -fPIC -o <file>
+\end{DoxyCode}
+ Oppure 
+\begin{DoxyCode}
+1 g++ <file.c> --shared -fPIC -o <file>
+\end{DoxyCode}
+ Rispettando il modello per il linguaggio adeguato
+
+\subsection*{Configurazione}
+
+config.\+properties
+
+
+\begin{DoxyCode}
+1 #Commento
+\end{DoxyCode}
+ Le righe con ‘\+::’ iniziale vengono ignorate 
+\begin{DoxyCode}
+1 port = 5577
+\end{DoxyCode}
+ Porta dove sarà situato il server U\+DP 
+\begin{DoxyCode}
+1 startingPort = 11000
+\end{DoxyCode}
+ Prima porta per i processi di backup 
+\begin{DoxyCode}
+1 interval = 100
+\end{DoxyCode}
+ Numero massimo di processi contemporanei. verranno utilizzate le porte dalla starting\+Port alla startingport+interval. 
+\begin{DoxyCode}
+1 rsaConfig = keys.rsacfg
+\end{DoxyCode}
+ File di configurazione delle chiavi R\+SA del server atte all’identificazione 
+\begin{DoxyCode}
+1 zipFiles = 1
+\end{DoxyCode}
+ Se diverso da 0 i file ricevuti saranno compressi. 
+\begin{DoxyCode}
+1 maxRamAmount = 3000000
+\end{DoxyCode}
+ La dimensione massima di un file memorizzato in memoria R\+AM prima della compressione\+: se quest’ultimo supera questa dimensione, il file non sarà compresso. 
+\begin{DoxyCode}
+1 networks\_blacklist = 0
+\end{DoxyCode}
+ Se diverso da 0 le reti elencate non saranno autorizzate alla connessione 
+\begin{DoxyCode}
+1 networks = :
+\end{DoxyCode}
+ Inizia la lista di reti autorizzate (A meno di un valore positivo per network\+\_\+blacklist) 
+\begin{DoxyCode}
+1 192.168.0.0/24
+2 
+3 
+4 135.144.1.0/24
+\end{DoxyCode}
+ Contenuto della lista 
+\begin{DoxyCode}
+1 ::
+\end{DoxyCode}
+ Termina la lista 
+\begin{DoxyCode}
+1 ips\_blacklist = 0
+\end{DoxyCode}
+ Se diverso da 0 gli host elencati non saranno autorizzati alla connessione 
+\begin{DoxyCode}
+1 ips = :
+\end{DoxyCode}
+ inizia la lista di host autorizzati (A meno di un valore positivo per ips\+\_\+blacklist) 
+\begin{DoxyCode}
+1 127.0.0.1
+2 
+3 
+4 192.168.43.177
+\end{DoxyCode}
+ Contenuto della lista 
+\begin{DoxyCode}
+1 ::
+\end{DoxyCode}
+ Termina la lista 
+\begin{DoxyCode}
+1 managers = :
+\end{DoxyCode}
+ inizia la lista di host autorizzati all’utilizzo del terminale di rete 
+\begin{DoxyCode}
+1 127.0.0.1
+\end{DoxyCode}
+ Contenuto della lista 
+\begin{DoxyCode}
+1 ::
+\end{DoxyCode}
+ Termina la lista 
+\begin{DoxyCode}
+1 use\_ssh = 1
+\end{DoxyCode}
+ Un valore diverso da 0 abilita la shell S\+SH 
+\begin{DoxyCode}
+1 ssh\_user = stefano
+\end{DoxyCode}
+ Indica il nome utente con cui sarà possibile connettersi alla shell ssh 
+\begin{DoxyCode}
+1 ssh\_psw\_md5 = a9d4eff9120382f59fb2d971ca96a85a
+\end{DoxyCode}
+ Indica l’hash della password, generato con l’utility ./gen\+Passwd, prendendo la chiave “\+H\+A\+S\+H”, da utilizzare per l’accesso tramite S\+SH. Il confronto avverrà tra l’hash memorizzato e l’hash della stringa inserita dall’utente. 
+\begin{DoxyCode}
+1 ssh\_port = 2222
+\end{DoxyCode}
+ Numero della porta dove servire il servizio di S\+SH 
+\begin{DoxyCode}
+1 ssh\_rsa = ./ssh\_keys/ssh\_host\_rsa\_key
+\end{DoxyCode}
+
+
+Directory relativa all’avvio dove risiede la chiave R\+SA per la connessione S\+SH 
+\begin{DoxyCode}
+1 ssh\_dsa = ./ssh\_keys/ssh\_host\_dsa\_key
+\end{DoxyCode}
+ Directory relativa all’avvio dove risiede la chiave D\+SA per la connessione S\+SH
+
+client.\+properties 
+\begin{DoxyCode}
+1 #Commento
+\end{DoxyCode}
+ Le righe con ‘\+::’ iniziale vengono ignorate 
+\begin{DoxyCode}
+1 server\_ip = 127.0.0.1
+\end{DoxyCode}
+ l’indirizzo I\+Pv4 del server a cui connettersi 
+\begin{DoxyCode}
+1 server\_port = 5577
+\end{DoxyCode}
+ Porta sulla quale contattare il server\+: dovrebbe corrispondere al parametro port in config.\+properties relativo al server 
+\begin{DoxyCode}
+1 connection\_timeout = 10
+\end{DoxyCode}
+ Timeout di connessione in secondi 
+\begin{DoxyCode}
+1 files = :
+\end{DoxyCode}
+ inizia la lista di file da trasmettere 
+\begin{DoxyCode}
+1 /home/.../a.jpg
+2 /home/.../b.pdf
+3 /usr/bin/
+\end{DoxyCode}
+ Contenuto dell lista 
+\begin{DoxyCode}
+1 ::
+\end{DoxyCode}
+ Termina la lista 
+\begin{DoxyCode}
+1 encrypt = 1
+\end{DoxyCode}
+
+
+Un valore diverso da 0 determina che i file verranno cifrati con algoritmo A\+ES E\+CB 256bit prima dell’invio 
+\begin{DoxyCode}
+1 transfer\_block\_size = 32
+\end{DoxyCode}
+ Indica il quantitativo in blocchi A\+ES (16 byte l’uno) di byte da inviare per volta\+: il totale sarà dato dal valore moltiplicato per 16 
+\begin{DoxyCode}
+1 key = KFXU2SRTM5DXG6TLM5TEKVDQNJKHEWTLGRDDQYRZMVSXSYJXJVQWC===
+\end{DoxyCode}
+ È la chiave di cifratura del file codificata come base32, generabile mediante l’utility ./gen\+Passwd prendendo il parametro “\+Encoded key” 
+\begin{DoxyCode}
+1 send\_interval = 500
+\end{DoxyCode}
+ Intervallo, in millisecondi, nella trasmissione dei pacchetti. Utile per la riduzione del carico della cpu
+
+\subsection*{Librerie esterne}
+
+
+\begin{DoxyItemize}
+\item \href{https://gmplib.org/}{\tt libgmp} (G\+NU M\+U\+L\+T\+I\+P\+LE P\+R\+E\+C\+I\+S\+I\+ON arithmetic library)
+\item \href{http://www.bzip.org/}{\tt libbz2} (Compressione dei file)
+\item \href{https://www.libssh.org/}{\tt libssh} (Secure shell) 
+\end{DoxyItemize}

@@ -1,7 +1,10 @@
-//
-// Created by stefano on 04/11/17.
-//
-
+/**
+ * \file macros.h
+ * \version 1.0
+ * \author Stefano
+ * \date 04-11-2017
+ * \brief Macro di compatibilità POSIX linux-windows
+ */
 #ifndef NB_MACROS_H
 #define NB_MACROS_H
 

@@ -1,13 +1,17 @@
-//
-// Created by stefano on 28/10/17.
-//
+/**
+ * \file client.c
+ * \version 1.0
+ * \author Stefano
+ * \date 28-10-2017
+ * \brief Client
+ */
 #define _FILE_OFFSET_BITS 64
 
-#include <stdio.h>
+#include <cstdio>
 #include <cstdlib>
-#include <time.h>
-#include <inttypes.h>
-#include <signal.h>
+#include <ctime>
+#include <cinttypes>
+#include <csignal>
 #include "Networking/Networking.h"
 #include "BASE_encoding/base32.h"
 #include "FileSystem/FS.h"
@@ -35,14 +39,28 @@ int interval;
 
 uint8_t * data;
 
-
+/**
+ * \brief Ritorna una stringa relativa a una proprietà oppure una lista
+ * @param file[in] File descrittore della configurazione
+ * @param lines[in] lunghezza di file
+ * @param prop[in] Nome della proprietà
+ * @param len[in] Lunghezza massima
+ * @return Puntatore a una stringa con il valore, NULL se è una lista
+ */
 static char *sanitizeValue(char **file, int lines, const char *prop, int len) {
     int isList, llen;
     char *ret = getProperty(file, lines, prop, len, &isList, &llen);
     if (!isList) return ret;
     return NULL;
 }
+
 char **file;
+/**
+ * \brief Caricamento della configurazione da file
+ * @param configFile[in] Nome del file di configurazione
+ * @return 0 in caso di riuscita, -1 altrimenti
+ * \bug In caso una proprietà non sia presente segfault
+ */
 int loadCfg(char * configFile) {
     int lines;
     if ((file = openConfigFile(&lines, configFile, '#')) == NULL) return -1;
@@ -89,18 +107,25 @@ int loadCfg(char * configFile) {
         fileNumbers = curlen;
     }
 
-    for(int i = 0; i < fileNumbers; i++) printf("%d - %s", i, files[i]);
-
     closeConfigFile();
 
     return 0;
 }
 
+/**
+ * \brief Genera un carattere casuale
+ * @return Un carattere casuale
+ */
 static char rndChar() {
     char possibili[] = "abcdef01234567890";
     return possibili[rand() % 16];
 }
 
+/**
+ *
+ * @param socket
+ * @return
+ */
 int askIdentity(connection_t socket) {
 #ifdef GMP
     char foo[35];
@@ -238,14 +263,7 @@ int newBak(int port) {
             send(tcp, data, readed, 0);
 
             totalReaded += readed;
-			printf("\r"); fflush(stdout);
-		    for(long long q = 0; q < (totalReaded*30/fileH.transfer_dimension); q++){
-		        printf("#");
-		        fflush(stdout);
-		    }
-
-		    printf("[%d%%]", (totalReaded*100)/fileH.transfer_dimension);
-		    fflush(stdout);
+			
         }
         printf("\n");
     }

@@ -1,6 +1,10 @@
-//
-// Created by stefano on 31/10/17.
-//
+/**
+ * \file packets.c
+ * \version 1.0
+ * \author Stefano
+ * \date 31-10-2017
+ * \brief Metodi di compilazione strutture
+ */
 
 #include "Headers.h"
 
