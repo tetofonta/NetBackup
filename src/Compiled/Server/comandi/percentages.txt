@@ -1,6 +1,0 @@
-usage percentages [index / 'running']
-
-if an index is supplied, the command will output the current completion percentage of the index-slot usable.
-if a backup is finished the output will you know that.
-in case no index supplied, the command will output the whole list of backups.
-if instead supplying a number, you supply the word 'running' the command will output the list of running backups.

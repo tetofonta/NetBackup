@@ -1,7 +1,0 @@
-<map id="Compatibility/macros.h" name="Compatibility/macros.h">
-<area shape="rect" id="node2" href="$Networking_8h_source.html" title="Networking/Networking.h" alt="" coords="85,80,255,107"/>
-<area shape="rect" id="node6" href="$FS_8c.html" title="Operazioni sul FileSystem. " alt="" coords="279,80,399,107"/>
-<area shape="rect" id="node3" href="$client_8cpp.html" title="Client. " alt="" coords="5,155,84,181"/>
-<area shape="rect" id="node4" href="$udp_8c.html" title="Funzioni di rete UDP. " alt="" coords="108,155,232,181"/>
-<area shape="rect" id="node5" href="$server_8cpp.html" title="Server. " alt="" coords="255,155,338,181"/>
-</map>

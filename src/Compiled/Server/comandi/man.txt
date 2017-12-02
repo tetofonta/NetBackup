@@ -1,3 +1,0 @@
-Usage man <command name>
-
-Shows help for the relative command
