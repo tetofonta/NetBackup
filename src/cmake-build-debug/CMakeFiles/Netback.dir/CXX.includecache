@@ -1,0 +1,138 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/AES/aes.h
+stdint.h
+-
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/BASE_encoding/base32.h
+stddef.h
+-
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Compatibility/macros.h
+unistd.h
+-
+sys/stat.h
+-
+windows.h
+-
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/FileSystem/FS.h
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Headers.h
+netinet/in.h
+-
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/MD5/md5.h
+stdint.h
+-
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Networking/Networking.h
+sys/types.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+netdb.h
+-
+memory.h
+-
+../Compatibility/macros.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Compatibility/macros.h
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/IO.cpp
+malloc.h
+-
+RSA.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/RSA.h
+internal.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/internal.h
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/RSA.h
+gmp.h
+-
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/Signature.cpp
+RSA.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/RSA.h
+internal.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/internal.h
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/internal.h
+gmp.h
+-
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/utilities.cpp
+malloc.h
+-
+internal.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/internal.h
+RSA.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/RSA.h
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Terminal/sshSession.cpp
+stdlib.h
+-
+terminal.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Terminal/terminal.h
+libssh/libssh.h
+-
+libssh/server.h
+-
+stdlib.h
+-
+string.h
+-
+stdio.h
+-
+stdarg.h
+-
+signal.h
+-
+terminal.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Terminal/terminal.h
+../MD5/md5.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/MD5/md5.h
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Terminal/terminal.h
+../Headers.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Headers.h
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/client.cpp
+cstdio
+-
+cstdlib
+-
+ctime
+-
+cinttypes
+-
+csignal
+-
+Networking/Networking.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Networking/Networking.h
+BASE_encoding/base32.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/BASE_encoding/base32.h
+FileSystem/FS.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/FileSystem/FS.h
+RSA/RSA.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/RSA.h
+RSA/internal.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/RSA/internal.h
+Headers.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Headers.h
+AES/aes.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/AES/aes.h
+config/config.h
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/config/config.h
+
+/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/config/config.h
+

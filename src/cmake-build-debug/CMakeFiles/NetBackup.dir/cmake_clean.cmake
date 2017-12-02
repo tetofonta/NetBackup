@@ -1,0 +1,30 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/NetBackup.dir/AES/aes.c.o"
+  "CMakeFiles/NetBackup.dir/BASE_encoding/base32.c.o"
+  "CMakeFiles/NetBackup.dir/config/config.c.o"
+  "CMakeFiles/NetBackup.dir/FileSystem/FS.c.o"
+  "CMakeFiles/NetBackup.dir/MD5/md5.c.o"
+  "CMakeFiles/NetBackup.dir/Networking/tcp.c.o"
+  "CMakeFiles/NetBackup.dir/Networking/udp.c.o"
+  "CMakeFiles/NetBackup.dir/RSA/IO.cpp.o"
+  "CMakeFiles/NetBackup.dir/RSA/Signature.cpp.o"
+  "CMakeFiles/NetBackup.dir/RSA/utilities.cpp.o"
+  "CMakeFiles/NetBackup.dir/Terminal/sshSession.cpp.o"
+  "CMakeFiles/NetBackup.dir/Terminal/terminal.c.o"
+  "CMakeFiles/NetBackup.dir/client.cpp.o"
+  "CMakeFiles/NetBackup.dir/server.cpp.o"
+  "CMakeFiles/NetBackup.dir/commands.cpp.o"
+  "CMakeFiles/NetBackup.dir/packets.c.o"
+  "CMakeFiles/NetBackup.dir/bakInfo.cpp.o"
+  "CMakeFiles/NetBackup.dir/extract.cpp.o"
+  "CMakeFiles/NetBackup.dir/extract_all.cpp.o"
+  "CMakeFiles/NetBackup.dir/genPassword.cpp.o"
+  "CMakeFiles/NetBackup.dir/signElf.cpp.o"
+  "NetBackup.pdb"
+  "NetBackup"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C CXX)
+  include(CMakeFiles/NetBackup.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
