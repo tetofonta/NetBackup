@@ -1,0 +1,65 @@
+\hypertarget{structconf}{}\section{Riferimenti per la struct conf}
+\label{structconf}\index{conf@{conf}}
+
+
+{\ttfamily \#include $<$Headers.\+h$>$}
+
+
+
+Diagramma di collaborazione per conf\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{structconf__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Campi}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structconf_aed28b971a9300be1236bcb25339ac4d0}{server\+\_\+port}\hypertarget{structconf_aed28b971a9300be1236bcb25339ac4d0}{}\label{structconf_aed28b971a9300be1236bcb25339ac4d0}
+
+\begin{DoxyCompactList}\small\item\em Porta. \end{DoxyCompactList}\item 
+int \hyperlink{structconf_ae224d1fc60f5ebff720813b981605090}{starting\+\_\+port}\hypertarget{structconf_ae224d1fc60f5ebff720813b981605090}{}\label{structconf_ae224d1fc60f5ebff720813b981605090}
+
+\begin{DoxyCompactList}\small\item\em prima porta per i backup \end{DoxyCompactList}\item 
+int \hyperlink{structconf_a0d988cd9a9e701b9f9c495f4ad7efabc}{port\+\_\+interval}\hypertarget{structconf_a0d988cd9a9e701b9f9c495f4ad7efabc}{}\label{structconf_a0d988cd9a9e701b9f9c495f4ad7efabc}
+
+\begin{DoxyCompactList}\small\item\em intervallo di porte \end{DoxyCompactList}\item 
+int \hyperlink{structconf_ac9533944c1cffeede9fa067bd962cde0}{To\+Zip}\hypertarget{structconf_ac9533944c1cffeede9fa067bd962cde0}{}\label{structconf_ac9533944c1cffeede9fa067bd962cde0}
+
+\begin{DoxyCompactList}\small\item\em Se 0 non comprimerà i files, altrimenti sì \end{DoxyCompactList}\item 
+uint64\+\_\+t \hyperlink{structconf_a66f027d14ec97608e7d4f902c0e1a2ef}{max\+Ram\+Amount}\hypertarget{structconf_a66f027d14ec97608e7d4f902c0e1a2ef}{}\label{structconf_a66f027d14ec97608e7d4f902c0e1a2ef}
+
+\begin{DoxyCompactList}\small\item\em se un file sarà più piccolo della dimensione specificata verrà compresso \end{DoxyCompactList}\item 
+int \hyperlink{structconf_af8e49667319b5c643337dfd47794245f}{allow\+Equals\+Deny\+\_\+nets}\hypertarget{structconf_af8e49667319b5c643337dfd47794245f}{}\label{structconf_af8e49667319b5c643337dfd47794245f}
+
+\begin{DoxyCompactList}\small\item\em la lista di reti sarà blacklistata \end{DoxyCompactList}\item 
+int \hyperlink{structconf_a29ff09d6dc81bcc5a4429b9729b88c05}{allow\+Equals\+Deny\+\_\+ips}\hypertarget{structconf_a29ff09d6dc81bcc5a4429b9729b88c05}{}\label{structconf_a29ff09d6dc81bcc5a4429b9729b88c05}
+
+\begin{DoxyCompactList}\small\item\em la lista di host sarà blacklistata \end{DoxyCompactList}\item 
+int \hyperlink{structconf_a4142b842e095d315af138c6aed12e76f}{nets\+No}\hypertarget{structconf_a4142b842e095d315af138c6aed12e76f}{}\label{structconf_a4142b842e095d315af138c6aed12e76f}
+
+\begin{DoxyCompactList}\small\item\em Numero di reti in lista. \end{DoxyCompactList}\item 
+\hyperlink{structnetwork}{network} $\ast$ \hyperlink{structconf_a6272ea163f134ef85d02fb0bf61b5a1e}{networks}\hypertarget{structconf_a6272ea163f134ef85d02fb0bf61b5a1e}{}\label{structconf_a6272ea163f134ef85d02fb0bf61b5a1e}
+
+\begin{DoxyCompactList}\small\item\em referenza alla lista di reti \end{DoxyCompactList}\item 
+int \hyperlink{structconf_adb85368e13aa7e3effcabb0949b9aa6e}{ips\+No}\hypertarget{structconf_adb85368e13aa7e3effcabb0949b9aa6e}{}\label{structconf_adb85368e13aa7e3effcabb0949b9aa6e}
+
+\begin{DoxyCompactList}\small\item\em $<$ Numero di host in lista \end{DoxyCompactList}\item 
+\hyperlink{unionipAddr}{ip\+Addr} $\ast$ \hyperlink{structconf_a9d55477addc26bcac7f17785c0b479b5}{ips}\hypertarget{structconf_a9d55477addc26bcac7f17785c0b479b5}{}\label{structconf_a9d55477addc26bcac7f17785c0b479b5}
+
+\begin{DoxyCompactList}\small\item\em $<$ referenza alla lista di host \end{DoxyCompactList}\item 
+int \hyperlink{structconf_aae47204ce4fb76b07907c991fd422666}{man\+No}\hypertarget{structconf_aae47204ce4fb76b07907c991fd422666}{}\label{structconf_aae47204ce4fb76b07907c991fd422666}
+
+\begin{DoxyCompactList}\small\item\em Numero di host amministrativi in lista. \end{DoxyCompactList}\item 
+\hyperlink{unionipAddr}{ip\+Addr} $\ast$ \hyperlink{structconf_a4e1650a523f01ccb65fda55aa2f2646d}{mans}\hypertarget{structconf_a4e1650a523f01ccb65fda55aa2f2646d}{}\label{structconf_a4e1650a523f01ccb65fda55aa2f2646d}
+
+\begin{DoxyCompactList}\small\item\em referenza alla lista di amministratori \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Struttura contenete le configurazioni del server 
+
+La documentazione per questa struct è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}
+\item 
+Headers.\+h\end{DoxyCompactItemize}

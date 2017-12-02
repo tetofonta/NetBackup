@@ -1,0 +1,136 @@
+\hypertarget{terminal_8c}{}\section{Riferimenti per il file Terminal/terminal.c}
+\label{terminal_8c}\index{Terminal/terminal.\+c@{Terminal/terminal.\+c}}
+
+
+Utilità di firma di un eseguibile.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+{\ttfamily \#include $<$dlfcn.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}terminal.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../\+M\+D5/md5.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per terminal.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{terminal_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{terminal_8c_a2cce86fa8d3ac0c27fea942a6bf8a3c7}{parse\+Command} (char $\ast$command, size\+\_\+t len, \hyperlink{structbackupThread}{backup\+Thread} $\ast$baks, \hyperlink{structconf}{conf} $\ast$cfgs, int($\ast$print\+To\+Stream)(const char $\ast$format,...))
+\begin{DoxyCompactList}\small\item\em Identifica il comando Viene trovato il comando, se esiste viene controllata la firma digitale con i parametri pubblici in memoria e viene quindi eseguito il codice. \end{DoxyCompactList}\item 
+void \hyperlink{terminal_8c_acd70420842ce412f1204b9e2761958ee}{init\+\_\+terminal} (pid\+\_\+t serverpid, \hyperlink{structbackupThread}{backup\+Thread} $\ast$baks, \hyperlink{structconf}{conf} $\ast$cfgs)
+\begin{DoxyCompactList}\small\item\em Inizializzazione del termiale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variabili}
+\begin{DoxyCompactItemize}
+\item 
+char {\bfseries bf} \mbox{[}2048\mbox{]}\hypertarget{terminal_8c_a0f68fa947f6a42edf7d2b75660fa8e12}{}\label{terminal_8c_a0f68fa947f6a42edf7d2b75660fa8e12}
+
+\item 
+char $\ast$ {\bfseries bufffer}\hypertarget{terminal_8c_abe9213b9472e131a492125901e6d9c96}{}\label{terminal_8c_abe9213b9472e131a492125901e6d9c96}
+
+\item 
+char $\ast$ {\bfseries elf}\hypertarget{terminal_8c_aa356e0c7cced7496fa77653f2176a98d}{}\label{terminal_8c_aa356e0c7cced7496fa77653f2176a98d}
+
+\item 
+char {\bfseries md} \mbox{[}16\mbox{]}\hypertarget{terminal_8c_a61bafde6f010fb965e7089aef189e7b9}{}\label{terminal_8c_a61bafde6f010fb965e7089aef189e7b9}
+
+\item 
+char {\bfseries fooo} \mbox{[}33\mbox{]}\hypertarget{terminal_8c_a9f6c41c2b3ee7c6d5a8850189f99b748}{}\label{terminal_8c_a9f6c41c2b3ee7c6d5a8850189f99b748}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Utilità di firma di un eseguibile. 
+
+Gestione terminale.
+
+\begin{DoxyVersion}{Versione}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Autore}
+Stefano 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+23-\/11-\/2017
+\end{DoxyDate}
+\begin{DoxyVersion}{Versione}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Autore}
+Stefano 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+18-\/11-\/2017 
+\end{DoxyDate}
+
+
+\subsection{Documentazione delle funzioni}
+\index{terminal.\+c@{terminal.\+c}!init\+\_\+terminal@{init\+\_\+terminal}}
+\index{init\+\_\+terminal@{init\+\_\+terminal}!terminal.\+c@{terminal.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+terminal(pid\+\_\+t serverpid, backup\+Thread $\ast$baks, conf $\ast$cfgs)}{init_terminal(pid_t serverpid, backupThread *baks, conf *cfgs)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+terminal (
+\begin{DoxyParamCaption}
+\item[{pid\+\_\+t}]{serverpid, }
+\item[{{\bf backup\+Thread} $\ast$}]{baks, }
+\item[{{\bf conf} $\ast$}]{cfgs}
+\end{DoxyParamCaption}
+)}\hypertarget{terminal_8c_acd70420842ce412f1204b9e2761958ee}{}\label{terminal_8c_acd70420842ce412f1204b9e2761958ee}
+
+
+Inizializzazione del termiale. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em serverpid\mbox{[}in\mbox{]}} & P\+ID del server \\
+\hline
+{\em baks\mbox{[}in\mbox{]}} & Referenza al vettore di processi di backup \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{Si veda anche}
+\hyperlink{server_8cpp}{server.\+cpp} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parametri}
+{\em cfgs\mbox{[}in\mbox{]}} & Referenza alla cconfigurazione del server \\
+\hline
+\end{DoxyParams}
+\index{terminal.\+c@{terminal.\+c}!parse\+Command@{parse\+Command}}
+\index{parse\+Command@{parse\+Command}!terminal.\+c@{terminal.\+c}}
+\subsubsection[{\texorpdfstring{parse\+Command(char $\ast$command, size\+\_\+t len, backup\+Thread $\ast$baks, conf $\ast$cfgs, int($\ast$print\+To\+Stream)(const char $\ast$format,...))}{parseCommand(char *command, size_t len, backupThread *baks, conf *cfgs, int(*printToStream)(const char *format,...))}}]{\setlength{\rightskip}{0pt plus 5cm}void parse\+Command (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{command, }
+\item[{size\+\_\+t}]{len, }
+\item[{{\bf backup\+Thread} $\ast$}]{baks, }
+\item[{{\bf conf} $\ast$}]{cfgs, }
+\item[{int($\ast$)(const char $\ast$format,...)}]{print\+To\+Stream}
+\end{DoxyParamCaption}
+)}\hypertarget{terminal_8c_a2cce86fa8d3ac0c27fea942a6bf8a3c7}{}\label{terminal_8c_a2cce86fa8d3ac0c27fea942a6bf8a3c7}
+
+
+Identifica il comando Viene trovato il comando, se esiste viene controllata la firma digitale con i parametri pubblici in memoria e viene quindi eseguito il codice. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em command\mbox{[}in\mbox{]}} & Stringa del comando con gli argomenti \\
+\hline
+{\em len\mbox{[}in\mbox{]}} & Lunghezza della stringa del comando \\
+\hline
+{\em baks\mbox{[}in\mbox{]}} & Referenza al vettore di processi di backup \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{Si veda anche}
+\hyperlink{server_8cpp}{server.\+cpp} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parametri}
+{\em cfgs\mbox{[}in\mbox{]}} & Referenza alla cconfigurazione del server \\
+\hline
+{\em print\+To\+Stream\mbox{[}in\mbox{]}} & Funzione di stampa \\
+\hline
+\end{DoxyParams}

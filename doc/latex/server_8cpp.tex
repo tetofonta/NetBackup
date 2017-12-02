@@ -1,0 +1,223 @@
+\hypertarget{server_8cpp}{}\section{Riferimenti per il file server.\+cpp}
+\label{server_8cpp}\index{server.\+cpp@{server.\+cpp}}
+
+
+Server.  
+
+
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+{\ttfamily \#include $<$inttypes.\+h$>$}\\*
+{\ttfamily \#include $<$sys/mman.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Networking/\+Networking.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Headers.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}config/config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}commands.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Terminal/terminal.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per server.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+Z\+F\+I\+LE}~F\+I\+LE\hypertarget{server_8cpp_a285a10d6860f8c385c5d7ea07e24a35d}{}\label{server_8cpp_a285a10d6860f8c385c5d7ea07e24a35d}
+
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{server_8cpp_a3b33e6f48f5d988f336e915c5346eb95}{int\+Handler} (int dummy)
+\begin{DoxyCompactList}\small\item\em Handler per S\+I\+G\+H\+UP e S\+I\+G\+I\+NT Chiude le connessioni aperte e esce dal programma. \end{DoxyCompactList}\item 
+int \hyperlink{server_8cpp_aed66b47e9b9d15f8c82424c1e3ab73cb}{load\+Cfg} ()
+\begin{DoxyCompactList}\small\item\em Caricamento della configurazione da file. \end{DoxyCompactList}\item 
+void \hyperlink{server_8cpp_a960a002a3603a6ca57072fa35ca14895}{send\+Pkey} (int socket, sockaddr to, socklen\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Invia la chiave pubblica ad un client richiedente Invia due interi conteneti le lunghezze dei parametri spediti conseguentemente. \end{DoxyCompactList}\item 
+void \hyperlink{server_8cpp_a5eabf61df48c377358c330d24affd4e8}{send\+Identification} (int socket, sockaddr to, socklen\+\_\+t len, \hyperlink{structmainpacket}{identify\+\_\+h} data)
+\begin{DoxyCompactList}\small\item\em Risposta alla richiesta di identità \end{DoxyCompactList}\item 
+int {\bfseries get\+Slot} (\hyperlink{structbackupThread}{backup\+Thread} $\ast$threads, int port\+\_\+ext)\hypertarget{server_8cpp_ab6accd513572d70f9f654567e16b0572}{}\label{server_8cpp_ab6accd513572d70f9f654567e16b0572}
+
+\item 
+void \hyperlink{server_8cpp_a0cd98657d687771b6bd634f8a65c14a2}{new\+Backup} (int socket, sockaddr to, socklen\+\_\+t len, \hyperlink{structmainpacket}{new\+Bak\+\_\+h} data)
+\begin{DoxyCompactList}\small\item\em Avvia un processo di backup In caso di presenza della libreria B\+Z2 i file ricevuti verranno compressi se di dimensione inferiore a quella prestabilita. \end{DoxyCompactList}\item 
+int \hyperlink{server_8cpp_a49bba8146fb528ffd39048b13361d3c3}{check\+\_\+host\+\_\+validity} (sockaddr\+\_\+in $\ast$client)
+\begin{DoxyCompactList}\small\item\em Controlla che un host sia abilitato al dialogo con il server. La lista di host viene inserita nel file di configurazione. \end{DoxyCompactList}\item 
+int {\bfseries main} (void)\hypertarget{server_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{}\label{server_8cpp_a840291bc02cba5474a4cb46a9b9566fe}
+
+\end{DoxyCompactItemize}
+\subsection*{Variabili}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries server}\hypertarget{server_8cpp_ad41e465b11575618bf82f1d45efced5a}{}\label{server_8cpp_ad41e465b11575618bf82f1d45efced5a}
+
+\item 
+\hyperlink{structnetwork}{network} $\ast$ {\bfseries allowed\+Networks}\hypertarget{server_8cpp_a699884cb2dcd746c95a20b9fe066c4fd}{}\label{server_8cpp_a699884cb2dcd746c95a20b9fe066c4fd}
+
+\item 
+\hyperlink{unionipAddr}{ip\+Addr} $\ast$ {\bfseries allowed\+Hosts}\hypertarget{server_8cpp_ab8e6e12d81fbec012e792ca9a48ae3c2}{}\label{server_8cpp_ab8e6e12d81fbec012e792ca9a48ae3c2}
+
+\item 
+\hyperlink{unionipAddr}{ip\+Addr} $\ast$ {\bfseries managers}\hypertarget{server_8cpp_aecf5a55bcbbde8282ad30274d19024d1}{}\label{server_8cpp_aecf5a55bcbbde8282ad30274d19024d1}
+
+\item 
+\hyperlink{structconf}{conf} {\bfseries configs}\hypertarget{server_8cpp_ad6a1160de63172ff2b4a019048631a95}{}\label{server_8cpp_ad6a1160de63172ff2b4a019048631a95}
+
+\item 
+\hyperlink{structsshconf}{sshconf} {\bfseries sshconfigs}\hypertarget{server_8cpp_acf06d876d0472d02099cd61c7406a15d}{}\label{server_8cpp_acf06d876d0472d02099cd61c7406a15d}
+
+\item 
+int {\bfseries usessh} = 0\hypertarget{server_8cpp_a1cd99b9016dd1013134ce98853496447}{}\label{server_8cpp_a1cd99b9016dd1013134ce98853496447}
+
+\item 
+char $\ast$ {\bfseries rsacfg}\hypertarget{server_8cpp_a6dd5ce1d6191fd796288b6679e051b1c}{}\label{server_8cpp_a6dd5ce1d6191fd796288b6679e051b1c}
+
+\item 
+\hyperlink{structbackupThread}{backup\+Thread} $\ast$ {\bfseries processi}\hypertarget{server_8cpp_aefec74c965ba143be9258e692d8a287d}{}\label{server_8cpp_aefec74c965ba143be9258e692d8a287d}
+
+\item 
+char $\ast$$\ast$ {\bfseries file}\hypertarget{server_8cpp_ab8055e05865bc04373bc4e75fedf2d19}{}\label{server_8cpp_ab8055e05865bc04373bc4e75fedf2d19}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Server. 
+
+\begin{DoxyVersion}{Versione}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Autore}
+Stefano 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+28-\/10-\/2017 
+\end{DoxyDate}
+
+
+\subsection{Documentazione delle funzioni}
+\index{server.\+cpp@{server.\+cpp}!check\+\_\+host\+\_\+validity@{check\+\_\+host\+\_\+validity}}
+\index{check\+\_\+host\+\_\+validity@{check\+\_\+host\+\_\+validity}!server.\+cpp@{server.\+cpp}}
+\subsubsection[{\texorpdfstring{check\+\_\+host\+\_\+validity(sockaddr\+\_\+in $\ast$client)}{check_host_validity(sockaddr_in *client)}}]{\setlength{\rightskip}{0pt plus 5cm}int check\+\_\+host\+\_\+validity (
+\begin{DoxyParamCaption}
+\item[{sockaddr\+\_\+in $\ast$}]{client}
+\end{DoxyParamCaption}
+)}\hypertarget{server_8cpp_a49bba8146fb528ffd39048b13361d3c3}{}\label{server_8cpp_a49bba8146fb528ffd39048b13361d3c3}
+
+
+Controlla che un host sia abilitato al dialogo con il server. La lista di host viene inserita nel file di configurazione. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em client\mbox{[}in\mbox{]}} & descrittore del client connesso \\
+\hline
+\end{DoxyParams}
+\index{server.\+cpp@{server.\+cpp}!int\+Handler@{int\+Handler}}
+\index{int\+Handler@{int\+Handler}!server.\+cpp@{server.\+cpp}}
+\subsubsection[{\texorpdfstring{int\+Handler(int dummy)}{intHandler(int dummy)}}]{\setlength{\rightskip}{0pt plus 5cm}void int\+Handler (
+\begin{DoxyParamCaption}
+\item[{int}]{dummy}
+\end{DoxyParamCaption}
+)}\hypertarget{server_8cpp_a3b33e6f48f5d988f336e915c5346eb95}{}\label{server_8cpp_a3b33e6f48f5d988f336e915c5346eb95}
+
+
+Handler per S\+I\+G\+H\+UP e S\+I\+G\+I\+NT Chiude le connessioni aperte e esce dal programma. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em dummy} & \\
+\hline
+\end{DoxyParams}
+\index{server.\+cpp@{server.\+cpp}!load\+Cfg@{load\+Cfg}}
+\index{load\+Cfg@{load\+Cfg}!server.\+cpp@{server.\+cpp}}
+\subsubsection[{\texorpdfstring{load\+Cfg()}{loadCfg()}}]{\setlength{\rightskip}{0pt plus 5cm}int load\+Cfg (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{server_8cpp_aed66b47e9b9d15f8c82424c1e3ab73cb}{}\label{server_8cpp_aed66b47e9b9d15f8c82424c1e3ab73cb}
+
+
+Caricamento della configurazione da file. 
+
+\begin{DoxyReturn}{Restituisce}
+0 in caso di riuscita, -\/1 altrimenti 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000004}{Bug}]In caso una proprietà non sia presente segfault \end{DoxyRefDesc}
+\index{server.\+cpp@{server.\+cpp}!new\+Backup@{new\+Backup}}
+\index{new\+Backup@{new\+Backup}!server.\+cpp@{server.\+cpp}}
+\subsubsection[{\texorpdfstring{new\+Backup(int socket, sockaddr to, socklen\+\_\+t len, new\+Bak\+\_\+h data)}{newBackup(int socket, sockaddr to, socklen_t len, newBak_h data)}}]{\setlength{\rightskip}{0pt plus 5cm}void new\+Backup (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{sockaddr}]{to, }
+\item[{socklen\+\_\+t}]{len, }
+\item[{{\bf new\+Bak\+\_\+h}}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{server_8cpp_a0cd98657d687771b6bd634f8a65c14a2}{}\label{server_8cpp_a0cd98657d687771b6bd634f8a65c14a2}
+
+
+Avvia un processo di backup In caso di presenza della libreria B\+Z2 i file ricevuti verranno compressi se di dimensione inferiore a quella prestabilita. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em socket\mbox{[}in\mbox{]}} & descrittore del socket del server \\
+\hline
+{\em to\mbox{[}in\mbox{]}} & Descrittore dell\textquotesingle{}host cliente \\
+\hline
+{\em len\mbox{[}in\mbox{]}} & lunghezza di to \\
+\hline
+{\em data\mbox{[}in\mbox{]}} & Informazioni relative al backup da effettuare \\
+\hline
+\end{DoxyParams}
+\index{server.\+cpp@{server.\+cpp}!send\+Identification@{send\+Identification}}
+\index{send\+Identification@{send\+Identification}!server.\+cpp@{server.\+cpp}}
+\subsubsection[{\texorpdfstring{send\+Identification(int socket, sockaddr to, socklen\+\_\+t len, identify\+\_\+h data)}{sendIdentification(int socket, sockaddr to, socklen_t len, identify_h data)}}]{\setlength{\rightskip}{0pt plus 5cm}void send\+Identification (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{sockaddr}]{to, }
+\item[{socklen\+\_\+t}]{len, }
+\item[{{\bf identify\+\_\+h}}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{server_8cpp_a5eabf61df48c377358c330d24affd4e8}{}\label{server_8cpp_a5eabf61df48c377358c330d24affd4e8}
+
+
+Risposta alla richiesta di identità 
+
+
+\begin{DoxyParams}{Parametri}
+{\em socket\mbox{[}in\mbox{]}} & descrittore del socket del server \\
+\hline
+{\em to\mbox{[}in\mbox{]}} & Descrittore dell\textquotesingle{}host cliente \\
+\hline
+{\em len\mbox{[}in\mbox{]}} & lunghezza di to \\
+\hline
+{\em data\mbox{[}in\mbox{]}} & Stringa da firmare \\
+\hline
+\end{DoxyParams}
+\index{server.\+cpp@{server.\+cpp}!send\+Pkey@{send\+Pkey}}
+\index{send\+Pkey@{send\+Pkey}!server.\+cpp@{server.\+cpp}}
+\subsubsection[{\texorpdfstring{send\+Pkey(int socket, sockaddr to, socklen\+\_\+t len)}{sendPkey(int socket, sockaddr to, socklen_t len)}}]{\setlength{\rightskip}{0pt plus 5cm}void send\+Pkey (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{sockaddr}]{to, }
+\item[{socklen\+\_\+t}]{len}
+\end{DoxyParamCaption}
+)}\hypertarget{server_8cpp_a960a002a3603a6ca57072fa35ca14895}{}\label{server_8cpp_a960a002a3603a6ca57072fa35ca14895}
+
+
+Invia la chiave pubblica ad un client richiedente Invia due interi conteneti le lunghezze dei parametri spediti conseguentemente. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em socket\mbox{[}in\mbox{]}} & descrittore del socket del server \\
+\hline
+{\em to\mbox{[}in\mbox{]}} & Descrittore dell\textquotesingle{}host cliente \\
+\hline
+{\em len\mbox{[}in\mbox{]}} & lunghezza di to \\
+\hline
+\end{DoxyParams}
