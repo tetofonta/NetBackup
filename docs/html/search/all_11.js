@@ -1,12 +1,8 @@
 var searchData=
 [
-  ['gui',['gui',['../df/da4/namespaceremi_1_1gui.html',1,'remi']]],
-  ['read_5fnext_5fmessage',['read_next_message',['../d4/d72/classremi_1_1server_1_1WebSocketsHandler.html#a4492877918dd165efb893c71c50c050e',1,'remi.server.WebSocketsHandler.read_next_message(self)'],['../d4/d72/classremi_1_1server_1_1WebSocketsHandler.html#a4492877918dd165efb893c71c50c050e',1,'remi.server.WebSocketsHandler.read_next_message(self)']]],
-  ['redraw',['redraw',['../de/d8a/classremi_1_1gui_1_1Widget.html#ad0a2d54c3af3cad22d5c0dfef04bf836',1,'remi.gui.Widget.redraw(self)'],['../de/d8a/classremi_1_1gui_1_1Widget.html#ad0a2d54c3af3cad22d5c0dfef04bf836',1,'remi.gui.Widget.redraw(self)']]],
-  ['register_5flistener',['register_listener',['../d3/dc1/classremi_1_1gui_1_1__EventManager.html#a2200dc060a578b6cc9b0ac2ced29cea2',1,'remi.gui._EventManager.register_listener(self, eventname, callback, userdata)'],['../d3/dc1/classremi_1_1gui_1_1__EventManager.html#a2200dc060a578b6cc9b0ac2ced29cea2',1,'remi.gui._EventManager.register_listener(self, eventname, callback, userdata)']]],
-  ['remove_5fchild',['remove_child',['../dd/deb/classremi_1_1gui_1_1Tag.html#a1907efeb216714a9eaf6a561bb272715',1,'remi.gui.Tag.remove_child(self, child)'],['../dd/deb/classremi_1_1gui_1_1Tag.html#a1907efeb216714a9eaf6a561bb272715',1,'remi.gui.Tag.remove_child(self, child)']]],
-  ['remove_5fclass',['remove_class',['../dd/deb/classremi_1_1gui_1_1Tag.html#a8d42feed3ed238c463702029fdf390c3',1,'remi.gui.Tag.remove_class(self, cls)'],['../dd/deb/classremi_1_1gui_1_1Tag.html#a8d42feed3ed238c463702029fdf390c3',1,'remi.gui.Tag.remove_class(self, cls)']]],
-  ['repr',['repr',['../dd/deb/classremi_1_1gui_1_1Tag.html#a4bd241477678dc78202f410be8d53f75',1,'remi.gui.Tag.repr()'],['../de/d8a/classremi_1_1gui_1_1Widget.html#a67e2320662bd4a6e9705816ba2fff9ae',1,'remi.gui.Widget.repr()'],['../dd/deb/classremi_1_1gui_1_1Tag.html#a4bd241477678dc78202f410be8d53f75',1,'remi.gui.Tag.repr()'],['../de/d8a/classremi_1_1gui_1_1Widget.html#a67e2320662bd4a6e9705816ba2fff9ae',1,'remi.gui.Widget.repr()']]],
-  ['row_5fcount',['row_count',['../d1/d0b/classremi_1_1gui_1_1TableWidget.html#a159fb69684ef04c24c431ee9b1a886c2',1,'remi.gui.TableWidget.row_count(self)'],['../d1/d0b/classremi_1_1gui_1_1TableWidget.html#a159fb69684ef04c24c431ee9b1a886c2',1,'remi.gui.TableWidget.row_count(self)']]],
-  ['run',['run',['../da/d83/classremi_1_1server_1_1__UpdateThread.html#adf29050ba815d4d441aeddc3475de39c',1,'remi.server._UpdateThread.run(self)'],['../da/d83/classremi_1_1server_1_1__UpdateThread.html#adf29050ba815d4d441aeddc3475de39c',1,'remi.server._UpdateThread.run(self)']]]
+  ['terminal_2ec',['terminal.c',['../d2/d44/terminal_8c.html',1,'']]],
+  ['time',['time',['../d5/dd1/structbackupHead__t.html#ab68d978e581788f551a7c1e740bba05b',1,'backupHead_t::time()'],['../d0/dc2/structfile__h.html#a2597abbe20de9abafd0b19f894bc4995',1,'file_h::time()']]],
+  ['tozip',['ToZip',['../d6/de8/structconf.html#ac9533944c1cffeede9fa067bd962cde0',1,'conf']]],
+  ['transfer_5fdimension',['transfer_dimension',['../d0/dc2/structfile__h.html#ab38d74a27790a6f78dbdafa8abb22b53',1,'file_h']]],
+  ['transferred',['transferred',['../d4/d65/structbackupThread.html#afcd8016a65446a70e5dac7fb2ba68ff4',1,'backupThread']]]
 ];

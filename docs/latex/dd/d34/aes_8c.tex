@@ -1,17 +1,16 @@
-\hypertarget{aes_8c}{}\section{A\+E\+S/aes.c File Reference}
+\hypertarget{aes_8c}{}\section{Riferimenti per il file A\+E\+S/aes.c}
 \label{aes_8c}\index{A\+E\+S/aes.\+c@{A\+E\+S/aes.\+c}}
+
+
+Cifratura A\+ES.  
+
+
 {\ttfamily \#include $<$stdint.\+h$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}aes.\+h\char`\"{}}\\*
-Include dependency graph for aes.\+c\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=200pt]{d4/dc1/aes_8c__incl}
-\end{center}
-\end{figure}
-\subsection*{Macros}
+Grafo delle dipendenze di inclusione per aes.\+c\+:
+% FIG 0
+\subsection*{Definizioni}
 \begin{DoxyCompactItemize}
 \item 
 \#define {\bfseries Nb}~4\hypertarget{aes_8c_a1ae104196f1fc7af4751c5b9e07b1610}{}\label{aes_8c_a1ae104196f1fc7af4751c5b9e07b1610}
@@ -44,21 +43,21 @@ Include dependency graph for aes.\+c\+:
 \#define {\bfseries xtime}(x)~((x $<$$<$ 1) $^\wedge$ (((x $>$$>$ 7) \& 1) $\ast$ 0x1b))\hypertarget{aes_8c_ab6b4f6e4156553342ec4009bad2cc50e}{}\label{aes_8c_ab6b4f6e4156553342ec4009bad2cc50e}
 
 \item 
-\#define {\bfseries Multiply}(x,  y)
+\#define {\bfseries Multiply}(x,  y)                                                            
 \end{DoxyCompactItemize}
-\subsection*{Typedefs}
+\subsection*{Ridefinizioni di tipo (typedef)}
 \begin{DoxyCompactItemize}
 \item 
 typedef uint8\+\_\+t {\bfseries state\+\_\+t}\mbox{[}4\mbox{]}\mbox{[}4\mbox{]}\hypertarget{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}{}\label{aes_8c_a35dbb26673d196810a7f6eac0ac632ec}
 
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{aes_8c_a983d3da5e4e6f3d9ac0143787650ccb5}{Key\+Expansion} (void)\hypertarget{aes_8c_a983d3da5e4e6f3d9ac0143787650ccb5}{}\label{aes_8c_a983d3da5e4e6f3d9ac0143787650ccb5}
 
 \begin{DoxyCompactList}\small\item\em Generazione delle chiavi intermedie. \end{DoxyCompactList}\item 
-void \hyperlink{aes_8c_a153a141c4ff06edbb758b62c906bccb4}{Add\+Round\+Key} (uint8\+\_\+t round)
+void \hyperlink{aes_8c_a153a141c4ff06edbb758b62c906bccb4_a153a141c4ff06edbb758b62c906bccb4}{Add\+Round\+Key} (uint8\+\_\+t round)
 \begin{DoxyCompactList}\small\item\em Computazione della round\+Key nella matrice di stato. La chiave viene \char`\"{}\+Aggiunta\char`\"{} mediante X\+OR. \end{DoxyCompactList}\item 
 void \hyperlink{aes_8c_a11159f2defb4de381f19ec1345995961}{Sub\+Bytes} (void)\hypertarget{aes_8c_a11159f2defb4de381f19ec1345995961}{}\label{aes_8c_a11159f2defb4de381f19ec1345995961}
 
@@ -84,11 +83,11 @@ void \hyperlink{aes_8c_a068fd9934f544b4ce3b989b44434253d}{Cipher} (void)\hyperta
 void {\bfseries Inv\+Cipher} (void)\hypertarget{aes_8c_a45adbb908f044e7c6c0381d65ba1b6db}{}\label{aes_8c_a45adbb908f044e7c6c0381d65ba1b6db}
 
 \item 
-void \hyperlink{aes_8c_a5a93d43aab4c9f397697396ecd47f14c}{A\+E\+S\+\_\+\+E\+C\+B\+\_\+encrypt} (const uint8\+\_\+t $\ast$input, const uint8\+\_\+t $\ast$key, uint8\+\_\+t $\ast$output, const uint32\+\_\+t length)
+void \hyperlink{aes_8c_a5a93d43aab4c9f397697396ecd47f14c_a5a93d43aab4c9f397697396ecd47f14c}{A\+E\+S\+\_\+\+E\+C\+B\+\_\+encrypt} (const uint8\+\_\+t $\ast$input, const uint8\+\_\+t $\ast$key, uint8\+\_\+t $\ast$output, const uint32\+\_\+t length)
 \begin{DoxyCompactList}\small\item\em Cifratura La funcione cifrerà il testo in input con la chiave fornita. \end{DoxyCompactList}\item 
-void \hyperlink{aes_8c_ae3175d2f455bd50271c88f1458bf7df9}{A\+E\+S\+\_\+\+E\+C\+B\+\_\+decrypt} (const uint8\+\_\+t $\ast$input, const uint8\+\_\+t $\ast$key, uint8\+\_\+t $\ast$output, const uint32\+\_\+t length)
+void \hyperlink{aes_8c_ae3175d2f455bd50271c88f1458bf7df9_ae3175d2f455bd50271c88f1458bf7df9}{A\+E\+S\+\_\+\+E\+C\+B\+\_\+decrypt} (const uint8\+\_\+t $\ast$input, const uint8\+\_\+t $\ast$key, uint8\+\_\+t $\ast$output, const uint32\+\_\+t length)
 \begin{DoxyCompactList}\small\item\em Decifratura La funcione decifrerà il testo in input con la chiave fornita. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
+\subsection*{Variabili}
 \begin{DoxyCompactItemize}
 \item 
 state\+\_\+t $\ast$ {\bfseries state}\hypertarget{aes_8c_ad180be797ec209ed2712c000b4fd536f}{}\label{aes_8c_ad180be797ec209ed2712c000b4fd536f}
@@ -108,19 +107,21 @@ const uint8\+\_\+t {\bfseries Rcon} \mbox{[}$\,$\mbox{]}
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-\begin{DoxyVersion}{Version}
+\subsection{Descrizione dettagliata}
+Cifratura A\+ES. 
+
+\begin{DoxyVersion}{Versione}
 1.\+0 
 \end{DoxyVersion}
-\begin{DoxyAuthor}{Author}
+\begin{DoxyAuthor}{Autore}
 Stefano 
 \end{DoxyAuthor}
-\begin{DoxyDate}{Date}
-06-\/11-\/2017 Cifratura A\+ES 
+\begin{DoxyDate}{Data}
+06-\/11-\/2017 
 \end{DoxyDate}
 
 
-\subsection{Macro Definition Documentation}
+\subsection{Documentazione delle definizioni}
 \index{aes.\+c@{aes.\+c}!Multiply@{Multiply}}
 \index{Multiply@{Multiply}!aes.\+c@{aes.\+c}}
 \subsubsection[{\texorpdfstring{Multiply}{Multiply}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Multiply(
@@ -128,8 +129,8 @@ Stefano
 \item[{}]{x, }
 \item[{}]{y}
 \end{DoxyParamCaption}
-)}\hypertarget{aes_8c_aca7cce176b8cdd27f61d3dcf5910b6bd}{}\label{aes_8c_aca7cce176b8cdd27f61d3dcf5910b6bd}
-{\bfseries Value\+:}
+)}\hypertarget{aes_8c_a39861dc55f683ba15416e9fd787fb8df_a39861dc55f683ba15416e9fd787fb8df}{}\label{aes_8c_a39861dc55f683ba15416e9fd787fb8df_a39861dc55f683ba15416e9fd787fb8df}
+{\bfseries Valore\+:}
 \begin{DoxyCode}
 (  ((y & 1) * x) ^                              \(\backslash\)
       ((y>>1 & 1) * xtime(x)) ^                       \(\backslash\)
@@ -139,20 +140,20 @@ Stefano
 \end{DoxyCode}
 
 
-\subsection{Function Documentation}
+\subsection{Documentazione delle funzioni}
 \index{aes.\+c@{aes.\+c}!Add\+Round\+Key@{Add\+Round\+Key}}
 \index{Add\+Round\+Key@{Add\+Round\+Key}!aes.\+c@{aes.\+c}}
 \subsubsection[{\texorpdfstring{Add\+Round\+Key(uint8\+\_\+t round)}{AddRoundKey(uint8_t round)}}]{\setlength{\rightskip}{0pt plus 5cm}void Add\+Round\+Key (
 \begin{DoxyParamCaption}
 \item[{uint8\+\_\+t}]{round}
 \end{DoxyParamCaption}
-)}\hypertarget{aes_8c_a153a141c4ff06edbb758b62c906bccb4}{}\label{aes_8c_a153a141c4ff06edbb758b62c906bccb4}
+)}\hypertarget{aes_8c_a153a141c4ff06edbb758b62c906bccb4_a153a141c4ff06edbb758b62c906bccb4}{}\label{aes_8c_a153a141c4ff06edbb758b62c906bccb4_a153a141c4ff06edbb758b62c906bccb4}
 
 
 Computazione della round\+Key nella matrice di stato. La chiave viene \char`\"{}\+Aggiunta\char`\"{} mediante X\+OR. 
 
 
-\begin{DoxyParams}[1]{Parameters}
+\begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in}  & {\em round} & Round\+Key in input \\
 \hline
 \end{DoxyParams}
@@ -165,13 +166,13 @@ Computazione della round\+Key nella matrice di stato. La chiave viene \char`\"{}
 \item[{uint8\+\_\+t $\ast$}]{output, }
 \item[{const uint32\+\_\+t}]{length}
 \end{DoxyParamCaption}
-)}\hypertarget{aes_8c_ae3175d2f455bd50271c88f1458bf7df9}{}\label{aes_8c_ae3175d2f455bd50271c88f1458bf7df9}
+)}\hypertarget{aes_8c_ae3175d2f455bd50271c88f1458bf7df9_ae3175d2f455bd50271c88f1458bf7df9}{}\label{aes_8c_ae3175d2f455bd50271c88f1458bf7df9_ae3175d2f455bd50271c88f1458bf7df9}
 
 
 Decifratura La funcione decifrerà il testo in input con la chiave fornita. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parametri}
 {\em input\mbox{[}in\mbox{]}} & Testo cifrato in input \\
 \hline
 {\em key\mbox{[}in\mbox{]}} & Chiave di cifratura a 256 bit \\
@@ -190,13 +191,13 @@ Decifratura La funcione decifrerà il testo in input con la chiave fornita.
 \item[{uint8\+\_\+t $\ast$}]{output, }
 \item[{const uint32\+\_\+t}]{length}
 \end{DoxyParamCaption}
-)}\hypertarget{aes_8c_a5a93d43aab4c9f397697396ecd47f14c}{}\label{aes_8c_a5a93d43aab4c9f397697396ecd47f14c}
+)}\hypertarget{aes_8c_a5a93d43aab4c9f397697396ecd47f14c_a5a93d43aab4c9f397697396ecd47f14c}{}\label{aes_8c_a5a93d43aab4c9f397697396ecd47f14c_a5a93d43aab4c9f397697396ecd47f14c}
 
 
 Cifratura La funcione cifrerà il testo in input con la chiave fornita. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parametri}
 {\em input\mbox{[}in\mbox{]}} & Testo in chiaro in input \\
 \hline
 {\em key\mbox{[}in\mbox{]}} & Chiave di cifratura a 256 bit \\
@@ -208,11 +209,11 @@ Cifratura La funcione cifrerà il testo in input con la chiave fornita.
 \end{DoxyParams}
 
 
-\subsection{Variable Documentation}
+\subsection{Documentazione delle variabili}
 \index{aes.\+c@{aes.\+c}!Rcon@{Rcon}}
 \index{Rcon@{Rcon}!aes.\+c@{aes.\+c}}
-\subsubsection[{\texorpdfstring{Rcon}{Rcon}}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t Rcon\mbox{[}$\,$\mbox{]}}\hypertarget{aes_8c_a25c64607a5017b10739ee8c6547f6996}{}\label{aes_8c_a25c64607a5017b10739ee8c6547f6996}
-{\bfseries Initial value\+:}
+\subsubsection[{\texorpdfstring{Rcon}{Rcon}}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t Rcon\mbox{[}$\,$\mbox{]}}\hypertarget{aes_8c_a25c64607a5017b10739ee8c6547f6996_a25c64607a5017b10739ee8c6547f6996}{}\label{aes_8c_a25c64607a5017b10739ee8c6547f6996_a25c64607a5017b10739ee8c6547f6996}
+{\bfseries Valore iniziale\+:}
 \begin{DoxyCode}
 = \{
         0x8d, 0x01, 0x02, 0x04, 0x08,
@@ -221,8 +222,8 @@ Cifratura La funcione cifrerà il testo in input con la chiave fornita.
 \end{DoxyCode}
 \index{aes.\+c@{aes.\+c}!rsbox@{rsbox}}
 \index{rsbox@{rsbox}!aes.\+c@{aes.\+c}}
-\subsubsection[{\texorpdfstring{rsbox}{rsbox}}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t rsbox\mbox{[}256\mbox{]}}\hypertarget{aes_8c_a5fb4523234538d83676ef33a45b18fd1}{}\label{aes_8c_a5fb4523234538d83676ef33a45b18fd1}
-{\bfseries Initial value\+:}
+\subsubsection[{\texorpdfstring{rsbox}{rsbox}}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t rsbox\mbox{[}256\mbox{]}}\hypertarget{aes_8c_a5fb4523234538d83676ef33a45b18fd1_a5fb4523234538d83676ef33a45b18fd1}{}\label{aes_8c_a5fb4523234538d83676ef33a45b18fd1_a5fb4523234538d83676ef33a45b18fd1}
+{\bfseries Valore iniziale\+:}
 \begin{DoxyCode}
 = \{
         0x52, 0x09, 0x6a, 0xd5, 0x30, 0x36, 0xa5, 0x38, 0xbf, 0x40, 0xa3, 0x9e, 0x81, 0xf3, 0xd7, 0xfb,
@@ -244,8 +245,8 @@ Cifratura La funcione cifrerà il testo in input con la chiave fornita.
 \end{DoxyCode}
 \index{aes.\+c@{aes.\+c}!sbox@{sbox}}
 \index{sbox@{sbox}!aes.\+c@{aes.\+c}}
-\subsubsection[{\texorpdfstring{sbox}{sbox}}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t sbox\mbox{[}256\mbox{]}}\hypertarget{aes_8c_adc15aeb43c81de1162045eedf437f407}{}\label{aes_8c_adc15aeb43c81de1162045eedf437f407}
-{\bfseries Initial value\+:}
+\subsubsection[{\texorpdfstring{sbox}{sbox}}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t sbox\mbox{[}256\mbox{]}}\hypertarget{aes_8c_adc15aeb43c81de1162045eedf437f407_adc15aeb43c81de1162045eedf437f407}{}\label{aes_8c_adc15aeb43c81de1162045eedf437f407_adc15aeb43c81de1162045eedf437f407}
+{\bfseries Valore iniziale\+:}
 \begin{DoxyCode}
 = \{
         

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['handle',['handle',['../d4/d72/classremi_1_1server_1_1WebSocketsHandler.html#adec606e39a364bb1aae70012ccc1e7e3',1,'remi.server.WebSocketsHandler.handle(self)'],['../d4/d72/classremi_1_1server_1_1WebSocketsHandler.html#adec606e39a364bb1aae70012ccc1e7e3',1,'remi.server.WebSocketsHandler.handle(self)']]],
-  ['handshake',['handshake',['../d4/d72/classremi_1_1server_1_1WebSocketsHandler.html#a8bfe922a07ddf34d4aa073060b88ba31',1,'remi.server.WebSocketsHandler.handshake(self)'],['../d4/d72/classremi_1_1server_1_1WebSocketsHandler.html#a8bfe922a07ddf34d4aa073060b88ba31',1,'remi.server.WebSocketsHandler.handshake(self)']]],
-  ['hide',['hide',['../d7/d81/classremi_1_1gui_1_1GenericDialog.html#ab228c4ebfd696414b4a5c04f5ec55e67',1,'remi.gui.GenericDialog.hide(self)'],['../d7/d81/classremi_1_1gui_1_1GenericDialog.html#ab228c4ebfd696414b4a5c04f5ec55e67',1,'remi.gui.GenericDialog.hide(self)']]]
+  ['newbackup',['newBackup',['../df/dd7/server_8cpp_a0cd98657d687771b6bd634f8a65c14a2.html#a0cd98657d687771b6bd634f8a65c14a2',1,'server.cpp']]],
+  ['newbak',['newBak',['../d9/d95/client_8cpp_a4b5c13bd3f6431ce2b14d8bd5137a78a.html#a4b5c13bd3f6431ce2b14d8bd5137a78a',1,'client.cpp']]],
+  ['newudpsocket_5fclient',['newUDPSocket_client',['../dd/dc4/udp_8c_adbe079c402747c64e8a7ccdce80a9397.html#adbe079c402747c64e8a7ccdce80a9397',1,'udp.c']]],
+  ['newudpsocket_5fserver',['newUDPSocket_server',['../dd/dc4/udp_8c_a1ed10c1ef4a1d2eb3b282332e028c51f.html#a1ed10c1ef4a1d2eb3b282332e028c51f',1,'udp.c']]]
 ];

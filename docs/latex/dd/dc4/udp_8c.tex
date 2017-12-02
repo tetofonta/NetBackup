@@ -1,39 +1,39 @@
-\hypertarget{udp_8c}{}\section{Networking/udp.c File Reference}
+\hypertarget{udp_8c}{}\section{Riferimenti per il file Networking/udp.c}
 \label{udp_8c}\index{Networking/udp.\+c@{Networking/udp.\+c}}
+
+
+Funzioni di rete U\+DP.  
+
+
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include $<$sys/time.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}Networking.\+h\char`\"{}}\\*
-Include dependency graph for udp.\+c\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{d2/dbd/udp_8c__incl}
-\end{center}
-\end{figure}
-\subsection*{Functions}
+Grafo delle dipendenze di inclusione per udp.\+c\+:
+% FIG 0
+\subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structconnection__t}{connection\+\_\+t} \hyperlink{udp_8c_adbe079c402747c64e8a7ccdce80a9397}{new\+U\+D\+P\+Socket\+\_\+client} (const int portno, const char $\ast$host\+Name, const int timeout)
+\hyperlink{structconnection__t}{connection\+\_\+t} \hyperlink{udp_8c_adbe079c402747c64e8a7ccdce80a9397_adbe079c402747c64e8a7ccdce80a9397}{new\+U\+D\+P\+Socket\+\_\+client} (const int portno, const char $\ast$host\+Name, const int timeout)
 \begin{DoxyCompactList}\small\item\em Connette la macchina ad un server U\+DP. \end{DoxyCompactList}\item 
-int {\bfseries new\+U\+D\+P\+Socket\+\_\+server} (const int portno)\hypertarget{udp_8c_a1ed10c1ef4a1d2eb3b282332e028c51f}{}\label{udp_8c_a1ed10c1ef4a1d2eb3b282332e028c51f}
+int \hyperlink{udp_8c_a1ed10c1ef4a1d2eb3b282332e028c51f_a1ed10c1ef4a1d2eb3b282332e028c51f}{new\+U\+D\+P\+Socket\+\_\+server} (const int portno)
+\begin{DoxyCompactList}\small\item\em Crea un server U\+DP. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\end{DoxyCompactItemize}
 
+\subsection{Descrizione dettagliata}
+Funzioni di rete U\+DP. 
 
-\subsection{Detailed Description}
-\begin{DoxyVersion}{Version}
+\begin{DoxyVersion}{Versione}
 1.\+0 
 \end{DoxyVersion}
-\begin{DoxyAuthor}{Author}
+\begin{DoxyAuthor}{Autore}
 Stefano 
 \end{DoxyAuthor}
-\begin{DoxyDate}{Date}
-28-\/11-\/2017 Hashing Funzioni di rete U\+DP 
+\begin{DoxyDate}{Data}
+28-\/11-\/2017 
 \end{DoxyDate}
 
 
-\subsection{Function Documentation}
+\subsection{Documentazione delle funzioni}
 \index{udp.\+c@{udp.\+c}!new\+U\+D\+P\+Socket\+\_\+client@{new\+U\+D\+P\+Socket\+\_\+client}}
 \index{new\+U\+D\+P\+Socket\+\_\+client@{new\+U\+D\+P\+Socket\+\_\+client}!udp.\+c@{udp.\+c}}
 \subsubsection[{\texorpdfstring{new\+U\+D\+P\+Socket\+\_\+client(const int portno, const char $\ast$host\+Name, const int timeout)}{newUDPSocket_client(const int portno, const char *hostName, const int timeout)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf connection\+\_\+t} new\+U\+D\+P\+Socket\+\_\+client (
@@ -42,13 +42,13 @@ Stefano
 \item[{const char $\ast$}]{host\+Name, }
 \item[{const int}]{timeout}
 \end{DoxyParamCaption}
-)}\hypertarget{udp_8c_adbe079c402747c64e8a7ccdce80a9397}{}\label{udp_8c_adbe079c402747c64e8a7ccdce80a9397}
+)}\hypertarget{udp_8c_adbe079c402747c64e8a7ccdce80a9397_adbe079c402747c64e8a7ccdce80a9397}{}\label{udp_8c_adbe079c402747c64e8a7ccdce80a9397_adbe079c402747c64e8a7ccdce80a9397}
 
 
 Connette la macchina ad un server U\+DP. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parametri}
 {\em portno\mbox{[}in\mbox{]}} & numero della porta di connessione \\
 \hline
 {\em host\+Name\mbox{[}in\mbox{]}} & Nome dell\textquotesingle{}host o I\+Pv4 \\
@@ -56,6 +56,25 @@ Connette la macchina ad un server U\+DP.
 {\em timeout\mbox{[}in\mbox{]}} & Secondi di timeout prima dell\textquotesingle{}aborto della connessione \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Restituisce}
 parametri di connessione 
+\end{DoxyReturn}
+\index{udp.\+c@{udp.\+c}!new\+U\+D\+P\+Socket\+\_\+server@{new\+U\+D\+P\+Socket\+\_\+server}}
+\index{new\+U\+D\+P\+Socket\+\_\+server@{new\+U\+D\+P\+Socket\+\_\+server}!udp.\+c@{udp.\+c}}
+\subsubsection[{\texorpdfstring{new\+U\+D\+P\+Socket\+\_\+server(const int portno)}{newUDPSocket_server(const int portno)}}]{\setlength{\rightskip}{0pt plus 5cm}int new\+U\+D\+P\+Socket\+\_\+server (
+\begin{DoxyParamCaption}
+\item[{const int}]{portno}
+\end{DoxyParamCaption}
+)}\hypertarget{udp_8c_a1ed10c1ef4a1d2eb3b282332e028c51f_a1ed10c1ef4a1d2eb3b282332e028c51f}{}\label{udp_8c_a1ed10c1ef4a1d2eb3b282332e028c51f_a1ed10c1ef4a1d2eb3b282332e028c51f}
+
+
+Crea un server U\+DP. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em portno\mbox{[}in\mbox{]}} & Porta dove stanziare il server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Intero descrittore del socket 
 \end{DoxyReturn}

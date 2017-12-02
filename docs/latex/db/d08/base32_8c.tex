@@ -1,44 +1,45 @@
-\hypertarget{base32_8c}{}\section{B\+A\+S\+E\+\_\+encoding/base32.c File Reference}
+\hypertarget{base32_8c}{}\section{Riferimenti per il file B\+A\+S\+E\+\_\+encoding/base32.c}
 \label{base32_8c}\index{B\+A\+S\+E\+\_\+encoding/base32.\+c@{B\+A\+S\+E\+\_\+encoding/base32.\+c}}
+
+
+Codifica base32.  
+
+
 {\ttfamily \#include $<$assert.\+h$>$}\\*
 {\ttfamily \#include $<$limits.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}base32.\+h\char`\"{}}\\*
-Include dependency graph for base32.\+c\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=272pt]{dd/def/base32_8c__incl}
-\end{center}
-\end{figure}
-\subsection*{Macros}
+Grafo delle dipendenze di inclusione per base32.\+c\+:
+% FIG 0
+\subsection*{Definizioni}
 \begin{DoxyCompactItemize}
 \item 
 \#define {\bfseries min}(x,  y)~(x $<$ y ? x \+: y)\hypertarget{base32_8c_abb702d8b501669a23aa0ab3b281b9384}{}\label{base32_8c_abb702d8b501669a23aa0ab3b281b9384}
 
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
-size\+\_\+t \hyperlink{base32_8c_ae5a4361671bd789618699659b98aefcb}{base32\+\_\+decode} (const unsigned char $\ast$coded, unsigned char $\ast$plain)
+size\+\_\+t \hyperlink{base32_8c_ae5a4361671bd789618699659b98aefcb_ae5a4361671bd789618699659b98aefcb}{base32\+\_\+decode} (const unsigned char $\ast$coded, unsigned char $\ast$plain)
 \begin{DoxyCompactList}\small\item\em Decodifica in base32 La funzione decodifica la stringa in input in base32. \end{DoxyCompactList}\item 
-void \hyperlink{base32_8c_a17ec37ce739803d9b75109d5e00a3d40}{base32\+\_\+encode} (const unsigned char $\ast$plain, size\+\_\+t len, unsigned char $\ast$coded)
+void \hyperlink{base32_8c_a17ec37ce739803d9b75109d5e00a3d40_a17ec37ce739803d9b75109d5e00a3d40}{base32\+\_\+encode} (const unsigned char $\ast$plain, size\+\_\+t len, unsigned char $\ast$coded)
 \begin{DoxyCompactList}\small\item\em Codifica in base32 La funzione codifica la stringa in input in base32. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-\begin{DoxyVersion}{Version}
+\subsection{Descrizione dettagliata}
+Codifica base32. 
+
+\begin{DoxyVersion}{Versione}
 1.\+0 
 \end{DoxyVersion}
-\begin{DoxyAuthor}{Author}
+\begin{DoxyAuthor}{Autore}
 Stefano 
 \end{DoxyAuthor}
-\begin{DoxyDate}{Date}
-10-\/11-\/2017 Codifica base32 
+\begin{DoxyDate}{Data}
+10-\/11-\/2017 
 \end{DoxyDate}
 
 
-\subsection{Function Documentation}
+\subsection{Documentazione delle funzioni}
 \index{base32.\+c@{base32.\+c}!base32\+\_\+decode@{base32\+\_\+decode}}
 \index{base32\+\_\+decode@{base32\+\_\+decode}!base32.\+c@{base32.\+c}}
 \subsubsection[{\texorpdfstring{base32\+\_\+decode(const unsigned char $\ast$coded, unsigned char $\ast$plain)}{base32_decode(const unsigned char *coded, unsigned char *plain)}}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t base32\+\_\+decode (
@@ -46,19 +47,19 @@ Stefano
 \item[{const unsigned char $\ast$}]{coded, }
 \item[{unsigned char $\ast$}]{plain}
 \end{DoxyParamCaption}
-)}\hypertarget{base32_8c_ae5a4361671bd789618699659b98aefcb}{}\label{base32_8c_ae5a4361671bd789618699659b98aefcb}
+)}\hypertarget{base32_8c_ae5a4361671bd789618699659b98aefcb_ae5a4361671bd789618699659b98aefcb}{}\label{base32_8c_ae5a4361671bd789618699659b98aefcb_ae5a4361671bd789618699659b98aefcb}
 
 
 Decodifica in base32 La funzione decodifica la stringa in input in base32. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parametri}
 {\em coded\mbox{[}in\mbox{]}} & La sequenza codificata \\
 \hline
 {\em plain\mbox{[}out\mbox{]}} & La sequaneza decodificata \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Restituisce}
 Numero dei caratteri scritti 
 \end{DoxyReturn}
 \index{base32.\+c@{base32.\+c}!base32\+\_\+encode@{base32\+\_\+encode}}
@@ -69,13 +70,13 @@ Numero dei caratteri scritti
 \item[{size\+\_\+t}]{len, }
 \item[{unsigned char $\ast$}]{coded}
 \end{DoxyParamCaption}
-)}\hypertarget{base32_8c_a17ec37ce739803d9b75109d5e00a3d40}{}\label{base32_8c_a17ec37ce739803d9b75109d5e00a3d40}
+)}\hypertarget{base32_8c_a17ec37ce739803d9b75109d5e00a3d40_a17ec37ce739803d9b75109d5e00a3d40}{}\label{base32_8c_a17ec37ce739803d9b75109d5e00a3d40_a17ec37ce739803d9b75109d5e00a3d40}
 
 
 Codifica in base32 La funzione codifica la stringa in input in base32. 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Parametri}
 {\em coded\mbox{[}in\mbox{]}} & La sequenza da codificare \\
 \hline
 {\em plain\mbox{[}out\mbox{]}} & La sequaneza codificata \\

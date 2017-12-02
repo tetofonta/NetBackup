@@ -1,5 +1,5 @@
 /**
- * \file client.c
+ * \file client.cpp
  * \version 1.0
  * \author Stefano
  * \date 28-10-2017
@@ -122,9 +122,10 @@ static char rndChar() {
 }
 
 /**
- *
- * @param socket
- * @return
+ * \brief Richiesta di identità del server
+ * Viene richiesta al server la firma digitale di una stringa casuale generata dal client, quindi viene verificata mediante la chiave memorizzata in memoria.
+ * @param socket[in] struttura parametri di connessione
+ * @return -10 in caso il file relativo al server non esista o non sia accessibile, 1 in caso di verifica esatta, 0 altriemeti
  */
 int askIdentity(connection_t socket) {
 #ifdef GMP
@@ -164,6 +165,11 @@ int askIdentity(connection_t socket) {
 #endif
 }
 
+/**
+ * \brief Salva una chiave pubblica in memoria
+ * La funzione richiederà al server la sua chiave pubblica e la memorizzerà in un file .public in memoria.
+ * @param server[in] struttura parametri di connessione.
+ */
 void savePkey(connection_t server) {
     printf("Requiring server identity...\n");
     askPkey_h quest = buildPkeyPacket();
@@ -191,6 +197,10 @@ void savePkey(connection_t server) {
     free(e_str);
 }
 
+/**
+ * \brief La funzione inizia la trasmissione di un nuovo backup
+ * @param port[in] Porta di comunicazione con il server tramite protocollo TCP
+ */
 int newBak(int port) {
     int tcp = newTCPSocket_client(port, server_ip);
     _SLEEP(500);
@@ -271,6 +281,7 @@ int newBak(int port) {
     closeSocket(tcp);
     return 0;
 }
+
 char configF[512];
 int main(int argc, char ** argv) {
     signal(SIGPIPE, SIG_IGN);

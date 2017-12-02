@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['jsonize',['jsonize',['../df/da4/namespaceremi_1_1gui.html#a529a4fea1c4a205736d2739ec166ba04',1,'remi::gui']]]
+  ['parsecmd',['parseCmd',['../d5/d77/commands_8cpp.html#a666e101942c0878426bef303dd617c17',1,'commands.cpp']]],
+  ['parsecommand',['parseCommand',['../d2/d44/terminal_8c_a2cce86fa8d3ac0c27fea942a6bf8a3c7.html#a2cce86fa8d3ac0c27fea942a6bf8a3c7',1,'terminal.c']]]
 ];

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['bak_5fclick_5flistener',['bak_click_listener',['../d6/d76/classmonitor_1_1MyApp.html#a12a7e1c078a2ce6a190b019613a081de',1,'monitor.MyApp.bak_click_listener(self, widget, id)'],['../d6/d76/classmonitor_1_1MyApp.html#a12a7e1c078a2ce6a190b019613a081de',1,'monitor.MyApp.bak_click_listener(self, widget, id)']]],
-  ['base32_5fdecode',['base32_decode',['../db/d08/base32_8c.html#ae5a4361671bd789618699659b98aefcb',1,'base32.c']]],
-  ['base32_5fencode',['base32_encode',['../db/d08/base32_8c.html#a17ec37ce739803d9b75109d5e00a3d40',1,'base32.c']]],
-  ['bytetonum',['bytetonum',['../d4/d72/classremi_1_1server_1_1WebSocketsHandler.html#a40ab3d2a4ba344bfab9cb99d1fffccfe',1,'remi.server.WebSocketsHandler.bytetonum(b)'],['../d4/d72/classremi_1_1server_1_1WebSocketsHandler.html#a40ab3d2a4ba344bfab9cb99d1fffccfe',1,'remi.server.WebSocketsHandler.bytetonum(b)']]]
+  ['check_5fhost_5fvalidity',['check_host_validity',['../df/dd7/server_8cpp_a49bba8146fb528ffd39048b13361d3c3.html#a49bba8146fb528ffd39048b13361d3c3',1,'server.cpp']]],
+  ['cipher',['Cipher',['../dd/d34/aes_8c.html#a068fd9934f544b4ce3b989b44434253d',1,'aes.c']]],
+  ['closeconfigfile',['closeConfigFile',['../d3/d95/config_8c.html#ab15e2eb276eee7f19da0fe8c84d50660',1,'config.c']]]
 ];

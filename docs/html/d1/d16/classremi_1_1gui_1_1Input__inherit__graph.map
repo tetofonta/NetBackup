@@ -1,9 +1,0 @@
-<map id="remi.gui.Input" name="remi.gui.Input">
-<area shape="rect" id="node5" href="$d0/d9e/classremi_1_1gui_1_1CheckBox.html" title="remi.gui.CheckBox" alt="" coords="567,5,701,32"/>
-<area shape="rect" id="node6" href="$d7/d12/classremi_1_1gui_1_1ColorPicker.html" title="remi.gui.ColorPicker" alt="" coords="564,56,704,83"/>
-<area shape="rect" id="node7" href="$dd/d27/classremi_1_1gui_1_1Date.html" title="remi.gui.Date" alt="" coords="584,107,684,133"/>
-<area shape="rect" id="node8" href="$d8/ddb/classremi_1_1gui_1_1Slider.html" title="remi.gui.Slider" alt="" coords="581,157,687,184"/>
-<area shape="rect" id="node9" href="$d5/d07/classremi_1_1gui_1_1SpinBox.html" title="remi.gui.SpinBox" alt="" coords="573,208,695,235"/>
-<area shape="rect" id="node2" href="$de/d8a/classremi_1_1gui_1_1Widget.html" title="remi.gui.Widget" alt="" coords="253,107,367,133"/>
-<area shape="rect" id="node3" href="$dd/deb/classremi_1_1gui_1_1Tag.html" title="remi.gui.Tag" alt="" coords="111,107,205,133"/>
-</map>

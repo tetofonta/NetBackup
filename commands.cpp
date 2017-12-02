@@ -1,20 +1,33 @@
-//
-// Created by stefano on 19/11/17.
-//
+/**
+ * \file commands.cpp
+ * \version 1.0
+ * \author Stefano
+ * \date 11-11-2017
+ * \brief handler dei comandi
+ */
 #include <stdio.h>
 #include <cstring>
 #include "Headers.h"
 #include "commands.h"
 
+/**
+ * \brief Handler per il comando NMR
+ */
 static void cmd_NMR(int server, conf * configs, sockaddr * client, socklen_t len){
     sendto(server, &(configs->port_interval), sizeof(int), 0, client, len);
 }
 
+/**
+ * \brief Handler per il comando GET
+ */
 static void cmd_GET(int server, conf * configs, sockaddr * client, socklen_t len, backupThread * processi){
     for (int i = 0; i < configs->port_interval; i++)
         sendto(server, &processi[i], sizeof(backupThread), 0, client, len);
 }
 
+/**
+ * \brief Handler per il comando STP
+ */
 static void cmd_STP(char * buffer, backupThread * processi, conf * cfgs){
     int id;
     char foo;
@@ -25,6 +38,9 @@ static void cmd_STP(char * buffer, backupThread * processi, conf * cfgs){
     else printf("Backup already terminated\n");
 }
 
+/**
+ * \brief Handler per il comando TOG
+ */
 static void cmd_TOG(char * buffer, backupThread * processi, conf * cfgs){
     int id;
     char foo;
@@ -35,10 +51,16 @@ static void cmd_TOG(char * buffer, backupThread * processi, conf * cfgs){
     processi[id].status = !processi[id].status;
 }
 
+/**
+ * \brief Handler per il comando SET
+ */
 static void cmd_SET(int server, conf * configs, sockaddr * client, socklen_t len){
     sendto(server, &configs, sizeof(configs), 0, client, len);
 }
 
+/**
+ * \brief Wrapper per i comandi, cmd_parser
+ */
 void parseCmd(char * cmd, char * buffer, int socket, sockaddr * client, socklen_t len, conf * cfgs, backupThread * processi){
     if(!strcmp(cmd, "NMR"))
         cmd_NMR(socket, cfgs, client, len);

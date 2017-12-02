@@ -1,6 +1,10 @@
-//
-// Created by stefano on 28/10/17.
-//
+/**
+ * \file server.cpp
+ * \version 1.0
+ * \author Stefano
+ * \date 28-10-2017
+ * \brief Server
+ */
 #include <cstdlib>
 #include <signal.h>
 #include <inttypes.h>
@@ -42,6 +46,11 @@ char *rsacfg;
 
 static volatile int keepRunning = 1;
 
+/**
+ * \brief Handler per SIGHUP e SIGINT
+ * Chiude le connessioni aperte e esce dal programma
+ * @param dummy
+ */
 void intHandler(int dummy) {
     keepRunning = 0;
     shutdown(server, SHUT_RDWR);
@@ -51,6 +60,13 @@ backupThread *processi;
 
 char **file;
 
+/**
+ * \brief Sanitizza una proprietà ricercata se quest'ultima è una lista, evitando corruzione di memoria
+ * @param file[in] descrittore del file di configurazione in memoria
+ * @param lines[in] Lunghezza del descrittore
+ * @param prop[in] Nome della proprietà da ricercare
+ * @param len[in] Lunghezza massima del ritorno
+ */
 static char *sanitizeValue(char **file, int lines, const char *prop, int len) {
     int isList, llen;
     char *ret = getProperty(file, lines, prop, len, &isList, &llen);
@@ -58,6 +74,11 @@ static char *sanitizeValue(char **file, int lines, const char *prop, int len) {
     return NULL;
 }
 
+/**
+ * \brief Caricamento della configurazione da file
+ * @return 0 in caso di riuscita, -1 altrimenti
+ * \bug In caso una proprietà non sia presente segfault
+ */
 int loadCfg() {
     int lines;
     if ((file = openConfigFile(&lines, "config.properties", '#')) == NULL) return -1;
@@ -138,6 +159,13 @@ int loadCfg() {
     return 0;
 }
 
+/**
+ * \brief Invia la chiave pubblica ad un client richiedente
+ * Invia due interi conteneti le lunghezze dei parametri spediti conseguentemente
+ * @param socket[in] descrittore del socket del server
+ * @param to[in] Descrittore dell'host cliente
+ * @param len[in] lunghezza di to
+ */
 void sendPkey(int socket, sockaddr to, socklen_t len) {
 #ifdef GMP
     pkey_identifier_t id;
@@ -156,6 +184,13 @@ void sendPkey(int socket, sockaddr to, socklen_t len) {
 #endif
 }
 
+/**
+ * \brief Risposta alla richiesta di identità
+ * @param socket[in] descrittore del socket del server
+ * @param to[in] Descrittore dell'host cliente
+ * @param len[in] lunghezza di to
+ * @param data[in] Stringa da firmare
+ */
 void sendIdentification(int socket, sockaddr to, socklen_t len, identify_h data) {
 #ifdef GMP
     identify_answ_h answ = buildIdentifyAnsw();
@@ -180,6 +215,14 @@ int getSlot(backupThread *threads, int port_ext) {
     return -1;
 }
 
+/**
+ * \brief Avvia un processo di backup
+ * In caso di presenza della libreria BZ2 i file ricevuti verranno compressi se di dimensione inferiore a quella prestabilita
+ * @param socket[in] descrittore del socket del server
+ * @param to[in] Descrittore dell'host cliente
+ * @param len[in] lunghezza di to
+ * @param data[in] Informazioni relative al backup da effettuare
+ */
 void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
 
     int slot = getSlot(processi, configs.port_interval);
@@ -344,6 +387,11 @@ void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
     exit(0);
 }
 
+/**
+ * \brief Controlla che un host sia abilitato al dialogo con il server.
+ * La lista di host viene inserita nel file di configurazione
+ * @param client[in] descrittore del client connesso
+ */
 int check_host_validity(sockaddr_in * client){
     int res = 0;
     unsigned int hip = (client)->sin_addr.s_addr;

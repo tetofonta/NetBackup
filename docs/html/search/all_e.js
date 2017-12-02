@@ -1,8 +1,13 @@
 var searchData=
 [
-  ['netback',['NETBACK',['../md_README.html',1,'']]],
-  ['network',['network',['../de/d45/structnetwork.html',1,'']]],
-  ['new_5ffrom_5flist',['new_from_list',['../d1/dcb/classremi_1_1gui_1_1ListView.html#aaf113567a3811e687eee0a7b70d49f95',1,'remi.gui.ListView.new_from_list()'],['../d8/d60/classremi_1_1gui_1_1DropDown.html#adb3c979c795d849686e3a33680697768',1,'remi.gui.DropDown.new_from_list()'],['../dd/d86/classremi_1_1gui_1_1Table.html#a9657491417c2b88f6de318d4c36279b1',1,'remi.gui.Table.new_from_list()'],['../d1/dcb/classremi_1_1gui_1_1ListView.html#aaf113567a3811e687eee0a7b70d49f95',1,'remi.gui.ListView.new_from_list()'],['../d8/d60/classremi_1_1gui_1_1DropDown.html#adb3c979c795d849686e3a33680697768',1,'remi.gui.DropDown.new_from_list()'],['../dd/d86/classremi_1_1gui_1_1Table.html#a9657491417c2b88f6de318d4c36279b1',1,'remi.gui.Table.new_from_list()']]],
-  ['newudpsocket_5fclient',['newUDPSocket_client',['../dd/dc4/udp_8c.html#adbe079c402747c64e8a7ccdce80a9397',1,'udp.c']]],
-  ['notification_5fmessage',['notification_message',['../de/d14/classremi_1_1server_1_1App.html#a77ebb63c24ac45cc18d8bc66351528bc',1,'remi.server.App.notification_message(self, title, content, icon=&quot;&quot;)'],['../de/d14/classremi_1_1server_1_1App.html#a77ebb63c24ac45cc18d8bc66351528bc',1,'remi.server.App.notification_message(self, title, content, icon=&quot;&quot;)']]]
+  ['packets_2ec',['packets.c',['../de/d71/packets_8c.html',1,'']]],
+  ['packetsize',['packetSize',['../d5/dd1/structbackupHead__t.html#a82c0b9e0bf9012b907162fb278d3b689',1,'backupHead_t']]],
+  ['parsecmd',['parseCmd',['../d5/d77/commands_8cpp.html#a666e101942c0878426bef303dd617c17',1,'commands.cpp']]],
+  ['parsecommand',['parseCommand',['../d2/d44/terminal_8c_a2cce86fa8d3ac0c27fea942a6bf8a3c7.html#a2cce86fa8d3ac0c27fea942a6bf8a3c7',1,'terminal.c']]],
+  ['password',['password',['../d6/da8/structsshconf.html#a72e52ee8742a96bb28def3acb0996eef',1,'sshconf']]],
+  ['pcap',['pcap',['../d6/da8/structsshconf.html#a43a1f28da9bffb5a86ccf7fad4e4d11d',1,'sshconf']]],
+  ['pid',['pid',['../d4/d65/structbackupThread.html#a385b50e0e05fac52e30c0dbfd837c3b1',1,'backupThread']]],
+  ['pkey_5fidentifier_5ft',['pkey_identifier_t',['../d6/d35/structpkey__identifier__t.html',1,'']]],
+  ['port',['port',['../d4/d65/structbackupThread.html#af2351e344c69cac9f9cec25503504c40',1,'backupThread::port()'],['../d6/da8/structsshconf.html#ac7a42459cfc0b74b311112a8213aea2f',1,'sshconf::port()']]],
+  ['port_5finterval',['port_interval',['../d6/de8/structconf.html#a0d988cd9a9e701b9f9c495f4ad7efabc',1,'conf']]]
 ];
