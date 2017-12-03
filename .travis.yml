@@ -1,6 +1,3 @@
-install:
-- apt-get install libgmp-dev libssh-dev libbz2-dev
-
 dist: trusty
 sudo: require
 
@@ -15,6 +12,9 @@ addons:
       - gcc-6
       - g++-6
       - cmake
+      - libgmp-dev
+      - libbz2-dev
+      - libssh-dev
 
 script:
     - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
