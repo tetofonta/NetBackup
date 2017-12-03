@@ -1,0 +1,35 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Test/lib/googletest/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_02786/fast"
+/usr/bin/make -f CMakeFiles/cmTC_02786.dir/build.make CMakeFiles/cmTC_02786.dir/build
+make[1]: ingresso nella directory "/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Test/lib/googletest/CMakeFiles/CMakeTmp"
+Building C object CMakeFiles/cmTC_02786.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_02786.dir/CheckSymbolExists.c.o   -c "/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Test/lib/googletest/CMakeFiles/CMakeTmp/CheckSymbolExists.c"
+Linking C executable cmTC_02786
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_02786.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_02786.dir/CheckSymbolExists.c.o  -o cmTC_02786 -rdynamic 
+CMakeFiles/cmTC_02786.dir/CheckSymbolExists.c.o: nella funzione "main":
+CheckSymbolExists.c:(.text+0x16): riferimento non definito a "pthread_create"
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_02786.dir/build.make:97: set di istruzioni per l'obiettivo "cmTC_02786" non riuscito
+make[1]: *** [cmTC_02786] Errore 1
+make[1]: uscita dalla directory "/home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Test/lib/googletest/CMakeFiles/CMakeTmp"
+Makefile:126: set di istruzioni per l'obiettivo "cmTC_02786/fast" non riuscito
+make: *** [cmTC_02786/fast] Errore 2
+
+File /home/stefano/Scrivania/Applicazioni/C C++/NetBackup/Test/lib/googletest/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
