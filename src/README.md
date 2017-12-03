@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tetofonta/NetBackup.svg?branch=master)](https://travis-ci.org/tetofonta/NetBackup)
+
 # NETBACK
 #### Software di trasferimento e salvataggio file attraverso la rete.
 
