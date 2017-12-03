@@ -7,13 +7,19 @@
 
 #include <stdint.h>
 
-#define ECB 1
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-//#define AES128 1
-//#define AES192 1
+#define ECB 1
 #define AES256 1
 
-void AES_ECB_encrypt(const uint8_t* input, const uint8_t* key, uint8_t *output, const uint32_t length);
-void AES_ECB_decrypt(const uint8_t* input, const uint8_t* key, uint8_t *output, const uint32_t length);
+void AES_ECB_encrypt(const uint8_t *input, const uint8_t *key, uint8_t *output, const uint32_t length);
+
+void AES_ECB_decrypt(const uint8_t *input, const uint8_t *key, uint8_t *output, const uint32_t length);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //NB_AES_H

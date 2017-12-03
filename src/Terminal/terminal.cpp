@@ -43,6 +43,8 @@ void parseCommand(char * command, size_t len, backupThread * baks, conf * cfgs, 
     while(i < strlen(command) && command[i++] != ' ');
     command[i-1] = '\0';
 
+#ifdef GMP
+
     for(int q = 0; q < strlen(command); q++) if(command[q] == ' ') command[q] = '\0';
 
     bzero(bf, 2048);
@@ -96,6 +98,9 @@ void parseCommand(char * command, size_t len, backupThread * baks, conf * cfgs, 
 
     free(bufffer);
     free(elf);
+#else
+    printToStream("Impossibile verificare l'attendibilità dell'eseguibile, nessuna libreria installata");
+#endif
     int (*execute)(char *, const backupThread *, const conf *, int (*)(const char *, ...));
     void * handle = dlopen(bf, RTLD_NOW);
     if(!handle){

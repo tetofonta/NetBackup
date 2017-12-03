@@ -10,7 +10,6 @@
 #include <dirent.h>
 #include <stdio.h>
 #include "../Compatibility/macros.h"
-#include "FS.h"
 
 /**
  * \brief Determina se un file esiste o è una cartella
@@ -48,7 +47,6 @@ char **getFiles(char *mdir, int *len, int depth) {
                     (*len)++;
                     out = (char **) realloc(out, *len * sizeof(char *));
                     if(strlen(ent->d_name) + strlen(mdir) > 0){
-                        printf("LEN %d\n", strlen(ent->d_name) + strlen(mdir) * sizeof(char));
                         out[*len - 1] = (char *) malloc((strlen(ent->d_name) + strlen(mdir) + 20)* sizeof(char));
                         strcpy(out[*len - 1], mdir);
                         strcpy(out[*len - 1] + (strlen(mdir)), ent->d_name);

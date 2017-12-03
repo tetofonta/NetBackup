@@ -10,13 +10,17 @@
 
 #include <netinet/in.h>
 
- /**
-  * La struttura Rappresenta un pacchetto generico ricevuto dal server UDP
-  */
-typedef struct{
-    char mw[2];		///< Identificxatore del pacchetto
-    char data[17];	///< Dati presenti
-}mainpacket;
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * La struttura Rappresenta un pacchetto generico ricevuto dal server UDP
+ */
+typedef struct {
+    char mw[2];        ///< Identificxatore del pacchetto
+    char data[17];    ///< Dati presenti
+} mainpacket;
 
 
 typedef mainpacket udpPacketRecv_t;
@@ -24,51 +28,51 @@ typedef udpPacketRecv_t identify_h; //id
 typedef udpPacketRecv_t askPkey_h;   //pk
 typedef udpPacketRecv_t newBak_h;
 
- /**
-  * Pacchetto di richiesta identificazione
-  */
-typedef struct{ //mw = ad
+/**
+ * Pacchetto di richiesta identificazione
+ */
+typedef struct { //mw = ad
     char mw[2];
     int nextLenght;
-}identify_answ_h;
+} identify_answ_h;
 
- /**
-  * Pacchetto di richiesta chiave pubblica
-  */
-typedef struct{
+/**
+ * Pacchetto di richiesta chiave pubblica
+ */
+typedef struct {
     int explen;
     int nlen;
-}pkey_identifier_t;
+} pkey_identifier_t;
 
- /**
-  * Header di backup
-  */
-typedef struct{
+/**
+ * Header di backup
+ */
+typedef struct {
     int isEncoded; ///< Se 0 non codificato, altrimenti codificato
     struct sockaddr_in client; ///< Client connesso
     int numberOfFiles; ///< Numero di file nel backup
     time_t time; ///< data di trasmissione
     int packetSize; ///< dimensione di trasmissione
     char foo[32]; ///< dati aggiuntivi
-}backupHead_t;
+} backupHead_t;
 
 /**
  * Header del file di backup
  */
-typedef struct{
+typedef struct {
     uint64_t dimension; ///< dimensione del file non cifrato
     uint64_t transfer_dimension; ///< dimensione trasmessa
     int isEncoded; ///< se 0 non codificato, altrimenti codificato
     time_t time; ///< data di trasmissione
     char name[55]; ///< nome originale del file
     char foo[32]; ///< dati aggiuntivi
-}file_h;
+} file_h;
 
 
 typedef union {
     uint8_t parts[4];
     uint32_t ip;
-}ipAddr ;
+} ipAddr;
 
 /**
  * Definizione di rete
@@ -76,26 +80,26 @@ typedef union {
 typedef struct {
     ipAddr address; ///< ip
     unsigned int netMask; ///< netmask
-}network ;
+} network;
 
 /**
  * Struttura contenete le configurazioni del server
  */
-typedef struct{
-    int server_port;	///< Porta
-    int starting_port;	///< prima porta per i backup
+typedef struct {
+    int server_port;    ///< Porta
+    int starting_port;    ///< prima porta per i backup
     int port_interval; ///< intervallo di porte
     int ToZip; ///< Se 0 non comprimerà i files, altrimenti sì
     uint64_t maxRamAmount; ///< se un file sarà più piccolo della dimensione specificata verrà compresso
     int allowEqualsDeny_nets; ///< la lista di reti sarà blacklistata
     int allowEqualsDeny_ips; ///< la lista di host sarà blacklistata
     int netsNo; ///< Numero di reti in lista
-    network * networks; ///< referenza alla lista di reti
+    network *networks; ///< referenza alla lista di reti
     int ipsNo; ///<< Numero di host in lista
-    ipAddr * ips; ///<< referenza alla lista di host
+    ipAddr *ips; ///<< referenza alla lista di host
     int manNo; ///< Numero di host amministrativi in lista
-    ipAddr * mans; ///< referenza alla lista di amministratori
-}conf;
+    ipAddr *mans; ///< referenza alla lista di amministratori
+} conf;
 
 /**
  * Informazioni di backup
@@ -111,24 +115,28 @@ typedef struct {
     int filesTransferred; ///< numero dfi file trasferiti all'istante di lettura
     time_t startedInTime; ///< data di avvio
     int status; ///< stato (0) running (1) pause
-}backupThread;
+} backupThread;
 
 /**
  *Configurazione SSH
  */
-typedef struct{
+typedef struct {
     int port; ///< porta del terminale ssh
-    char * user; ///< username
-    char * password; ///< hash della password
-    char * rsa; ///< referenza al file con le chiavi rsa
-    char * dsa; ///< referenza al file con le chiavi dsa
+    char *user; ///< username
+    char *password; ///< hash della password
+    char *rsa; ///< referenza al file con le chiavi rsa
+    char *dsa; ///< referenza al file con le chiavi dsa
     int usepcap; ///< se 0 non usare file pcap, altrimenti sì
-    char * pcap; ///< referenza al file pcap
-}sshconf;
+    char *pcap; ///< referenza al file pcap
+} sshconf;
 
 identify_h buildIdentify();
 identify_answ_h buildIdentifyAnsw();
 askPkey_h buildPkeyPacket();
 newBak_h buildBakPacket();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //NB_HEADERS_H

@@ -14,10 +14,14 @@
 
 #include "../Compatibility/macros.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern int retries;
 extern int delayms;
 
-typedef struct{
+typedef struct {
     int socket;
     struct sockaddr_in clientData;
     socklen_t clientDataLenght;
@@ -29,6 +33,10 @@ int newTCPSocket_server(const int portno);
 int closeSocket(const int socket);
 connection_t newUDPSocket_client(const int portno, const char *hostName, const int timeout);
 int newUDPSocket_server(const int portno);
-int wait4conn(int sockfd, int backroll, struct sockaddr * client, socklen_t * clilen);
+int wait4conn(int sockfd, int backroll, struct sockaddr *client, socklen_t *clilen);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //NB_NETWORKING_H

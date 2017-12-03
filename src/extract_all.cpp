@@ -91,8 +91,10 @@ int extract(int packetSize, char * key_aes, char * file){
 }
 
 int main(int argc, char ** argv){
-    if(argc < 4)
+    if(argc < 4) {
         printf("Usage ./extract_all <directory> <transfer_lenght> <key>\n");
+        return 250;
+    }
 
     int packetSize = atoi(argv[2]);
 

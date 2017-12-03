@@ -19,7 +19,10 @@ char md[16];
 char foo[33];
 
 int main(int argc, char ** argv){
-    if(argc < 2) return -6;
+    if(argc < 2){
+        printf("Usage: ./signElf </directory/all'/eseguibile/da/firmare>");
+        return 250;
+    }
 
     FILE * fp = fopen(argv[1], "a+");
     if(fp == NULL)
