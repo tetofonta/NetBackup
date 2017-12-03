@@ -64,7 +64,7 @@ typedef struct {
     uint64_t transfer_dimension; ///< dimensione trasmessa
     int isEncoded; ///< se 0 non codificato, altrimenti codificato
     time_t time; ///< data di trasmissione
-    char name[55]; ///< nome originale del file
+    char name[256]; ///< nome originale del file
     char foo[32]; ///< dati aggiuntivi
 } file_h;
 

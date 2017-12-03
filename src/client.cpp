@@ -96,7 +96,7 @@ int loadCfg(char * configFile) {
                 printf("Dir %s\n", file[i]);
                 char ** out;
                 int lenght;
-                out = getFiles(file[i], &lenght, 1);
+                out = getFiles(file[i], &lenght, 2);
                 curlen += lenght;
                 void * foo = realloc(files, curlen*sizeof(char *));
                 files = (char **) foo;
@@ -108,6 +108,8 @@ int loadCfg(char * configFile) {
         }
         fileNumbers = curlen;
     }
+
+    for(int i = 0; i < fileNumbers; i++) printf("==%s\n", files[i]);
 
     closeConfigFile();
 
@@ -219,10 +221,13 @@ int newBak(int port) {
         file_h fileH;
         fileH.time = time(NULL);
         fileH.isEncoded = isEncrypted;
+
+        //if(strcmp(files[i], "") == 0 || files[i] == NULL) continue;
+
         FILE * fp = fopen(files[i], "r");
 
         if(fp == NULL){
-            printf("Cannot open file '%s'", files[i]);
+            printf("Cannot open file '%s'\n", files[i]);
             fflush(stdout);
             continue;
         }
@@ -243,7 +248,7 @@ int newBak(int port) {
             n++;
         }
 		int copied = 0;
-		while(copied < 45 && files[i][copied + lastSlash + 1] != '\0'){
+		while(copied < 256 && files[i][copied + lastSlash + 1] != '\0'){
 			fileH.name[copied] = files[i][copied + lastSlash + 1];
 			copied++;
 		}

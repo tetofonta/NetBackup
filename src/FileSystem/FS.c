@@ -31,12 +31,12 @@ int is_regular_file(const char *path) {
  * @param depth[in] Profondità di ricerca
  * @return Puntatore alla lista dei file
  */
-char stringa[2048];
 char **getFiles(char *mdir, int *len, int depth) {
     DIR *dir;
     *len = 0;
     char **out;
     out = (char **) malloc(1 * sizeof(char *));
+    char stringa[2048];
     struct dirent *ent;
     if ((dir = opendir(mdir)) != NULL) {
         while ((ent = readdir(dir)) != NULL) {
@@ -57,12 +57,17 @@ char **getFiles(char *mdir, int *len, int depth) {
 //                        char **rout;
 //                        int rlen;
 //                        rout = getFiles(stringa, &rlen, depth - 1);
-//                        if(rout != NULL) for (int i = 0; i < rlen; i++) printf("===%s\n", rout[i]);
-//                        /*if (rlen > 0) {
-//                            (*len) += rlen;
-//                            out = (char **) realloc(out, *len * sizeof(char *));
-//                            for (int i = (*len) - rlen - 1; i < *len; i++) out[i] = rout[i - ((*len) - rlen - 1)];
-//                        }*/
+//                        if(rout != NULL) {
+//                            if (rlen > 0) {
+//                                out = (char **) realloc(out, ((*len)+rlen * sizeof(char *)));
+//                                printf("REALLOCATED %d %d %s\n", *len, rlen, stringa);
+//                                for (int i = 0; i < rlen; i++) {
+//                                    out[i+*len] = (char *) malloc(strlen(rout[i]) * sizeof(char));
+//                                    //strcpy(out[i], rout[i - ((*len) - rlen - 1)]);
+//                                }
+//                                *len = *len + rlen;
+//                            }
+//                        }
 //                        free(rout);
 //                    }
                 }
