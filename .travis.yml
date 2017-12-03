@@ -1,5 +1,8 @@
-dist: trusty
-sudo: require
+matrix:
+  os: linux
+  dist: Zesty
+  sudo: require
+  os: osx
 
 language: cpp
 compiler: gcc
