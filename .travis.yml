@@ -24,4 +24,3 @@ script:
     - gcc -v && g++ -v && cmake --version
     - cmake .
     - make
-    - make test
