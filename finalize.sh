@@ -25,7 +25,7 @@ echo "Generazione certificati"
 openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:1024
 python3 ./src/genRSACFG.py private_key.pem Compiled/Server/keys.rsacfg
 rm -rf private_key.pem
-openssl req -new -x509 -keyout Compiled/Server/server.pem -out server.pem -days 365 -nodes
+openssl req -new -x509 -keyout Compiled/Server/server.pem -out server.pem -days 365 -nodes -subj"/C=/ST=/L=/O=/OU=/CN="
 ssh-keygen -t dsa -f Compiled/Server/ssh_keys/ssh_host_dsa_key -N ''
 ssh-keygen -t rsa -f Compiled/Server/ssh_keys/ssh_host_rsa_key -N ''
 openssl genpkey -algorithm RSA -out CA.pem -pkeyopt rsa_keygen_bits:2048
