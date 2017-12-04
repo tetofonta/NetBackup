@@ -5,7 +5,7 @@
  * \date 04-11-2017
  * \brief Utilità di estrazione di un file
  */
-#include "AES/aes.h"
+#include "AES/Aes.h"
 #include <stdio.h>
 #include <inttypes.h>
 #include <memory.h>

@@ -30,7 +30,8 @@ int main(int argc, char **argv) {
     for(int i = 0; i < 16; i++) printf("%2.2x", a[i] & 0xFF);
     printf("\n");
 
-    char * coded = (char *) malloc(2000);
+    char * coded = (char *) malloc(BASE32_LEN(strlen(msg)) + 1);
+    coded[BASE32_LEN(strlen(msg))] = '\0';
     base32_encode((const unsigned char *) msg, strlen(msg), (unsigned char *) coded);
     printf("ENCODED KEY: %s\n", coded);
 

@@ -8,7 +8,7 @@
 
 #include <stdint.h>
 #include <string.h>
-#include "aes.h"
+#include "Aes.h"
 
 //Numero delle colonne del cifario
 #define Nb 4

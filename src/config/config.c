@@ -55,15 +55,17 @@ char **destination;
  * @param comment[in] Carattere di commento
  * @return puntatore all'array di linee letto
  */
-char **openConfigFile(int *outlines, const char *filename, const char comment) {
+char ** openConfigFile(int *outlines, const char *filename, const char comment) {
     FILE *conf = fopen(filename, "r");
     if (conf == NULL) return NULL;
 
     char *line;
     size_t len = 0;
     int lines = 0;
-    while (getline(&line, &len, conf) != -1)
+    while (getline(&line, &len, conf) != -1) {
+        if (strcmp(line, "_STOP_PARSING_\n") == 0) break;
         if (line[0] != '\x0a' && line[0] != '\r' && line[0] != comment) lines++;
+    }
 
     destination = (char **) malloc(lines * sizeof(char *));
 
@@ -109,7 +111,7 @@ static int findChar(const char *line, char ch, int maxLen) {
  * @param file[in] lista delle righe ritornata da openConfigFile \see openConfigFile
  * @param lines[in] Lunghezza della lista
  * @param property[in] Nome della proprietà da ricercare
- * @param lenght[in] Lunghezza massima della lista di ritorno
+ * @param lenght[in] Lunghezza della stringa di ritorno
  * @param isAList[out] Se 1 il valore ritornato riguarda una lista, altrimenti 0
  * @param listLen[out] Se isAList == 1, indica la lunghezza della lista
  * @return Un puntatore al valore della lista in caso la proprietà venga trovata, NULL altrimenti.

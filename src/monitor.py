@@ -65,14 +65,7 @@ class element:
         self.speed.set_text(speed)
 
 class MyApp(App):
-    """
-    """
     def __init__(self, *args):
-        """
-
-        Args:
-            args:
-        """
         self.iface = py_backend.interface("127.0.0.1", 5577)
         super(MyApp, self).__init__(*args)
 

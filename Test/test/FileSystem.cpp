@@ -4,18 +4,19 @@
 #include "gtest/gtest.h"
 #include "FileSystem/FS.h"
 
-TEST(FileSystem, isFile){
-    EXPECT_EQ(0, is_regular_file("/home/stefano"));
-    EXPECT_EQ(0, is_regular_file("."));
-    EXPECT_EQ(0, is_regular_file(".."));
-    EXPECT_EQ(0, is_regular_file("./.."));
-    EXPECT_EQ(1, is_regular_file("./FS_t"));
-    EXPECT_EQ(0, is_regular_file("/unexistant/directory/"));
+TEST(FileSystem, is_regular_file){
+    ASSERT_EQ(0, is_regular_file(".")) << ". is seen as a regular file";
+    ASSERT_EQ(0, is_regular_file("..")) << ".. is seen as a regular file";
+    ASSERT_EQ(0, is_regular_file("./..")) << "./.. is seen as a regular file";
+    ASSERT_EQ(1, is_regular_file("./FS_t")) << "myself is not seen as a regular file";
+    ASSERT_EQ(0, is_regular_file("./unexistant.file"));
+    ASSERT_EQ(0, is_regular_file("/unexistant/directory/")) << "Seriusly have you got a directoty named /unexistant/directory/ ?????";
 }
 
-TEST(FileSystem, dirOut){
+TEST(FileSystem, getFiles){
     char ** out;
     int len;
-    out = getFiles("/home/stefano/Scrivania/", &len, 2);
-    //for(int i = 0; i < len-2; i++) std::cout << out[i];
+    ASSERT_NO_FATAL_FAILURE((out = getFiles("./", &len, 2)));
+    EXPECT_LT(0, len);
 }
+

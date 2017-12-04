@@ -15,6 +15,9 @@ addons:
       - libgmp-dev
       - libbz2-dev
       - libssh-dev
+      - openssl
+      - openssh
+      - python3
 
 script:
     - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
@@ -24,3 +27,4 @@ script:
     - gcc -v && g++ -v && cmake --version
     - cmake .
     - make
+    - sh finalize.sh

@@ -22,7 +22,7 @@
 #endif
 
 #include "Headers.h"
-#include "AES/aes.h"
+#include "AES/Aes.h"
 #include "config/config.h"
 
 
@@ -54,6 +54,16 @@ static char *sanitizeValue(char **file, int lines, const char *prop, int len) {
     return NULL;
 }
 
+/**
+ * \brief atoi() con controllo per puntatore null
+ * @param str
+ * @return
+ */
+int atoi_sec(char * str){
+    if(str == NULL) return -1;
+    return atoi(str);
+}
+
 char **file;
 /**
  * \brief Caricamento della configurazione da file
@@ -66,14 +76,14 @@ int loadCfg(char * configFile) {
     if ((file = openConfigFile(&lines, configFile, '#')) == NULL) return -1;
     int isList = 0, len = 0;
 
-    int interval = atoi(sanitizeValue(file, lines, "send_interval", MAX_LINE_LEN));
+    int interval = atoi_sec(sanitizeValue(file, lines, "send_interval", MAX_LINE_LEN));
 
     server_ip = sanitizeValue(file, lines, "server_ip", MAX_LINE_LEN);
-    server_port = atoi(sanitizeValue(file, lines, "server_port", MAX_LINE_LEN));
+    server_port = atoi_sec(sanitizeValue(file, lines, "server_port", MAX_LINE_LEN));
 
-    timeout = atoi(sanitizeValue(file, lines, "connection_timeout", MAX_LINE_LEN));
-    isEncrypted = atoi(sanitizeValue(file, lines, "encrypt", MAX_LINE_LEN));
-    transfer_block_size = 16 * atoi(sanitizeValue(file, lines, "transfer_block_size", MAX_LINE_LEN));
+    timeout = atoi_sec(sanitizeValue(file, lines, "connection_timeout", MAX_LINE_LEN));
+    isEncrypted = atoi_sec(sanitizeValue(file, lines, "encrypt", MAX_LINE_LEN));
+    transfer_block_size = 16 * atoi_sec(sanitizeValue(file, lines, "transfer_block_size", MAX_LINE_LEN));
     char * obtainedKey = sanitizeValue(file, lines, "key", MAX_LINE_LEN);
     char * obtk = (char *) malloc(500);
     base32_decode((const unsigned char *) obtainedKey, (unsigned char *) obtk);
