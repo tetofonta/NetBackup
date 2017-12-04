@@ -16,7 +16,7 @@ addons:
       - libbz2-dev
       - libssh-dev
       - openssl
-      - openssh
+      - openssh-server
       - python3
 
 script:
