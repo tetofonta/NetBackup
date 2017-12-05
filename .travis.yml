@@ -25,6 +25,9 @@ script:
     - export CC=/usr/bin/gcc-6
     - export CXX=/usr/bin/g++-6
     - gcc -v && g++ -v && cmake --version
-    - cmake .
+    - mkdir build
+    - cd build
+    - cmake ..
     - make
-    - sh finalize.sh
+    - cd Test/test
+    - ctest CTestTestfile.cmake
