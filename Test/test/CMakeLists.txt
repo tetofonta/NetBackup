@@ -13,6 +13,7 @@ target_link_libraries(AES_t gtest gtest_main)
 target_link_libraries(AES_t _AES)
 add_test(AES_test AES_t)
 
+
 add_executable(B32_t Base32.cpp)
 target_link_libraries(B32_t gtest gtest_main)
 target_link_libraries(B32_t _B32)
