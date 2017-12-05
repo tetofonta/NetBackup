@@ -3,6 +3,7 @@
 //
 
 #include "gtest/gtest.h"
+#include "Networking/Networking.h"
 
 TEST(Networking, connection){
 

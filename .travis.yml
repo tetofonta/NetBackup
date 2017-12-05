@@ -30,4 +30,4 @@ script:
     - cmake ..
     - make
     - cd Test/test
-    - ctest CTestTestfile.cmake
+    - ctest -VV
