@@ -47,11 +47,13 @@ void openFile_test(){
 }
 
 TEST(config, openFile) {
+    makeTestCfgFile();
     openFile_test();
 }
 
 TEST(config, getPropoerty){
 
+    makeTestCfgFile();
     openFile_test();
     int isList, idx;
     char * ret = getProperty(descriptor, 6, "should_Be_True", 100, &isList, &idx);
