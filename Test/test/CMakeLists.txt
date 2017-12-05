@@ -19,7 +19,7 @@ target_link_libraries(B32_t _B32)
 add_test(Base32_test B32_t)
 
 add_executable(CFG_t Config.cpp)
-target_link_libraries(CFG_t gtest gtest_main)
+target_link_libraries(CFG_t gmock gmock_main)
 target_link_libraries(CFG_t _CFG)
 add_test(Configuration_test CFG_t)
 
