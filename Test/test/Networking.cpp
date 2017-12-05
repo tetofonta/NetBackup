@@ -4,3 +4,6 @@
 
 #include "gtest/gtest.h"
 
+TEST(Networking, connection){
+
+}
