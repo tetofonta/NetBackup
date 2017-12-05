@@ -2,7 +2,7 @@
 // Created by stefano on 04/12/17.
 //
 
-#include <gmock/gmock.h>
+#include <gtest/gtest.h>
 #include "config/config.h"
 
 int makeTestCfgFile() {
