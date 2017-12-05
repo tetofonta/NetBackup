@@ -38,6 +38,7 @@ char tobe[][1000] = {"should_Be_True=1",
 
 void openFile_test(){
     int linee = 0;
+    makeTestCfgFile();
     descriptor = openConfigFile(&linee, "test.properties", '#');
     ASSERT_EQ(6, linee);
     for (int i = 0; i < linee; i++)
