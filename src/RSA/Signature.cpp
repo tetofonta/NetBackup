@@ -5,7 +5,6 @@
  * \date 28-10-2017
  * \brief Firma digitale RSA
  */
-#include "RSA.h"
 #include "internal.h"
 
 /**

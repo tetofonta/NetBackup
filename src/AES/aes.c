@@ -12,16 +12,10 @@
 
 //Numero delle colonne del cifario
 #define Nb 4
-//Lunghezza del blocco di cifartura
-#define BLOCKLEN 16
 
 #define Nk 8
-#define KEYLEN 32
 #define Nr 14
 #define keyExpSize 240
-
-#define MULTIPLY_AS_A_FUNCTION 0 /*<In alcuni casi utilizzare una chiamata a funzione invece di una definizione rende il codice più compatto ma lento. */
-
 
 //Array per mantenere gli stati durante la cifratura
 typedef uint8_t state_t[4][4];
@@ -84,7 +78,7 @@ const uint8_t Rcon[] = {
 /**
  * \brief Generazione delle chiavi intermedie.
  */
-void KeyExpansion(void) {
+void KeyExpansion() {
     uint32_t i, k;
     uint8_t tempa[4];
 
@@ -113,7 +107,7 @@ void KeyExpansion(void) {
                 tempa[0] = tempa[1];
                 tempa[1] = tempa[2];
                 tempa[2] = tempa[3];
-                tempa[3] = k;
+                tempa[3] = (uint8_t) k;
 
             //Applicazione della sbox
                 tempa[0] = getSBoxValue(tempa[0]);
@@ -161,7 +155,7 @@ void AddRoundKey(uint8_t round) {
  * Viene sostituito il valore nella matrice di stato con il valore all'indice puntato dal valore contenuto
  * in essa relativo al vettore SBOX.
  */
-void SubBytes(void) {
+void SubBytes() {
     uint8_t i, j;
     for (i = 0; i < 4; ++i) {
         for (j = 0; j < 4; ++j) {
@@ -173,7 +167,7 @@ void SubBytes(void) {
 /**
  * \brief Rotazione delle colonne della matrice.
  */
-void ShiftRows(void) {
+void ShiftRows() {
     uint8_t temp;
 
     // Rotate first row 1 columns to left  
@@ -200,43 +194,43 @@ void ShiftRows(void) {
     (*state)[1][3] = temp;
 }
 
-#define xtime(x) ((x << 1) ^ (((x >> 7) & 1) * 0x1b))
+#define xtime(x) (((x) << 1) ^ ((((x) >> 7) & 1) * 0x1b))
 
 /**
  * \brief Rotazione delle colonne.
  */
-void MixColumns(void) {
+void MixColumns() {
     uint8_t i;
     uint8_t Tmp, Tm, t;
     for (i = 0; i < 4; ++i) {
         t = (*state)[i][0];
         Tmp = (*state)[i][0] ^ (*state)[i][1] ^ (*state)[i][2] ^ (*state)[i][3];
         Tm = (*state)[i][0] ^ (*state)[i][1];
-        Tm = xtime(Tm);
+        Tm = (uint8_t) xtime(Tm);
         (*state)[i][0] ^= Tm ^ Tmp;
         Tm = (*state)[i][1] ^ (*state)[i][2];
-        Tm = xtime(Tm);
+        Tm = (uint8_t) xtime(Tm);
         (*state)[i][1] ^= Tm ^ Tmp;
         Tm = (*state)[i][2] ^ (*state)[i][3];
-        Tm = xtime(Tm);
+        Tm = (uint8_t) xtime(Tm);
         (*state)[i][2] ^= Tm ^ Tmp;
         Tm = (*state)[i][3] ^ t;
-        Tm = xtime(Tm);
+        Tm = (uint8_t) xtime(Tm);
         (*state)[i][3] ^= Tm ^ Tmp;
     }
 }
 
 #define Multiply(x, y)                                \
-      (  ((y & 1) * x) ^                              \
-      ((y>>1 & 1) * xtime(x)) ^                       \
-      ((y>>2 & 1) * xtime(xtime(x))) ^                \
-      ((y>>3 & 1) * xtime(xtime(xtime(x)))) ^         \
-        ((y>>4 & 1) * xtime(xtime(xtime(xtime(x)))))) \
+      (  (((y) & 1) * (x)) ^                              \
+      (((y)>>1 & 1) * xtime(x)) ^                       \
+      (((y)>>2 & 1) * xtime(xtime(x))) ^                \
+      (((y)>>3 & 1) * xtime(xtime(xtime(x)))) ^         \
+        (((y)>>4 & 1) * xtime(xtime(xtime(xtime(x)))))) \
 
 /**
  * \brief Rotazione delle colonne inversa.
  */
-void InvMixColumns(void) {
+void InvMixColumns() {
     int i;
     uint8_t a, b, c, d;
     for (i = 0; i < 4; ++i) {
@@ -245,14 +239,14 @@ void InvMixColumns(void) {
         c = (*state)[i][2];
         d = (*state)[i][3];
 
-        (*state)[i][0] = Multiply(a, 0x0e) ^ Multiply(b, 0x0b) ^ Multiply(c, 0x0d) ^ Multiply(d, 0x09);
-        (*state)[i][1] = Multiply(a, 0x09) ^ Multiply(b, 0x0e) ^ Multiply(c, 0x0b) ^ Multiply(d, 0x0d);
-        (*state)[i][2] = Multiply(a, 0x0d) ^ Multiply(b, 0x09) ^ Multiply(c, 0x0e) ^ Multiply(d, 0x0b);
-        (*state)[i][3] = Multiply(a, 0x0b) ^ Multiply(b, 0x0d) ^ Multiply(c, 0x09) ^ Multiply(d, 0x0e);
+        (*state)[i][0] = (uint8_t) (Multiply(a, 0x0e) ^ Multiply(b, 0x0b) ^ Multiply(c, 0x0d) ^ Multiply(d, 0x09));
+        (*state)[i][1] = (uint8_t) (Multiply(a, 0x09) ^ Multiply(b, 0x0e) ^ Multiply(c, 0x0b) ^ Multiply(d, 0x0d));
+        (*state)[i][2] = (uint8_t) (Multiply(a, 0x0d) ^ Multiply(b, 0x09) ^ Multiply(c, 0x0e) ^ Multiply(d, 0x0b));
+        (*state)[i][3] = (uint8_t) (Multiply(a, 0x0b) ^ Multiply(b, 0x0d) ^ Multiply(c, 0x09) ^ Multiply(d, 0x0e));
     }
 }
 
-void InvSubBytes(void) {
+void InvSubBytes() {
     uint8_t i, j;
     for (i = 0; i < 4; ++i) {
         for (j = 0; j < 4; ++j) {
@@ -261,7 +255,7 @@ void InvSubBytes(void) {
     }
 }
 
-void InvShiftRows(void) {
+void InvShiftRows() {
     uint8_t temp;
 
     // Rotate first row 1 columns to right  
@@ -293,7 +287,7 @@ void InvShiftRows(void) {
  * \brief computazione del cifrario.
  *
  */
-void Cipher(void) {
+void Cipher() {
     uint8_t round = 0;
 
     // Add the First round key to the state before starting the rounds.
@@ -316,7 +310,7 @@ void Cipher(void) {
     AddRoundKey(Nr);
 }
 
-void InvCipher(void) {
+void InvCipher() {
     uint8_t round = 0;
 
     // Add the First round key to the state before starting the rounds.

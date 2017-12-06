@@ -22,7 +22,6 @@ connection_t newUDPSocket_client(const int portno, const char *hostName, const i
     int sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
     struct sockaddr_in serv_addr;
     int servlen = sizeof(serv_addr);
-    struct hostent *server;
 
     if (sockfd < 0) return foo;
 
@@ -55,7 +54,6 @@ int newUDPSocket_server(const int portno) {
     int sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
     struct sockaddr_in serv_addr;
     int servlen = sizeof(serv_addr);
-    struct hostent *server;
 
     if (sockfd < 0) return -1;
 

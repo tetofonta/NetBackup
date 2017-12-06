@@ -6,7 +6,6 @@
  * \brief IO RSA
  */
 #include <malloc.h>
-#include "RSA.h"
 #include "internal.h"
 
 char * line;

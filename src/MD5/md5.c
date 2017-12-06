@@ -55,15 +55,15 @@ void md5(uint8_t *initial_msg, size_t initial_len, char * ret) {
     h3 = 0x10325476;
 
     int new_len;
-    for (new_len = initial_len * 8 + 1; new_len % 512 != 448; new_len++);
+    for (new_len = (int) (initial_len * 8 + 1); new_len % 512 != 448; new_len++);
     new_len /= 8;
 
-    msg = (uint8_t *) calloc(new_len + 64, 1);
+    msg = (uint8_t *) calloc((size_t) (new_len + 64), 1);
 
     memcpy(msg, initial_msg, initial_len);
     msg[initial_len] = 128;
 
-    uint32_t bits_len = 8 * initial_len;
+    uint32_t bits_len = (uint32_t) (8 * initial_len);
     memcpy(msg + new_len, &bits_len, 4);
 
     int offset;

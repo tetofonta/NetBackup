@@ -65,11 +65,11 @@ void parseCommand(char * command, size_t len, backupThread * baks, conf * cfgs, 
 
     fseek(fp, -4-signlen, SEEK_END);
     bufffer = (char *) malloc(signlen*sizeof(char)+1);
-    fread(bufffer, 1, signlen, fp);
+    fread(bufffer, 1, static_cast<size_t>(signlen), fp);
     bufffer[signlen] = '\0';
 
     fseek(fp, -4-signlen, SEEK_END);
-    size_t elflen = ftell(fp);
+    size_t elflen = static_cast<size_t>(ftell(fp));
 
     rewind(fp);
 
@@ -140,11 +140,10 @@ void init_terminal(pid_t serverpid, backupThread * baks, conf * cfgs) {
         printf(">> "); fflush(stdout);
         getline(&command, &len, stdin);
         strtok(command, "\n");
-        if(strcmp(command, "exit")){
+        if(strcmp(command, "exit") != 0){
             parseCommand(command, len, baks, cfgs, printf);
         }
-    } while(strcmp(command, "exit"));
+    } while(strcmp(command, "exit") != 0);
 
     kill(serverpid, SIGHUP);
-    return;
 }

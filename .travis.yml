@@ -31,3 +31,5 @@ script:
     - make
     - cd Test/test
     - ctest -VV
+    - cp ../finalize.sh finalize.sh
+    - sh finalize.sh

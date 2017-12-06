@@ -11,7 +11,7 @@
 
 #include "base32.h"
 
-#define min(x, y) (x < y ? x : y)
+#define min(x, y) ((x) < (y) ? (x) : (y))
 
 static const unsigned char PADDING_CHAR = '='; /**<Il carattere di padding per le codifiche base32 e base64 è solitamente '=' */
 
@@ -44,9 +44,9 @@ static int decode_char(unsigned char c) {
     char retval = -1;
 
     if (c >= 'A' && c <= 'Z')
-        retval = c - 'A';
+        retval = (char) (c - 'A');
     if (c >= '2' && c <= '7')
-        retval = c - '2' + 26;
+        retval = (char) (c - '2' + 26);
 
     assert(retval == -1 || ((retval & 0x1F) == retval));
 
@@ -82,7 +82,7 @@ static unsigned char shift_left(unsigned char byte, char offset) {
  * @param coded[out] sequenza codificata !Va preallocata
  */
 static void encode_sequence(const unsigned char *plain, int len, unsigned char *coded) {
-    assert(CHAR_BIT == 8);
+    static_assert(CHAR_BIT == 8, "");
     assert(len >= 0 && len <= 5);
 
     for (int block = 0; block < 8; block++) {
@@ -94,11 +94,11 @@ static void encode_sequence(const unsigned char *plain, int len, unsigned char *
             return;
         }
 
-        unsigned char c = shift_right(plain[octet], junk);
+        unsigned char c = shift_right(plain[octet], (char) junk);
 
         if (junk < 0
             && octet < len - 1) {
-            c |= shift_right(plain[octet + 1], 8 + junk);
+            c |= shift_right(plain[octet + 1], (char) (8 + junk));
         }
         coded[block] = encode_char(c);
     }
@@ -112,7 +112,7 @@ static void encode_sequence(const unsigned char *plain, int len, unsigned char *
  * @param coded[out] sequenza decodificata !Va preallocata
  */
 static int decode_sequence(const unsigned char *coded, unsigned char *plain) {
-    assert(CHAR_BIT == 8);
+    static_assert(CHAR_BIT == 8, "");
     assert(coded && plain);
 
     plain[0] = 0;
@@ -124,10 +124,10 @@ static int decode_sequence(const unsigned char *coded, unsigned char *plain) {
         if (c < 0)
             return octet;
 
-        plain[octet] |= shift_left(c, offset);
+        plain[octet] |= shift_left((unsigned char) c, (char) offset);
         if (offset < 0) {
             assert(octet < 4);
-            plain[octet + 1] = shift_left(c, 8 + offset);
+            plain[octet + 1] = shift_left((unsigned char) c, (char) (8 + offset));
         }
     }
     return 5;
@@ -158,6 +158,6 @@ size_t base32_decode(const unsigned char *coded, unsigned char *plain) {
  */
 void base32_encode(const unsigned char *plain, size_t len, unsigned char *coded) {
     for (size_t i = 0, j = 0; i < len; i += 5, j += 8) {
-        encode_sequence(&plain[i], min(len - i, 5), &coded[j]);
+        encode_sequence(&plain[i], (int) min(len - i, 5), &coded[j]);
     }
 }

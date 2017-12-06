@@ -8,7 +8,6 @@
 #include <malloc.h>
 #include <string.h>
 #include <dirent.h>
-#include <stdio.h>
 #include "../Compatibility/macros.h"
 
 /**
@@ -40,7 +39,7 @@ char **getFiles(char *mdir, int *len, int depth) {
     struct dirent *ent;
     if ((dir = opendir(mdir)) != NULL) {
         while ((ent = readdir(dir)) != NULL) {
-            if (strcmp(ent->d_name, ".") && strcmp(ent->d_name, "..")) {
+            if (strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0) {
                 strcpy(stringa, mdir);
                 strcat(stringa, ent->d_name);
                 if (is_regular_file(stringa)) {

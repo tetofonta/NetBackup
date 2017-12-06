@@ -13,23 +13,23 @@ mkdir Compiled/Utils
 
 echo "Copiatura configurazioni"
 
-cp ./src/client.properties Compiled/Client/client.properties
-cp ./src/config.properties Compiled/Server/config.properties
-cp ./src/monitor.py Compiled/Server/monitor.py
-cp -R ./src/py_backend Compiled/Server/py_backend
-cp -R ./src/remi Compiled/Server/remi
-cp -R ./src/comandi Compiled/Server/comandi
+cp ../src/client.properties Compiled/Client/client.properties
+cp ../src/config.properties Compiled/Server/config.properties
+cp ../src/monitor.py Compiled/Server/monitor.py
+cp -R ../src/py_backend Compiled/Server/py_backend
+cp -R ../src/remi Compiled/Server/remi
+cp -R ../src/comandi Compiled/Server/comandi
 
 echo "Generazione certificati"
 
 openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:1024
-python3 ./src/genRSACFG.py private_key.pem Compiled/Server/keys.rsacfg
+python3 ../src/genRSACFG.py private_key.pem Compiled/Server/keys.rsacfg
 rm -rf private_key.pem
 openssl req -new -x509 -keyout Compiled/Server/server.pem -out server.pem -days 365 -nodes -subj"/C=/ST=/L=/O=/OU=/CN="
 ssh-keygen -t dsa -f Compiled/Server/ssh_keys/ssh_host_dsa_key -N ''
 ssh-keygen -t rsa -f Compiled/Server/ssh_keys/ssh_host_rsa_key -N ''
 openssl genpkey -algorithm RSA -out CA.pem -pkeyopt rsa_keygen_bits:2048
-python3 ./src/genRSACFG.py CA.pem Compiled/Utils/CA.rsacfg
+python3 ../src/genRSACFG.py CA.pem Compiled/Utils/CA.rsacfg
 
 echo "Copiatura eseguibili"
 
@@ -43,8 +43,6 @@ cp ./src/signElf Compiled/Utils/signElf
 
 echo "Esecuzione dei test"
 
-./Test/test/AES_t
-./Test/test/B32_t
-./Test/test/CFG_t
-./Test/test/FS_t
-./Test/test/MD5_t
+cd Test/test
+ctest
+cd ../..

@@ -21,7 +21,7 @@ static void mstrcpy(char *dest, const char *src) {
     int q = 0;
     while (src[i] != '\0') {
         if (src[i] != ' ' && src[i] != '\n' && src[i] >= 0x20 && src[i] <= 0x7E) {
-            dest[q++] = src[i] == '~' ? ' ' : src[i];
+            dest[q++] = (char) (src[i] == '~' ? ' ' : src[i]);
         }
         i++;
     }
@@ -128,7 +128,7 @@ char * getProperty(char **file, int lines, const char *property, int lenght, int
                 while(file[n][0] != ':' && file[n][1] != ':') n++;
                 n -= i+1;
                 *listLen = n;
-                return (char *) i+1;
+                return (char *) (long) (i+1);
             } else return file[i] + equal + 1;
         }
     }

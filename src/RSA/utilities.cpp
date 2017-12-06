@@ -7,7 +7,7 @@
  */
 #include <malloc.h>
 #include "internal.h"
-#include "RSA.h"
+
 
 /**
  * \brief Controllo di avvenuto errore per il protocollo RSA
