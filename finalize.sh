@@ -40,9 +40,3 @@ cp ./src/extract Compiled/Utils/extract
 cp ./src/extract_all Compiled/Utils/extract_all
 cp ./src/genPasswd Compiled/Utils/genPasswd
 cp ./src/signElf Compiled/Utils/signElf
-
-echo "Esecuzione dei test"
-
-cd Test/test
-ctest
-cd ../..

@@ -10,6 +10,8 @@ Installation instructions
     -   make
     -   cmake
     -   python3
+        *   python libraries required
+            * pycrypto (`pip3 install pycrypto`)
     -   openssl
     -   openssh-server
     -   ctest

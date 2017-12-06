@@ -20,6 +20,7 @@ addons:
       - python3
 
 script:
+    - pip3 install pycrypto
     - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
     - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
     - export CC=/usr/bin/gcc-6
