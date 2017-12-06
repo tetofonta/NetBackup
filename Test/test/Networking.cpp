@@ -3,18 +3,16 @@
 //
 
 #include "gtest/gtest.h"
-#include <pthread.h>
 #include <thread_db.h>
 #include <Networking/Networking.h>
-#include <Compatibility/macros.h>
 
-TEST(Networking, udpServer){
+TEST(Networking, udpServer) {
     int udp = newUDPSocket_server(5577);
     ASSERT_LT(0, udp);
     ASSERT_EQ(0, closeSocket(udp));
 }
 
-void * udpServer(void * ptr){
+void *udpServer(void *ptr) {
     int udp = newUDPSocket_server(11001);
     EXPECT_LT(0, udp);
 
@@ -28,19 +26,17 @@ void * udpServer(void * ptr){
     return NULL;
 }
 
-void * udpClient(void * ptr){
+void *udpClient(void *ptr) {
     connection_t udp = newUDPSocket_client(11001, "127.0.0.1", 10);
     EXPECT_LT(0, udp.socket);
     char packet[] = "stefanoFontana";
     int code = 0;
-    for(int i = 0; i < 10; i++){
-        sendto(udp.socket, packet, 15, 0, (const sockaddr *) &udp.clientData, udp.clientDataLenght);
-        _SLEEP(1000);
-    }
+    _SLEEP(10000);
+    sendto(udp.socket, packet, 15, 0, (const sockaddr *) &udp.clientData, udp.clientDataLenght);
     return NULL;
 }
 
-TEST(Networking, udpComunication){
+TEST(Networking, udpComunication) {
     thread_t server;
     ASSERT_EQ(0, pthread_create(&server, NULL, udpServer, NULL));
 
@@ -51,13 +47,13 @@ TEST(Networking, udpComunication){
     ASSERT_EQ(0, pthread_join(client, NULL));
 }
 
-TEST(Networking, tcpServer){
+TEST(Networking, tcpServer) {
     int tcp = newTCPSocket_server(5577);
     ASSERT_LT(0, tcp);
     ASSERT_EQ(0, closeSocket(tcp));
 }
 
-void * tcpServer(void * ptr){
+void *tcpServer(void *ptr) {
     int tcp = newTCPSocket_server(11001);
     EXPECT_LT(0, tcp);
 
@@ -76,18 +72,18 @@ void * tcpServer(void * ptr){
     return NULL;
 }
 
-void * tcpClient(void * ptr){
+void *tcpClient(void *ptr) {
     int tcp = newTCPSocket_client(11001, "127.0.0.1");
     EXPECT_LT(0, tcp);
     char packet[] = "stefanoFontana";
-    for(int i = 0; i < 10; i++){
-        send(tcp, packet, 15, 0);
-        _SLEEP(1000);
-    }
+    _SLEEP(10000);
+
+    send(tcp, packet, 15, 0);
+
     return NULL;
 }
 
-TEST(Networking, tcpComunication){
+TEST(Networking, tcpComunication) {
     thread_t server;
     ASSERT_EQ(0, pthread_create(&server, NULL, tcpServer, NULL));
 

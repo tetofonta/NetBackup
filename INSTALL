@@ -39,4 +39,8 @@ Installation instructions
     Configure client by editing "client.properties" inside "build/Compiled/Client" directory
     Configure server by editing "config.propeties" inside "build/Compiled/Server" directory
 
-6. Enjoy =)
+6. Run test by executing
+    -   cd Test/test
+    -   ctest
+
+7. Enjoy =)
