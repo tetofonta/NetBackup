@@ -17,11 +17,13 @@ add_executable(client client.cpp)
 target_compile_definitions(client PUBLIC GMP)
 target_link_libraries(client _FS _AES _B32 _CFG _NET _PACKETS _RSA gmp)
 
-add_executable(server server.cpp commands.cpp)
-target_compile_definitions(server PUBLIC GMP)
-target_compile_definitions(server PUBLIC BZIP)
-target_compile_definitions(server PUBLIC SSH)
-target_link_libraries(server _CFG _NET _RSA _PACKETS _TERM gmp bz2 ssh)
+if (UNIX)
+    add_executable(server server.cpp commands.cpp)
+    target_compile_definitions(server PUBLIC GMP)
+    target_compile_definitions(server PUBLIC BZIP)
+    target_compile_definitions(server PUBLIC SSH)
+    target_link_libraries(server _CFG _NET _RSA _PACKETS _TERM gmp bz2 ssh)
+endif (UNIX)
 
 add_executable(baknfo bakInfo.cpp)
 

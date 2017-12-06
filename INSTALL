@@ -1,0 +1,42 @@
+Fontana Stefano - Network Backup
+Installation instructions
+
+1. Installing dependencies
+    Libraries needs to be installed for compile code correctly:
+    -   gmp (libgmp-dev packet)
+    -   libssh  (libssh-dev packet)
+    -   bzip2 (libbzip2-dev packet)
+    Applications used for compiling and testing
+    -   make
+    -   cmake
+    -   python3
+    -   openssl
+    -   openssh-server
+    -   ctest
+    -   g++
+    On linux run command `apt-get make cmake python3 openssl openssh-server ctest g++ install libgmp-dev libssh-dev libbz2-dev` or equivalent
+
+1.1 Systems limitation
+    It's impossible to build the server executable on windows system due to POSIX system call mmap unavailable on microsoft systems.
+
+2. Generating make instruction for compiling
+    Create build directory running
+    -   mkdir build && cd build
+    Generate make instruction running
+    -   cmake ..
+
+3. Compile executables and tests
+    Run
+    - make
+
+4. Finalize compilation and generate necessary files
+    Run
+    -   cp ../finalize.sh finalize.sh
+    -   sh finalize.sh
+
+5. Compiled files in correct configuration and dependencies are now available inside "build/Compiled" directory.
+    Make sure Utils and Server directories aren't available on the same machin for securety reasons.
+    Configure client by editing "client.properties" inside "build/Compiled/Client" directory
+    Configure server by editing "config.propeties" inside "build/Compiled/Server" directory
+
+6. Enjoy =)

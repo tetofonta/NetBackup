@@ -6,6 +6,7 @@
 #include <pthread.h>
 #include <thread_db.h>
 #include <Networking/Networking.h>
+#include <Compatibility/macros.h>
 
 TEST(Networking, udpServer){
     int udp = newUDPSocket_server(5577);
@@ -31,7 +32,11 @@ void * udpClient(void * ptr){
     connection_t udp = newUDPSocket_client(11001, "127.0.0.1", 10);
     EXPECT_LT(0, udp.socket);
     char packet[] = "stefanoFontana";
-    EXPECT_LT(0, sendto(udp.socket, packet, 15, 0, (const sockaddr *) &udp.clientData, udp.clientDataLenght));
+    int code = 0;
+    for(int i = 0; i < 10; i++){
+        sendto(udp.socket, packet, 15, 0, (const sockaddr *) &udp.clientData, udp.clientDataLenght);
+        _SLEEP(1000);
+    }
     return NULL;
 }
 
@@ -75,7 +80,10 @@ void * tcpClient(void * ptr){
     int tcp = newTCPSocket_client(11001, "127.0.0.1");
     EXPECT_LT(0, tcp);
     char packet[] = "stefanoFontana";
-    EXPECT_LT(0, send(tcp, packet, 15, 0));
+    for(int i = 0; i < 10; i++){
+        send(tcp, packet, 15, 0);
+        _SLEEP(1000);
+    }
     return NULL;
 }
 
