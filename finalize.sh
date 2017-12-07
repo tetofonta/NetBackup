@@ -34,7 +34,7 @@ python3 ../src/genRSACFG.py CA.pem Compiled/Utils/CA.rsacfg
 echo "Copiatura eseguibili"
 
 cp ./src/client Compiled/Client/client
-cp ./src/server Compiled/Client/server
+cp ./src/server Compiled/Server/server
 cp ./src/baknfo Compiled/Utils/baknfo
 cp ./src/extract Compiled/Utils/extract
 cp ./src/extract_all Compiled/Utils/extract_all

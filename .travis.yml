@@ -1,8 +1,11 @@
 os:
   - linux
+  - osx
 
 language: cpp
-compiler: gcc
+compiler:
+  - gcc
+  - clang
 
 addons:
   apt:

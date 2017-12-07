@@ -39,6 +39,17 @@ int interval;
 
 uint8_t * data;
 
+ssize_t recv_tcp(int socket, void * dest, size_t size, int flag){
+    size_t recived = 0;
+    while(size > recived){
+        ssize_t rc = recv(socket, dest + recived, size-recived, flag);
+        if(rc < 0)
+            return rc;
+        recived += rc;
+    }
+    return recived;
+}
+
 /**
  * \brief Ritorna una stringa relativa a una proprietà oppure una lista
  * @param file[in] File descrittore della configurazione
@@ -149,7 +160,7 @@ int askIdentity(connection_t socket) {
 
     if (errorHappened) return -10;
 
-    identify_answ_h answ;//TODO printReport;
+    identify_answ_h answ;
     socklen_t len = (socklen_t) sizeof(answ);
 
     identify_h pk = buildIdentify();

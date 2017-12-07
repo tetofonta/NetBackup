@@ -215,6 +215,17 @@ int getSlot(backupThread *threads, int port_ext) {
     return -1;
 }
 
+ssize_t recv_tcp(int socket, void * dest, size_t size, int flag){
+    size_t recived = 0;
+    while(size > recived){
+        ssize_t rc = recv(socket, dest + recived, size-recived, flag);
+        if(rc < 0)
+            return rc;
+        recived += rc;
+    }
+    return recived;
+}
+
 /**
  * \brief Avvia un processo di backup
  * In caso di presenza della libreria BZ2 i file ricevuti verranno compressi se di dimensione inferiore a quella prestabilita
@@ -268,7 +279,7 @@ void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
     sockaddr_in q = *((sockaddr_in *)&a);
 
     backupHead_t header;
-    recv(reciver, &header, sizeof(header), 0);
+    recv_tcp(reciver, &header, sizeof(header), 0);
     perror("Header recived: ");
 
     processi[slot].numberOfFiles = header.numberOfFiles;
@@ -305,7 +316,7 @@ void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
 			_SLEEP(1000);
 		}
         file_h fileHeader;
-        if (recv(reciver, &fileHeader, sizeof(file_h), 0) <= 0) break;
+        if (recv_tcp(reciver, &fileHeader, sizeof(file_h), 0) <= 0) break;
         processi[slot].dimension = fileHeader.transfer_dimension;
         processi[slot].transferred &= 0;
 
@@ -350,7 +361,7 @@ void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
                 fileHeader.transfer_dimension &= (uint64_t) 0L;
             }
 
-            size_t reciv = (size_t) recv(reciver, r_data, nextBlock, 0);
+            size_t reciv = (size_t) recv_tcp(reciver, r_data, nextBlock, 0);
             if (reciv <= 0) break;
 
             if (zip){
