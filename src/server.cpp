@@ -492,6 +492,8 @@ int main(void) {
 
                 if(res != 2) break;
 
+                printf("Monitoring recived\n");
+
                 /*pid_t pid;
                 pid = fork();
                 if (pid < 0 || pid != 0) break;*/

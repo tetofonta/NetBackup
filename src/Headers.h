@@ -17,8 +17,8 @@ extern "C" {
 /**
  * La struttura Rappresenta un pacchetto generico ricevuto dal server UDP
  */
-typedef struct __attribute__((packed, aligned(4))) {
-    char mw[2];        ///< Identificxatore del pacchetto
+typedef struct __attribute__((packed)) {
+    char mw[2];        ///< Identificatore del pacchetto
     char data[17];    ///< Dati presenti
 } mainpacket;
 
@@ -31,7 +31,7 @@ typedef udpPacketRecv_t newBak_h;
 /**
  * Pacchetto di richiesta identificazione
  */
-typedef struct __attribute__((packed, aligned(4))){ //mw = ad
+typedef struct __attribute__((packed)){ //mw = ad
     char mw[2];
     int nextLenght;
 } identify_answ_h;
@@ -39,7 +39,7 @@ typedef struct __attribute__((packed, aligned(4))){ //mw = ad
 /**
  * Pacchetto di richiesta chiave pubblica
  */
-typedef struct __attribute__((packed, aligned(4))){
+typedef struct __attribute__((packed)){
     int explen;
     int nlen;
 } pkey_identifier_t;
@@ -47,7 +47,7 @@ typedef struct __attribute__((packed, aligned(4))){
 /**
  * Header di backup
  */
-typedef struct __attribute__((packed, aligned(4))){
+typedef struct __attribute__((packed)){
     int isEncoded; ///< Se 0 non codificato, altrimenti codificato
     struct sockaddr_in client; ///< Client connesso
     int numberOfFiles; ///< Numero di file nel backup
@@ -59,7 +59,7 @@ typedef struct __attribute__((packed, aligned(4))){
 /**
  * Header del file di backup
  */
-typedef struct __attribute__((packed, aligned(4))){
+typedef struct __attribute__((packed)){
     uint64_t dimension; ///< dimensione del file non cifrato
     uint64_t transfer_dimension; ///< dimensione trasmessa
     int isEncoded; ///< se 0 non codificato, altrimenti codificato
@@ -77,7 +77,7 @@ typedef union {
 /**
  * Definizione di rete
  */
-typedef struct __attribute__((packed, aligned(4))){
+typedef struct __attribute__((packed)){
     ipAddr address; ///< ip
     unsigned int netMask; ///< netmask
 } network;
@@ -85,7 +85,7 @@ typedef struct __attribute__((packed, aligned(4))){
 /**
  * Struttura contenete le configurazioni del server
  */
-typedef struct __attribute__((packed, aligned(4))){
+typedef struct __attribute__((packed)){
     int server_port;    ///< Porta
     int starting_port;    ///< prima porta per i backup
     int port_interval; ///< intervallo di porte
@@ -104,7 +104,7 @@ typedef struct __attribute__((packed, aligned(4))){
 /**
  * Informazioni di backup
  */
-typedef struct __attribute__((packed, aligned(4))){
+typedef struct __attribute__((packed)){
     int socket; ///< socket del processo di backup
     int port; ///< porta di backup
     int pid; ///< pid del processo forkato
@@ -120,7 +120,7 @@ typedef struct __attribute__((packed, aligned(4))){
 /**
  *Configurazione SSH
  */
-typedef struct __attribute__((packed, aligned(4))){
+typedef struct __attribute__((packed)){
     int port; ///< porta del terminale ssh
     char *user; ///< username
     char *password; ///< hash della password
