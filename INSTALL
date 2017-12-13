@@ -2,7 +2,7 @@ Fontana Stefano - Network Backup
 Installation instructions
 
 1. Installing dependencies
-    Libraries needs to be installed for compile code correctly:
+    Libraries needed for compile code correctly:
     -   gmp (libgmp-dev packet)
     -   libssh  (libssh-dev packet)
     -   bzip2 (libbzip2-dev packet)

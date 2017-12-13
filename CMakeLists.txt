@@ -6,6 +6,9 @@ add_definitions(-std=gnu++11)
 enable_language(C)
 enable_language(CXX)
 
+set(BUILD_SHARED_LIBS OFF)
+set(CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} "-static")
+
 if (CMAKE_CXX_COMPILER_ID MATCHES GNU)
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
