@@ -21,28 +21,40 @@ Installation instructions
 1.1 Systems limitation
     It's impossible to build the server executable on windows system due to POSIX system call mmap unavailable on microsoft systems.
 
+====================================================================
 2. Generating make instruction for compiling
     Create build directory running
     -   mkdir build && cd build
     Generate make instruction running
     -   cmake ..
 
-3. Compile executables and tests
+2.1. Compile executables and tests
     Run
-    - make
+    -	make
 
-4. Finalize compilation and generate necessary files
+2.2. Finalize compilation and generate necessary files
     Run
     -   cp ../finalize.sh finalize.sh
     -   sh finalize.sh
 
-5. Compiled files in correct configuration and dependencies are now available inside "build/Compiled" directory.
+2.3. Compiled files in correct configuration and dependencies are now available inside "build/Compiled" directory.
     Make sure Utils and Server directories aren't available on the same machin for securety reasons.
     Configure client by editing "client.properties" inside "build/Compiled/Client" directory
     Configure server by editing "config.propeties" inside "build/Compiled/Server" directory
 
-6. Run test by executing
+2.4. Run test by executing
     -   cd Test/test
     -   ctest
+================================OR==================================
+2b. Run Install script if you are in Linux env
+	Run
+	-	sh install_linux.sh
+====================================================================
 
-7. Enjoy =)
+3.	(GLASSFISH MONITORING SERVER)
+	3.1 Run create.sql in mysql environment
+	3.2	Add Connector/J lib to glassfish and domain
+	3.3 Configure Glassfish for your mysql connection
+	3.4 add monitor_compiled folder to your glassfish domain
+
+4. Enjoy =)
