@@ -434,7 +434,7 @@ int check_host_validity(sockaddr_in * client){
     return res;
 }
 
-int main(void) {
+int main(int argc, char ** argv) {
     signal(SIGINT, intHandler);
     signal(SIGHUP, intHandler);
 
@@ -455,10 +455,13 @@ int main(void) {
         processi[i].status = 0;
     }
 
-    pid_t pid = fork();
-    if (!(pid < 0 || pid != 0)){
-        init_terminal(serverpid, processi, &configs);
-        exit(0);
+    pid_t pid;
+    if(argc  < 1 && strcmp(argv[1], "noterminal") != 0) {
+        pid = fork();
+        if (!(pid < 0 || pid != 0)) {
+            init_terminal(serverpid, processi, &configs);
+            exit(0);
+        }
     }
 
 #ifdef SSH
@@ -527,7 +530,7 @@ int main(void) {
 
     } while (keepRunning);
 
-    kill(pid, SIGKILL);
+    if(argc  < 1 && strcmp(argv[1], "noterminal") != 0) kill(pid, SIGKILL);
 
     for(int i = 0; i < configs.port_interval; i++) {
         if(processi[i].socket != -10){

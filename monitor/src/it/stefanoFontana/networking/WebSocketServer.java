@@ -53,6 +53,8 @@ public class WebSocketServer {
             if (retrn.next()) {
                 if(command.contains("TOG"))
                     conn.command(command);
+                else if(command.contains("STP"))
+                    conn.command(command);
                 else if (command.equals("GET")) {
 
                     BackupThread[] bak;

@@ -53,7 +53,7 @@
 <nav class="blue">
     <div class="nav-wrapper container">
         <a href="Logout" class="brand-logo right"><img style="height: 60px; padding: 5px;" src="img/backup.svg"
-                                                          alt="Logo"></a>
+                                                       alt="Logo"></a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li>
                 <a class="modal-trigger" href="#account">
@@ -72,13 +72,13 @@
             <%--<li><a href="#" onclick="--%>
             <%--document.getElementById('percentages').style.display = 'none';--%>
             <%--document.getElementById('fileServer').style.display = 'block';--%>
-<%--">File Server</a></li>--%>
+            <%--">File Server</a></li>--%>
             <%
-                if(username.equals("admin")){
+                if (username.equals("admin")) {
             %>
-                <li>
-                    <a href="#">Gestione Accounts</a></li>
-                </li>
+            <li>
+                <a class="modal-trigger" href="#accounts">Gestione Accounts</a>
+            </li>
             <%
                 }
             %>
@@ -121,7 +121,7 @@
 <div id="chPassword" class="modal">
     <div class="modal-content">
         <form action="EditAccount" method="post">
-            <input type="hidden" name="ChangePassword" value="true">
+            <input type="hidden" name="action" value="ChangePassword">
             <input type="hidden" name="username" value="<%=username%>">
             <div class="row">
                 <div class="input-field col s12">
@@ -152,11 +152,29 @@
     <div class="modal-content">
         <div class="row"><input onchange="getencode()" type="file" name="file" id="file"></div>
         <form action="EditAccount" method="post">
-            <input type="hidden" name="ChangeAvatar" value="true">
+            <input type="hidden" name="action" value="ChangeAvatar">
             <input type="hidden" name="encoding" id="encoding">
             <input type="hidden" name="username" value="<%=username%>">
             <div class="modal-footer">
                 <button type="submit" class="btn waves-light">Cambia Avatar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="accounts" class="modal">
+    <div class="modal-content">
+        <h5>Nuovo account</h5>
+        <form action="EditAccount" method="post" target="_blank">
+            <input type="hidden" value="NewAccount" name="action">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="username" type="password" name="newuser">
+                    <label for="username">Nome utente</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn waves-light">Crea</button>
             </div>
         </form>
     </div>
@@ -242,7 +260,10 @@
                         "</div>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        // "<div class='card-action'><a onclick='toggle("+ array[8] +")'><i class='material-icons'> " + (array[7] === "1" ? "play_arrow" : "pause") + "</i></a></div>\n" +
+                        "<div class='card-action'>" +
+                        "<a onclick='toggle("+ array[8] +")'><i class='material-icons'> " + (array[7] === "1" ? "play_arrow" : "pause") + "</i></a>" +
+                        "<a onclick='stahp("+ array[8] +")'><i class='material-icons'>stop</i></a>" +
+                        "</div>\n" +
                         "</div>\n" +
                         "</div>\n";
 
@@ -267,7 +288,15 @@
         try {
             conn.send("<%=key%>/<%=username%>/" + "TOG" + id);
         } catch (e) {
+            alert("Impossibile inviare");
+        }
+    }
 
+    function stahp(id){
+        try {
+            conn.send("<%=key%>/<%=username%>/" + "STP" + id);
+        } catch (e) {
+            alert("Impossibile inviare");
         }
     }
 

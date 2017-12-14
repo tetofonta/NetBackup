@@ -16,7 +16,9 @@ Installation instructions
     -   openssh-server
     -   ctest
     -   g++
-    On linux run command `apt-get make cmake python3 openssl openssh-server ctest g++ install libgmp-dev libssh-dev libbz2-dev` or equivalent
+	- 	wget
+	-	unzip
+    On linux run command `apt-get make cmake python3 openssl openssh-server ctest g++ install libgmp-dev libssh-dev libbz2-dev wget unzip` or equivalent
 
 1.1 Systems limitation
     It's impossible to build the server executable on windows system due to POSIX system call mmap unavailable on microsoft systems.
@@ -50,11 +52,12 @@ Installation instructions
 	Run
 	-	sh install_linux.sh
 ====================================================================
+3.	OUTPUT
 
-3.	(GLASSFISH MONITORING SERVER)
-	3.1 Run create.sql in mysql environment
+4.	(GLASSFISH MONITORING SERVER)
+	3.1 Run create.sql in your mysql environment
 	3.2	Add Connector/J lib to glassfish and domain
-	3.3 Configure Glassfish for your mysql connection
+	3.3 Configure Glassfish for your mysql connection with connection pool named "mysql" and relative resource
 	3.4 add monitor_compiled folder to your glassfish domain
 
-4. Enjoy =)
+5. Enjoy =)

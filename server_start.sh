@@ -1,4 +1,4 @@
 #!/bin/bash
 
-./server &
+./server noterminal &
 echo $! > pid

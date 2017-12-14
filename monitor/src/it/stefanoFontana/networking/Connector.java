@@ -31,6 +31,7 @@ public class Connector {
     }
 
     public void command(String cmd){
+        cmd = "mo" + cmd;
         try {
             DatagramPacket sendPacket = new DatagramPacket(cmd.getBytes(), cmd.getBytes().length, ip, 5577); //TODO: specifica in properties
             clientSocket.send(sendPacket);

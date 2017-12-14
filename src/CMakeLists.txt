@@ -1,18 +1,18 @@
 project(NetBak)
 
-add_library(_FS FileSystem/FS.c)
-add_library(_AES AES/aes.c)
-add_library(_B32 BASE_encoding/base32.c)
-add_library(_CFG config/config.c)
-add_library(_MD5 MD5/md5.c)
-add_library(_NET Networking/tcp.c Networking/udp.c)
-add_library(_PACKETS packets.c)
-add_library(_RSA RSA/IO.cpp RSA/utilities.cpp RSA/Signature.cpp)
-add_library(_TERM Terminal/terminal.cpp Terminal/sshSession.cpp)
+add_library(_FS STATIC FileSystem/FS.c)
+add_library(_AES STATIC AES/aes.c)
+add_library(_B32 STATIC BASE_encoding/base32.c)
+add_library(_CFG STATIC config/config.c)
+add_library(_MD5 STATIC MD5/md5.c)
+add_library(_NET STATIC Networking/tcp.c Networking/udp.c)
+add_library(_PACKETS STATIC packets.c)
+add_library(_RSA STATIC RSA/IO.cpp RSA/utilities.cpp RSA/Signature.cpp)
+add_library(_TERM STATIC Terminal/terminal.cpp Terminal/sshSession.cpp)
 target_compile_definitions(_TERM PUBLIC GMP)
 target_link_libraries(_TERM _MD5 dl gmp)
 
-#to find gmp, bzip2 ssh
+#TODO: find gmp, bzip2 ssh
 add_executable(client client.cpp)
 target_compile_definitions(client PUBLIC GMP)
 target_link_libraries(client _FS _AES _B32 _CFG _NET _PACKETS _RSA gmp)
