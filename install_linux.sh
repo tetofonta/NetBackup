@@ -66,8 +66,14 @@ then
 	if [ $YN = "y" ] || [ $YN = "Y"]
 	then
 		wget http://download.oracle.com/glassfish/5.0/release/glassfish-5.0.zip
-		unzip glassfish-5.0.zip -d "$HOME"
-		cp ./monitor.war "$HOME/monitor.war"
+		unzip glassfish-5.0.zip -d "$HOME/networkBackup"
+		cp ./monitor.war "$HOME/networkBackup/monitor.war"
+		wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.zip
+		unzip mysql-connector-java-5.1.45.zip
+		cp ./mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar "$HOME/networkBackup/glassfish5/glassfish/lib/mysql-connector-java-5.1.45-bin.jar"
+		cp ./mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar "$HOME/networkBackup/glassfish5/glassfish/domains/domain1/lib/mysql-connector-java-5.1.45-bin.jar"
+		echo "Devi configurare il tuo server come riportato nel file INSTALL\n"
+		read -p "press any key to continue..." foo
 	fi
 fi
 
