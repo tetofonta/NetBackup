@@ -27,7 +27,7 @@ public class WebSocketServer {
             conn = Connector.getInstance();
         } catch (UnknownHostException e) {
             e.printStackTrace();
-        } catch (SocketException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

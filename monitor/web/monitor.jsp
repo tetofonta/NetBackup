@@ -244,15 +244,16 @@
                         "<i class=\"material-icons\">" + (array[7] === "1" ? "pause" : "play_arrow") + "</i>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "File Corrente: <br/>\n" +
                         "<div class=\"col s9\">\n" +
-                        "<div class=\"row\">\n" +
+                        "<h4 class='show-on-medium-and-down'> <b> "+ overallPercentage +"% </b> </h4>" +
+                        "<div class=\"row hide-on-med-and-down\">\n" +
+                        "File Corrente: <br/>\n" +
                         "<div class=\"progress s12\">\n" +
                         "<div class=\"determinate\" style=\"width: " + file_percentages + "%\"></div>\n" +
                         "</div>\n" +
                         "</div>\n" +
+                        "<div class=\"row hide-on-small-and-down\">\n" +
                         "Totale: <br/>\n" +
-                        "<div class=\"row\">\n" +
                         "<div class=\"progress s12\">\n" +
                         "<div class=\"determinate\" style=\"width: " + overallPercentage + "%\"></div>\n" +
                         "</div>\n" +
@@ -261,11 +262,11 @@
                         "</div>\n" +
                         "</div>\n" +
                         "<div class='card-action'>" +
-                        "<a onclick='toggle("+ array[8] +")'><i class='material-icons'> " + (array[7] === "1" ? "play_arrow" : "pause") + "</i></a>" +
-                        "<a onclick='stahp("+ array[8] +")'><i class='material-icons'>stop</i></a>" +
-                        "</div>\n" +
-                        "</div>\n" +
-                        "</div>\n";
+                        (array[0] !== "-10" ? "" : "<a onclick='toggle(" + array[8] + ")'><i class='material-icons'> " + (array[7] === "1" ? "play_arrow" : "pause") + "</i></a>") +
+                        (array[0] !== "-10" ? "" : "<a onclick='stahp(" + array[8] + ")'><i class='material-icons'>stop</i></a>") +
+                            "</div>\n" +
+                            "</div>\n" +
+                            "</div>\n";
 
                     if (array[0] !== "-10") contenitore += prog;
                     else completi += prog;
@@ -292,7 +293,7 @@
         }
     }
 
-    function stahp(id){
+    function stahp(id) {
         try {
             conn.send("<%=key%>/<%=username%>/" + "STP" + id);
         } catch (e) {

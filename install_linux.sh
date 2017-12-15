@@ -84,6 +84,8 @@ then
 		unzip mysql-connector-java-5.1.45.zip
 		cp ./mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar "$HOME/networkBackup/glassfish5/glassfish/lib/mysql-connector-java-5.1.45-bin.jar"
 		cp ./mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar "$HOME/networkBackup/glassfish5/glassfish/domains/domain1/lib/mysql-connector-java-5.1.45-bin.jar"
+		touch "$HOME/networkBackup/glassfish5/glassfish/domains/domain1/config/web.properties"
+		echo "server=localhost\nport=5577" > "$HOME/networkBackup/glassfish5/glassfish/domains/domain1/config/web.properties"
 		echo "Devi configurare il tuo server come riportato nel file INSTALL\n"
 		read -p "press any key to continue..." foo
 

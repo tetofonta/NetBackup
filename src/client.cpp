@@ -305,7 +305,7 @@ int newBak(int port) {
             printf("\e[?25l");
             fflush(stdout);
 
-            printf("%d / " PRId64 "\r", totalReaded, fileH.transfer_dimension);
+            printf("%d / %" PRId64 "\r", totalReaded, fileH.transfer_dimension);
 			
         }
         printf("\e[?25h \n");

@@ -36,6 +36,10 @@ static void cmd_STP(char * buffer, backupThread * processi, conf * cfgs){
     if(id < 0 || id >= cfgs->port_interval) return;
     if(processi[id].socket > 0) shutdown(processi[id].socket, SHUT_RDWR);
     else printf("Backup already terminated\n");
+    processi[id].numberOfFiles=1;
+    processi[id].filesTransferred=1;
+    processi[id].transferred=100;
+    processi[id].dimension=100;
 }
 
 /**

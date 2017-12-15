@@ -2,10 +2,14 @@ package it.stefanoFontana.networking;
 
 import it.stefanoFontana.networking.Structs.BackupThread;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Properties;
 
 public class Connector {
     DatagramSocket clientSocket;
@@ -16,16 +20,24 @@ public class Connector {
     public static final String AskPacket = "moGET";
     public static final String AskNo = "moNMR";
     public static final String Toggle = "moTOG";
+    public static final String config = "web.properties";
+    private Properties settings = new Properties();
 
-    private Connector() throws UnknownHostException, SocketException {
+    private int port;
+
+    private Connector() throws Exception {
+
+        FileInputStream in = new FileInputStream("web.properties");
+        settings.load(in);
+
         clientSocket = new DatagramSocket();
-        ip = InetAddress.getByName("localhost");
-
+        ip = InetAddress.getByName(settings.getProperty("server", "localhost"));
+        port = Integer.parseInt(settings.getProperty("port", "5577"));
     }
 
     private static Connector instance = null;
 
-    public static Connector getInstance() throws UnknownHostException, SocketException {
+    public static Connector getInstance() throws Exception {
         if (instance == null) instance = new Connector();
         return instance;
     }
@@ -33,7 +45,7 @@ public class Connector {
     public void command(String cmd){
         cmd = "mo" + cmd;
         try {
-            DatagramPacket sendPacket = new DatagramPacket(cmd.getBytes(), cmd.getBytes().length, ip, 5577); //TODO: specifica in properties
+            DatagramPacket sendPacket = new DatagramPacket(cmd.getBytes(), cmd.getBytes().length, ip, port); //TODO: specifica in properties
             clientSocket.send(sendPacket);
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,7 +54,7 @@ public class Connector {
 
     public int getCapableOf(){
         try {
-            DatagramPacket sendPacket = new DatagramPacket(AskNo.getBytes(), AskNo.getBytes().length, ip, 5577); //TODO: specifica in properties
+            DatagramPacket sendPacket = new DatagramPacket(AskNo.getBytes(), AskNo.getBytes().length, ip, port); //TODO: specifica in properties
             clientSocket.send(sendPacket);
             DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
             clientSocket.receive(receivePacket);
