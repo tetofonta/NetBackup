@@ -280,7 +280,6 @@ void newBackup(int socket, sockaddr to, socklen_t len, newBak_h data) {
 
     backupHead_t header;
     recv_tcp(reciver, &header, sizeof(header), 0);
-    perror("Header recived: ");
 
     processi[slot].numberOfFiles = header.numberOfFiles;
     processi[slot].filesTransferred = 0;
@@ -456,7 +455,7 @@ int main(int argc, char ** argv) {
     }
 
     pid_t pid;
-    if(argc  < 1 && strcmp(argv[1], "noterminal") != 0) {
+    if(argc  > 0 && strcmp(argv[1], "noterminal") == 0) {
         pid = fork();
         if (!(pid < 0 || pid != 0)) {
             init_terminal(serverpid, processi, &configs);
@@ -495,8 +494,6 @@ int main(int argc, char ** argv) {
 
                 if(res != 2) break;
 
-                printf("Monitoring recived\n");
-
                 /*pid_t pid;
                 pid = fork();
                 if (pid < 0 || pid != 0) break;*/
@@ -530,7 +527,7 @@ int main(int argc, char ** argv) {
 
     } while (keepRunning);
 
-    if(argc  < 1 && strcmp(argv[1], "noterminal") != 0) kill(pid, SIGKILL);
+    if(argc  > 0 && strcmp(argv[1], "noterminal") == 0) kill(pid, SIGKILL);
 
     for(int i = 0; i < configs.port_interval; i++) {
         if(processi[i].socket != -10){

@@ -8,7 +8,7 @@ if [ $USRID -ne "0" ]
 	exit
 fi
 
-read -p "Install directory: " HOME
+read -p "Install directory (Absolute path): " HOME
 
 echo "Building executables ###############################################################"
 sh linux_build.sh
@@ -34,6 +34,18 @@ then
 	mkdir ./output/archive
 	cp ./src/client.properties ./output/client.properties
 	cp ./build/src/client ./output/netbackup_client
+fi
+
+read -p "Vuoi compilere le utilities? [y/N]: " YN
+
+if [ $YN = "y" ] || [ $YN = "Y"]
+then
+	mkdir ./utils
+	cp ./build/src/baknfo ./utils/baknfo
+	cp ./build/src/extract ./utils/extract
+	cp ./build/src/extract_all ./utils/extract_all
+	cp ./build/src/genPasswd ./utils/genPasswd
+	cp ./build/src/signElf ./utils/signElf
 fi
 
 read -p "Vuoi compilere il codice lato server? [y/N]: " YN
@@ -74,18 +86,18 @@ then
 		cp ./mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar "$HOME/networkBackup/glassfish5/glassfish/domains/domain1/lib/mysql-connector-java-5.1.45-bin.jar"
 		echo "Devi configurare il tuo server come riportato nel file INSTALL\n"
 		read -p "press any key to continue..." foo
+
+		read -p "Vuoi registrare il servizio per il server di monitoraggio? [y/N]: " YN
+			if [ $YN = "y" ] || [ $YN = "Y"]
+			then
+				echo "[Unit]\nDescription=NetBackup server monitor - Fontana Stefano (tetofonta)\nAfter=network.target\n[Service]\nUser=root\nWorkingDirectory=$HOME/networkBackup/glassfish5/bin\nType=oneshotmc\nRemainAfterExit=yes\nExecStart=$HOME/networkBackup/glassfish5/bin/asadmin start-domain\nExecStop=$HOME/networkBackup/glassfish5/bin/asadmin stop-domain\n[Install]\nWantedBy=multi-user.target" > netback_server_monitor.service
+				#cp ./netback_server_monitor.service /etc/systemd/system/netback_server_monitor.service
+			fi
+
+		cd "$HOME/networkBackup/glassfish5/bin"
+		./asadmin start-domain
+		./asadmin deploy ../../monitor.war
+		./asadmin stop-domain
+		
 	fi
 fi
-
-read -p "Vuoi compilere le utilities? [y/N]: " YN
-
-if [ $YN = "y" ] || [ $YN = "Y"]
-then
-	mkdir ./utils
-	cp ./build/src/baknfo ./utils/baknfo
-	cp ./build/src/extract ./utils/extract
-	cp ./build/src/extract_all ./utils/extract_all
-	cp ./build/src/genPasswd ./utils/genPasswd
-	cp ./build/src/signElf ./utils/signElf
-fi
-

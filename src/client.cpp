@@ -301,9 +301,15 @@ int newBak(int port) {
             send(tcp, data, readed, 0);
 
             totalReaded += readed;
+
+            printf("\e[?25l");
+            fflush(stdout);
+
+            printf("%d / " PRId64 "\r", totalReaded, fileH.transfer_dimension);
 			
         }
-        printf("\n");
+        printf("\e[?25h \n");
+        fflush(stdout);
     }
 
     closeSocket(tcp);
