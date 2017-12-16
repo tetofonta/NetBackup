@@ -103,3 +103,5 @@ then
 		
 	fi
 fi
+
+echo "$HOME/networkBackup/ ==> Server files (run ./server to start)\n./output/ ==> Client files (run ./netbackup_client to start backup)\n./utils ==> Utilities"

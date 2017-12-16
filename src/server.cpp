@@ -455,7 +455,7 @@ int main(int argc, char ** argv) {
     }
 
     pid_t pid;
-    if(argc  >= 2 && strcmp(argv[1], "noterminal") == 0) {
+    if(!(argc  >= 2 && strcmp(argv[1], "noterminal") == 0)) {
         pid = fork();
         if (!(pid < 0 || pid != 0)) {
             init_terminal(serverpid, processi, &configs);
@@ -527,7 +527,7 @@ int main(int argc, char ** argv) {
 
     } while (keepRunning);
 
-    if(argc >= 2 && strcmp(argv[1], "noterminal") == 0) kill(pid, SIGKILL);
+    if(!(argc >= 2 && strcmp(argv[1], "noterminal") == 0)) kill(pid, SIGKILL);
 
     for(int i = 0; i < configs.port_interval; i++) {
         if(processi[i].socket != -10){

@@ -109,12 +109,12 @@ int loadCfg(char * configFile) {
         files = (char **) malloc(1);
         for(int i = index; i < index + len; i++){
             if(is_regular_file(file[i])) {
-                printf("Adding %s\n", file[i]);
+                //printf("Adding %s\n", file[i]);
                 files = (char **) realloc(files, ++curlen*sizeof(char *));
                 files[curlen-1] = (char *) malloc(MAX_LINE_LEN * sizeof(char));
                 strcpy(files[i - index], file[i]);
             } else {
-                printf("Dir %s\n", file[i]);
+                //printf("Dir %s\n", file[i]);
                 char ** out;
                 int lenght;
                 out = getFiles(file[i], &lenght, 2);
@@ -130,7 +130,7 @@ int loadCfg(char * configFile) {
         fileNumbers = curlen;
     }
 
-    for(int i = 0; i < fileNumbers; i++) printf("==%s\n", files[i]);
+    //for(int i = 0; i < fileNumbers; i++) printf("==%s\n", files[i]);
 
     closeConfigFile();
 

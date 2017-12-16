@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.org/tetofonta/NetBackup.svg?branch=master)](https://travis-ci.org/tetofonta/NetBackup)
 
+CLONE IT WITH `git clone https://github.com/tetofonta/NetBackup.git --depth=2`
+After compilation commands:
+* `sudo chown -R <your_user>` .
+
 ![LOGO |100x100,20%](/images/backup.png)
 # NETBACK
 #### Software di trasferimento e salvataggio file attraverso la rete.
