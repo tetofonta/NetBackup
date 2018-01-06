@@ -71,7 +71,7 @@ then
 		echo "[Unit]\nDescription=NetBackup server - Fontana Stefano (tetofonta)\nAfter=network.target\n[Service]\nUser=root\nWorkingDirectory=$HOME/networkBackup\nType=oneshotmc\nRemainAfterExit=yes\nExecStart=/bin/sh $HOME/networkBackup/server_start.sh\nExecStop=/bin/sh $HOME/networkBackup/server_start.sh\n[Install]\nWantedBy=multi-user.target" > netback_server.service
 		cp server_start.sh "$HOME/networkBackup/server_start.sh"
 		cp server_stop.sh "$HOME/networkBackup/server_stop.sh"
-		#cp ./netback_server.service /etc/systemd/system/netback_server.service
+		cp ./netback_server.service /etc/systemd/system/netback_server.service
 	fi
 
 	read -p "Vuoi configurare il server di monitoraggio? [y/N]: " YN
@@ -93,7 +93,7 @@ then
 			if [ $YN = "y" ] || [ $YN = "Y"]
 			then
 				echo "[Unit]\nDescription=NetBackup server monitor - Fontana Stefano (tetofonta)\nAfter=network.target\n[Service]\nUser=root\nWorkingDirectory=$HOME/networkBackup/glassfish5/bin\nType=oneshotmc\nRemainAfterExit=yes\nExecStart=$HOME/networkBackup/glassfish5/bin/asadmin start-domain\nExecStop=$HOME/networkBackup/glassfish5/bin/asadmin stop-domain\n[Install]\nWantedBy=multi-user.target" > netback_server_monitor.service
-				#cp ./netback_server_monitor.service /etc/systemd/system/netback_server_monitor.service
+				cp ./netback_server_monitor.service /etc/systemd/system/netback_server_monitor.service
 			fi
 
 		cd "$HOME/networkBackup/glassfish5/bin"
